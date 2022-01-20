@@ -246,8 +246,10 @@
     /* 歌曲名与作者样式 */
     .title{
       font-size: 2.5rem;
+      float: right;
     }
     .creator{
+      float: right;
       font-size: 2.5rem;
       letter-spacing: 3px;
       padding-right: 10px; /* 使作者右端与书名号对齐 */
