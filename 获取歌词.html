@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <script src="./js/jquery-3.6.0.js"></script>
+</head>
+<style>
+      li{
+        list-style: none;       
+      }
+</style>
+<body>
+      <button>获取 歌词 数据</button>
+      <p id="geci" style="white-space: pre-line;"></p>
+      <img src="" alt="" srcset="">
+</body>
+<script>
+      $(document).ready(function(){
+            $("button").click(function(){
+                  $.ajax({
+                        url: 'https://yuulyrics.vercel.app/song/detail?ids=399367218',
+                        type: 'get',
+                        dataType: 'json',
+                        xhrFields: {withCredentials: true},
+                        success: function(data){
+                              var albumimg = data.songs[0].al.picUrl;
+                              var smallsize = albumimg + '?param=500y500';
+                              $("img").attr('src',smallsize);
+                        }
+                  })
+            });
+      });
+</script>
+</html>

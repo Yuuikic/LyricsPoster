@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="./css/lyricsposter.css">
+    <link rel="shortcut icon" href="./assetes/favicon.ico" type="image/x-icon">
+    <title>歌词海报生成器</title>
+</head>
+<body>
+    <div class="site-title-1 text-center col-xs-7 col-md-6">Lyrics</div>
+    <div class="site-title-2 text-center col-xs-7 col-md-6">Poster</div>
+    <div class="search col-md-3 col-md-offset-0 col-xs-8 col-xs-offset-2 ">
+        <button>获取 歌词 数据</button>
+        <form action="" method="POST" role="form">
+            <div class="form-group">
+                <input type="text" class="form-control" id="search-form" placeholder="Search Songs…">
+            </div>
+        </form>  
+    </div>
+    <div class="edit col-md-9 col-xs-12">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="lyrics-select col-md-4 col-xs-10 col-xs-offset-1 col-md-offset-1">
+                    <div class="s-bgimg"></div>
+                </div>
+                <div class="lyrics-hidden col-md-4 col-xs-10 col-xs-offset-1 col-md-offset-1">
+                    <div class="lyrics">
+                        <ul class="text-justify" id="geci" style="white-space: pre-line;">
+                        </ul>
+                    </div>
+                </div>
+                <div class="poster col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
+                    <div class="quote"><i class="fa fa-quote-left"></i></div>
+                    <div class="bg-margin">
+                        <div class="g-bgimg-hidden">
+                        <div class="g-bgimg"></div>
+                        </div>
+                    </div>
+                    <div class="g-lyrics-hidden">
+                        <div class="g-lyrics">
+                            <ul>
+                                <li class="g-lyrics-li">揺るぎないものがほしかった</li>
+                                <li class="g-lyrics-li">壊れない意志がほしかった</li>
+                                <li class="title text-right">《鋼の羽根》</li>
+                                <li class="creator text-right">—RADWIMPS</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modify col-xs-12 text-center">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <a href="#" onclick="change()" class="col-xs-4">样式</a>
+                                <a href="#" onclick="change()" class="checked col-xs-4" >颜色</a>
+                                <a href="#" onclick="change()" class="col-xs-4">随机</a>
+                            </div>
+                        </div>
+                        <div class="menu container-fluid col-xs-12" id="changeColor">
+                            <div class="row modify-select">
+                            <button class="color1 col-xs-2 col-xs-offset-1" onclick="change2color('color1')"></button>
+                            <button class="color2 col-xs-2 col-xs-offset-2" onclick="change2color('color2')"></button>
+                            <button class="color3 col-xs-2 col-xs-offset-2" onclick="change2color('color3')"></button>
+        
+                            </div>
+                        </div>
+                    </div>
+                    <div>&nbsp;</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        function change2color(colStr){
+            $(".bg-margin").attr("class","bg-margin");
+            $(".bg-margin").addClass(colStr)
+        }
+    </script> 
+    <script>
+        $("button").click(function(){
+            // 获取歌词
+            $.ajax({
+                    url: 'https://yuulyrics.vercel.app/lyric?id=399367218',
+                    type: 'get',
+                    dataType: 'json',
+                    xhrFields: {withCredentials: true},
+                    success: function(data){
+                        var LyricsFormer = data.lrc.lyric.replace(/\[.*\]/g,"<li>");
+                        var LyricsLatter = LyricsFormer.replace("\n","</li>");
+                        document.getElementById('geci').innerHTML = LyricsLatter;
+                        // 歌词选中效果
+                        $(".lyrics li").click(function() {
+                            $(this).addClass("selected-lyrics")},
+                            $(".lyrics li").click(function() {    
+                                if($(this).hasClass("selected-lyrics"))
+                                    $(this).removeClass("selected-lyrics");
+                                else
+                                    $(this).addClass("selected-lyrics");
+                            }));
+                    }
+            })
+            // 更改背景为专辑封面
+            $.ajax({
+                        url: 'https://yuulyrics.vercel.app/song/detail?ids=399367218',
+                        type: 'get',
+                        dataType: 'json',
+                        xhrFields: {withCredentials: true},
+                        success: function(data){
+                              albumimg = data.songs[0].al.picUrl;
+                              smallsize = albumimg + '?param=500y500'; // api调整图片大小
+                              $(".s-bgimg").css("background-image","url("+smallsize+")");
+                        }
+                  })
+        });
+  </script>
+  <script>      
+    
+</script>
+</body>
+</html>
