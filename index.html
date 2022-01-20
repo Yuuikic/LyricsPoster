@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./css/lyricsposter.css">
     <link rel="shortcut icon" href="./assetes/favicon.ico" type="image/x-icon">
     <script src="./js/jquery-3.6.0.js"></script>
+    <script src="./js/color-thief.min.js"></script>
     <title>歌词海报生成器</title>
 </head>
 <body>
@@ -25,8 +26,8 @@
         </form>
         <div class="result">
             <div class="songs container-fluid row">
-                <img src="https://p1.music.126.net/YzW9gUbbMC8V4jJLdLCYvA==/109951163641189935.jpg" alt="" class="img-circle">
-                <p class="col-xs-8 text-center">君の知らない物語<br>supercell</p>
+                <img src="https://p1.music.126.net/YzW9gUbbMC8V4jJLdLCYvA==/109951163641189935.jpg" alt="" class="img-circle" title="获取歌词">
+                <p class="col-xs-8 text-center" title="获取歌词">君の知らない物語<br>supercell</p>
             </div>
         </div>
     </div>
@@ -35,16 +36,16 @@
             <div class="row">
                 <div class="lyrics-select col-md-4 col-xs-10 col-xs-offset-1 col-md-offset-1">
                     <div class="mask"></div>
-                    <div class="s-bgimg"></div>
+                    <img src="" id="s-bgimg" crossorigin="anonymous" />
                 </div>
                 <div class="lyrics-hidden col-md-4 col-xs-10 col-xs-offset-1 col-md-offset-1">
                     <div class="lyrics">
-                        <ul class="text-left" id="geci" style="white-space: pre-line;">
+                        <ul class="text-left" id="geci">
                         </ul>
                     </div>
                 </div>
                 <div class="poster col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
-                    <div class="quote"><i class="fa fa-quote-left"></i></div>
+                    <div class="quote" title="生成海报"><i class="fa fa-quote-left"></i></div>
                     <div class="bg-margin">
                         <div class="g-bgimg-hidden">
                         <div class="g-bgimg"></div>
@@ -68,9 +69,9 @@
                         </div>
                         <div class="menu container-fluid col-xs-12" id="changeColor">
                             <div class="row modify-select">
-                            <button class="color1 col-xs-2 col-xs-offset-1" onclick="change2color('color1')"></button>
-                            <button class="color2 col-xs-2 col-xs-offset-2" onclick="change2color('color2')"></button>
-                            <button class="color3 col-xs-2 col-xs-offset-2" onclick="change2color('color3')"></button>
+                            <button class="color1 col-xs-2 col-xs-offset-1"></button>
+                            <button class="color2 col-xs-2 col-xs-offset-2"></button>
+                            <button class="color3 col-xs-2 col-xs-offset-2"></button>
                             </div>
                         </div>
                     </div>
@@ -81,10 +82,13 @@
     </div>
     <script>
         var info; // 声明歌曲信息
-        function change2color(colStr){
-            $(".bg-margin").attr("class","bg-margin");
-            $(".bg-margin").addClass(colStr)
-        }
+        var LyricsFormer; // 歌词处理1
+        var LyricsLatter; // 歌词处理2(结果)
+        var albumimg;
+        var smallsize;
+        var sourceImage;
+        var colorThief;
+        var color;
         $("img,p").click(function(){
             // 获取歌词
             $.ajax({
@@ -94,18 +98,16 @@
                     xhrFields: {withCredentials: true},
                     success: function(data){
                         // 导入歌词文本
-                        var LyricsFormer = data.lrc.lyric.replace(/\[.*\]/g,"<li>");
-                        var LyricsLatter = LyricsFormer.replace("\n","</li>");
+                        LyricsFormer = data.lrc.lyric.replace(/\[.*\]/g,"<li>");
+                        LyricsLatter = LyricsFormer.replace("\n","</li>");
                         document.getElementById('geci').innerHTML = LyricsLatter;
                         // 歌词选中效果
                         $(".lyrics li").click(function() {
-                            $(this).addClass("selected-lyrics")},
-                            $(".lyrics li").click(function() {    
-                                if($(this).hasClass("selected-lyrics"))
-                                    $(this).removeClass("selected-lyrics");
-                                else
-                                    $(this).addClass("selected-lyrics");
-                            }));
+                            if($(this).hasClass("selected-lyrics"))
+                                $(this).removeClass("selected-lyrics");
+                            else
+                                $(this).addClass("selected-lyrics");
+                        });
                     }
             })
             // 获取歌曲信息
@@ -119,17 +121,40 @@
                             // 修改背景图片
                             albumimg = info.songs[0].al.picUrl;
                             smallsize = albumimg + '?param=500y500'; // api调整图片大小
-                            $(".s-bgimg").css("background-image","url("+smallsize+")");
+                            $("#s-bgimg").attr("src",smallsize);
+                            $(".g-bgimg").css("background-image","url("+smallsize+")");
                     }
                 })
         });
-    $(".quote").click(function() {
-        $(".selected-lyrics").each(function(data){
-            $(".g-lyrics-li").prepend("<li class='g-lyrics-li'>"+data+"</li>")
-        })
+    $(".quote").click(function(){
+        // 将选中歌词移动至生成区域
+        $($(".selected-lyrics").toArray().reverse()).each(function(index,data){
+            $(data).removeClass("selected-lyrics").addClass("g-lyrics-li")
+            $(".g-lyrics ul").prepend(data)
+        });
+        // 重新导入歌词文本(避免了被移动到右边后，左边消失)
+        $("#geci").html(LyricsLatter)
         // 生成海报的歌曲名及艺术家
         $(".title").html("《"+info.songs[0].name+"》");
         $(".creator").html("—"+info.songs[0].ar[0].name);
+        // 颜色
+        sourceImage = document.getElementById("s-bgimg");
+        colorThief = new ColorThief();
+        color = colorThief.getPalette(sourceImage,5);
+        $(".bg-margin").css("background-color","rgb("+color[0]+")");
+        $(".color1").css("background","rgb("+color[0]+")");
+        $(".color2").css("background","rgb("+color[1]+")");
+        $(".color3").css("background","rgb("+color[2]+")");
+    });
+    // 切换颜色
+    $(".color1").click(function(){
+        $(".bg-margin").css("background-color","rgb("+color[0]+")")
+    })
+    $(".color2").click(function(){
+        $(".bg-margin").css("background-color","rgb("+color[1]+")")
+    })
+    $(".color3").click(function(){
+        $(".bg-margin").css("background-color","rgb("+color[2]+")")
     })
   </script>
 </body>

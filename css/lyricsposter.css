@@ -147,17 +147,17 @@
     }
     /* 生成的海报主题色（背景色） */
     .bg-margin{
-      background-color: #635438;
+      background-color: rgba(73, 73, 73, 0.2);
       height: 500px;
       padding: 30px 30px;
       overflow: hidden;
     }
     /* 选择歌词区域背景模糊效果组件2 */
-    .s-bgimg{
+    #s-bgimg{
       position: relative;
       bottom: 50rem;
       height: 50rem;
-      background-image: url(../assetes/album.jpg);
+      /* background-image: url(../assetes/album.jpg); */
       background-size: cover;
       background-position: center;
       filter: blur(25px);
@@ -181,7 +181,7 @@
       height: 0;
       width: 100%;
       padding-top: 100%;
-      background-image: url(../assetes/album.jpg);
+      /* background-image: url(../assetes/album.jpg); */
       background-size: cover;
       background-repeat: no-repeat;
       filter: blur(20px);
@@ -240,6 +240,10 @@
       font-size: 8rem;
       color: rgba(188, 181, 176, 0.85);
       z-index: 2;
+      transition: 600ms;
+    }
+    .quote:hover{
+      font-size: 12rem;
     }
     /* 歌曲名与作者样式 */
     .title{
@@ -320,11 +324,11 @@
       padding-bottom: 10px;
     }
     .color1{
-      background: rgb(102, 86, 56);
+      background: rgba(73, 73, 73, 0.2);
     }
     .color2{
-      background: rgb(193, 165, 110);
+      background: rgba(73, 73, 73, 0.2);
     }
     .color3{
-      background: rgb(255, 209, 122);
+      background: rgba(73, 73, 73, 0.2);
     }
