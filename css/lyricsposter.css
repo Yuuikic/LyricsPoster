@@ -2,7 +2,6 @@
   @media (max-width: 970px){
     html{font-size:7px;}
   }
-
   body{
       height: 100%;
       background-size: cover;
@@ -11,24 +10,13 @@
       background-repeat: no-repeat;
       background-position: center 0;
   }
-  ul{
-  list-style-type: none;
-  }   
-  /* 搜索框边框 */
-    /* .search{
-        position: absolute;
-        margin-top: 3.25vh;
-        border-color: white;
-        border-width: 5px;
-        border-style: solid;
-        border-radius: 5vh;
-        height: 10vh;
-        background: -moz-linear-gradient(85deg, #e8cbc0 0%, #636fa4 100%);
-        background: -webkit-linear-gradient(85deg, #e8cbc0 0%, #636fa4 100%);
-        background: linear-gradient(85deg, #e8cbc0 0%, #636fa4 100%);
-    } */
+  /* 去除列表样式 */
+    li{
+    list-style-type: none;
+    }
+  /* 搜索框与表单样式 */
     .search{
-      margin-top: 50vh;
+      margin-top: 20vh;
     }
     .form-control{
       border-width: 3px;
@@ -47,6 +35,45 @@
     .form-control:focus{
       border-color: #86a3bd;
     }
+    .result{
+      height: 63vh;
+      background-color: rgba(26, 23, 23, 0.25);
+      border-radius: 15px;
+      padding: 10px;
+      overflow: scroll;
+    }
+    .result::-webkit-scrollbar {
+      display: none; /* Chrome Safari 隐藏滚动条*/
+    }
+    .songs{
+      height: 9vh;
+      background-color: rgba(26, 23, 23, 0.25);
+      border-radius: 10px;
+      padding: 5px;
+      margin: 7px 0px;
+    }
+    .songs img{
+      max-height: 100%;
+      margin: 0px 10px;
+      transition: 600ms;
+    }
+    .songs img:hover{
+      transform: rotate(360deg);
+    }
+    .songs p{
+      font-size: 2rem;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      color: silver;
+      padding: 0px;
+      margin: 0px;
+      text-decoration: none;
+      transition: 300ms;
+    }
+    .songs p:hover{
+      background-color: rgba(214, 196, 214, 0.5);
+      border-radius: 50px;
+      color: rgb(63, 64, 65);
+    }
     /* 编辑区域背景 */
     .edit{
       height: 85vh;
@@ -60,30 +87,23 @@
     .edit::-webkit-scrollbar {
       display: none; /* Chrome Safari 隐藏滚动条*/
     }
-    /* 放大镜iconfont渐变颜色 */
-    /* .search-color{
-      font-size: 5rem;
-      background: linear-gradient(120deg, #f05f87 0%, #7180f5 100%);
-      -webkit-background-clip: text;
-      color: transparent;  
-    } */
+    /* 歌词选择区域样式 */
     .lyrics-select{
+      position: relative;
       height: 50rem;
       margin-top: 4vw;
       padding-left: 0px;
       padding-right: 0px;
       overflow: hidden;
       border-radius: 20px;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      background-attachment: fixed;
+      z-index: 2;
     }
     /* 歌词文本 */
     .lyrics{
+      position: relative;
       height: 50rem;
       list-style-type: none;
-      color: #ebd9d9;
+      color: #ffffff;
       font-size: 4rem;
       padding-left: 20px;
       padding-right: 20px;
@@ -91,16 +111,20 @@
       font-family: SimSun, Georgia, 'Times New Roman', Times, serif;
       overflow: scroll;
       scrollbar-width: none; /* Firefox */
+      z-index: 3;
     }
+    /* 歌词行间距 */
     .lyrics > ul > li{
         margin-bottom: 30px;
     }
+    /* 小屏幕时取消hover效果 */
     @media screen and (min-width: 970px) {
       .lyrics li:hover{
         background-color: rgba(196,165,171,0.25);
         border-radius: 10px;
       }
     }
+    /* 选择歌词 */
     .selected-lyrics{
       background-color: rgba(196,165,171,0.25);
       border-radius: 10px;
@@ -108,6 +132,7 @@
     .lyrics::-webkit-scrollbar {
       display: none; /* Chrome Safari 隐藏滚动条*/
     }
+    /* 选择歌词区域背景模糊效果组件1 */
     .lyrics-hidden{
       position: absolute;
       margin-top: 4vw;
@@ -127,18 +152,31 @@
       padding: 30px 30px;
       overflow: hidden;
     }
+    /* 选择歌词区域背景模糊效果组件2 */
     .s-bgimg{
+      position: relative;
+      bottom: 50rem;
       height: 50rem;
       background-image: url(../assetes/album.jpg);
       background-size: cover;
       background-position: center;
       filter: blur(25px);
       overflow: hidden;
+      z-index: 1;
     }
+    /* 图片暗色遮罩 */
+    .mask{
+      position: relative;
+      height: 50rem;
+      background-color: rgba(73, 73, 73, 0.2);
+      z-index: 2;
+    }
+    /* 海报生成（generate）区域模糊效果组件1 */
     .g-bgimg-hidden{
       width: 100%;
       overflow: hidden;
     }
+    /* 海报生成（generate）区域模糊效果组件2 */
     .g-bgimg{
       height: 0;
       width: 100%;
@@ -148,6 +186,7 @@
       background-repeat: no-repeat;
       filter: blur(20px);
     }
+    /* 海报生成（generate）区域模糊效果组件3 */
     .g-lyrics-hidden{
       position: absolute;
       height: 500px;
@@ -155,6 +194,7 @@
       padding: 30px 30px;
       overflow: hidden;
     }
+    /* 小屏幕设备的生成海报背景色、歌词 */
     @media screen and (max-width: 970px) {
       .bg-margin{
         background-color: #635438;
@@ -226,15 +266,6 @@
       color: transparent;
       overflow: visible;
   }
-
-  /* Lyrics文字渐变(已弃用） */
-  /* .change-1{
-    background: linear-gradient(120deg, #44329b, #a8c0ff);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-  } */
-
   /* 标题Posters */
   .site-title-2{
       font-size: 5.5rem;
@@ -248,15 +279,6 @@
       -webkit-background-clip: text;
       color: transparent;
   }
-
-  /* Poster文字渐变（已弃用）*/
-    /* .change-2{
-    background: linear-gradient(120deg, #a8c0ff, #44329b);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-  } */
-
     /* 菜单 */
     .modify{
       border-radius: 40px;

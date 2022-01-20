@@ -11,23 +11,30 @@
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="./css/lyricsposter.css">
     <link rel="shortcut icon" href="./assetes/favicon.ico" type="image/x-icon">
+    <script src="./js/jquery-3.6.0.js"></script>
     <title>歌词海报生成器</title>
 </head>
 <body>
     <div class="site-title-1 text-center col-xs-7 col-md-6">Lyrics</div>
     <div class="site-title-2 text-center col-xs-7 col-md-6">Poster</div>
-    <div class="search col-md-3 col-md-offset-0 col-xs-8 col-xs-offset-2 ">
-        <button>获取 歌词 数据</button>
+    <div class="search col-md-3 col-md-offset-0 col-xs-8 col-xs-offset-2 "> <!-- 搜索框 -->
         <form action="" method="POST" role="form">
             <div class="form-group">
                 <input type="text" class="form-control" id="search-form" placeholder="Search Songs…">
             </div>
-        </form>  
+        </form>
+        <div class="result">
+            <div class="songs container-fluid row">
+                <img src="https://p1.music.126.net/YzW9gUbbMC8V4jJLdLCYvA==/109951163641189935.jpg" alt="" class="img-circle">
+                <p class="col-xs-8 text-center">君の知らない物語<br>supercell</p>
+            </div>
+        </div>
     </div>
     <div class="edit col-md-9 col-xs-12">
         <div class="container-fluid">
             <div class="row">
                 <div class="lyrics-select col-md-4 col-xs-10 col-xs-offset-1 col-md-offset-1">
+                    <div class="mask"></div>
                     <div class="s-bgimg"></div>
                 </div>
                 <div class="lyrics-hidden col-md-4 col-xs-10 col-xs-offset-1 col-md-offset-1">
@@ -75,7 +82,6 @@
             </div>
         </div>
     </div>
-    <script src="./js/jquery-3.6.0.js"></script>
     <script>
         function change2color(colStr){
             $(".bg-margin").attr("class","bg-margin");
@@ -83,7 +89,7 @@
         }
     </script> 
     <script>
-        $("button").click(function(){
+        $("img,p").click(function(){
             // 获取歌词
             $.ajax({
                     url: 'https://yuulyrics.vercel.app/lyric?id=399367218',
