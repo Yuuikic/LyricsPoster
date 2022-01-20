@@ -26,7 +26,7 @@
         </form>
         <div class="result">
             <div class="songs container-fluid row">
-                <img src="https://p1.music.126.net/YzW9gUbbMC8V4jJLdLCYvA==/109951163641189935.jpg" alt="" class="img-circle" title="获取歌词">
+                <img src="https://p2.music.126.net/P4KR5uo9hcjlXdu-rNYZVg==/109951166200307285.jpg" alt="" class="img-circle" title="获取歌词">
                 <p class="col-xs-8 text-center" title="获取歌词">君の知らない物語<br>supercell</p>
             </div>
         </div>
@@ -92,7 +92,7 @@
         $("img,p").click(function(){
             // 获取歌词
             $.ajax({
-                    url: 'https://yuulyrics.vercel.app/lyric?id=399367218',
+                    url: 'https://yuulyrics.vercel.app/lyric?id=825646',
                     type: 'get',
                     dataType: 'json',
                     xhrFields: {withCredentials: true},
@@ -112,7 +112,7 @@
             })
             // 获取歌曲信息
             $.ajax({
-                    url: 'https://yuulyrics.vercel.app/song/detail?ids=399367218',
+                    url: 'https://yuulyrics.vercel.app/song/detail?ids=825646',
                     type: 'get',
                     dataType: 'json',
                     xhrFields: {withCredentials: true},
