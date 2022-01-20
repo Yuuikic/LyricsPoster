@@ -13,3 +13,6 @@
 - [ ] 生成海报（这一步完全不会做啊喂！）
 - [ ] 简单的样式编辑（这一步也完全不会做啊喂！）
 
+---
+
+进度详见[Github Pages](https://loft.nonon.moe/LyricsPoster/)
