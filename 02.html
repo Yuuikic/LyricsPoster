@@ -41,26 +41,7 @@
             })
         }
     </script>
-    <script>
-        function dd(){
-            var btn = document.getElementById("btn")
-            btn.disabled=true
-            c(60)
-        }
     
-        function c(i){
-        var btn = document.getElementById("btn")
-        i--;
-        if(i==0){
-        btn.value = "确定"
-        btn.disabled=false
-        }
-        else{
-        btn.value = "等待("+i+")秒后可以重新操作"
-        setTimeout("c("+i+")",1000)
-        }
-        }
-        </script>
 </head>
 <body>
     <div class="container-fluid">
@@ -73,7 +54,7 @@
         <div class="row" id="content">
 
         </div>
-        <input type="button" οnclick="dd()" id="btn" value="确定">
+
     </div>
 </body>
 </html>
