@@ -19,15 +19,13 @@
     <div class="site-title-1 text-center col-xs-7 col-md-6">Lyrics</div>
     <div class="site-title-2 text-center col-xs-7 col-md-6">Poster</div>
     <div class="search col-md-3 col-md-offset-0 col-xs-8 col-xs-offset-2 "> <!-- 搜索框 -->
-        <form action="" method="POST" role="form" class="text-center">
             <input type="image" src="./assetes/button.gif" onclick="gainId()">
             <div class="form-group">
                 <input type="text" class="form-control" id="search-form" placeholder="Search Songs…">
             </div>
-        </form>
         <div class="result"> <!-- 结果区域 -->
             <div class="songs container-fluid row">
-                <img src="https://p2.music.126.net/P4KR5uo9hcjlXdu-rNYZVg==/109951166200307285.jpg" alt="" class="img-circle" title="获取歌词">
+                <img src="https://p2.music.126.net/P4KR5uo9hcjlXdu-rNYZVg==/109951166200307285.jpg" alt="专辑封面" class="img-circle" title="获取歌词">
                 <p class="col-xs-8 text-center" title="获取歌词">君の知らない物語<br>supercell</p>
             </div>
         </div>
@@ -82,32 +80,49 @@
         </div>
     </div>
     <script>
-        var info; // 声明歌曲信息
         var LyricsFormer; // 歌词处理1
         var LyricsLatter; // 歌词处理2(结果)
-        var albumimg;
-        var smallsize;
-        var sourceImage;
+        var albumimg; //专辑封面
+        var sourceImage; //获取封面主色
         var colorThief;
         var color;
+        var songid;
         function gainId(){
-            let url = "https://yuulyrics.vercel.app/search?keywords="+$("#gainId #search-form").val();
             $.ajax({
-                url,
-                data:{limit:"5"},
+                url: "https://yuulyrics.vercel.app/search?keywords="+$("#search-form").val()+"&limit=5",
                 type:"post",
                 dataType:"json",
-                xhrFields:{withCredentials:true}
-            }).then(function(data){
-                $("#content").html("<ul></ul>")
+                xhrFields:{withCredentials:true},
+                success: function(data){
                 let songList = data.result.songs;
                 for (let i = 0; i < songList.length; i++) {
-                    $img = <img src = "songList[i].album."
-                    $li = `<li onclick="gainLyric('${songList[i].id}')">name:${songList[i].name}</li>`
-                    $("#content ul").append($li)
+                    // 获取歌曲信息
+                    $.ajax({
+                        url: "https://yuulyrics.vercel.app/song/detail?ids="+songList[i].id,
+                        type: 'get',
+                        dataType: 'json',
+                        xhrFields: {withCredentials: true},
+                        success: function(data){
+                            console.log("https://yuulyrics.vercel.app/song/detail?ids="+songList[i].id)
+                            let info = data.songs[0].al.picUrl
+                            // 修改背景图片
+                            albumimg = info +"?param=500y500"+"?timestamp="+new Date().getTime();
+                            $("#s-bgimg").attr("src",albumimg);
+                            $(".g-bgimg").css("background-image","url("+albumimg+")");
+                        }
+                    }).then(function(){
+                        // 展示搜索结果
+                        $div = `<div class="songs container-fluid row">`+
+                                "<img src="+albumimg+`" alt="专辑封面" class="img-circle" title="获取歌词">`+
+                                `<p class="col-xs-8 text-center" tiltle="获取歌词" style="">${songList[i].name}<br>${songList[i].artists[0].name}</p>
+                                </div>`
+                        console.log(albumimg)
+                        $(".result").append($div)
+                       })
+                }
                 }
             })
-        }
+        };
         $("img,p").click(function(){
             // 获取歌词
             $.ajax({
@@ -129,21 +144,7 @@
                         });
                     }
             })
-            // 获取歌曲信息
-            $.ajax({
-                    url: 'https://yuulyrics.vercel.app/song/detail?ids=825646',
-                    type: 'get',
-                    dataType: 'json',
-                    xhrFields: {withCredentials: true},
-                    success: function(data){
-                            info = data
-                            // 修改背景图片
-                            albumimg = info.songs[0].al.picUrl;
-                            smallsize = albumimg + '?param=500y500'; // api调整图片大小
-                            $("#s-bgimg").attr("src",smallsize);
-                            $(".g-bgimg").css("background-image","url("+smallsize+")");
-                    }
-                })
+
         });
     $(".quote").click(function(){
         // 将选中歌词移动至生成区域

@@ -20,7 +20,7 @@
                 $("#content").html("<ul></ul>")
                 let songList = data.result.songs;
                 for (let i = 0; i < songList.length; i++) {
-                    $li = `<li onclick="gainLyric('${songList[i].id}')">name:${songList[i].name}</li>`
+                    $li = `<li onclick="gainLyric('${songList[i].id}')">${songList[i].name}</li>`
                     $("#content ul").append($li)
                 }
             })

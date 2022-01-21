@@ -61,12 +61,13 @@
       transform: rotate(360deg);
     }
     .songs p{
+      height: 8vh;
       font-size: 2rem;
       font-family: Georgia, 'Times New Roman', Times, serif;
       color: silver;
-      padding: 0px;
+      padding-bottom: 10px;
+      overflow: hidden;
       margin: 0px;
-      text-decoration: none;
       transition: 300ms;
     }
     .songs p:hover{
