@@ -14,74 +14,140 @@
     <script src="./js/jquery-3.6.0.js"></script>
     <script src="./js/color-thief.min.js"></script>
     <title>歌词海报生成器</title>
+    <style>
+    
+    </style>
 </head>
 <body>
-    <div class="site-title-1 text-center col-xs-7 col-md-6">Lyrics</div>
-    <div class="site-title-2 text-center col-xs-7 col-md-6">Poster</div>
-    <div class="search col-md-3 col-md-offset-0 col-xs-8 col-xs-offset-2 "> <!-- 搜索框 -->
-        <form action="#" method="POST" role="form" class="text-center">
-            <input type="image" src="./assetes/button.gif">
 
-            <div class="form-group">
-                <input type="text" class="form-control" id="search-form" placeholder="Search Songs…">
-            </div>
-        </form>
-        <div class="result">
-            <div class="songs container-fluid row">
-                <img src="https://p2.music.126.net/P4KR5uo9hcjlXdu-rNYZVg==/109951166200307285.jpg" alt="" class="img-circle" title="获取歌词">
-                <p class="col-xs-8 text-center" title="获取歌词">君の知らない物語<br>supercell</p>
-            </div>
-        </div>
-    </div>
-    <div class="edit col-md-9 col-xs-12">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="lyrics-select col-md-4 col-xs-10 col-xs-offset-1 col-md-offset-1">
-                    <div class="mask"></div>
-                    <img src="" id="s-bgimg" crossorigin="anonymous" />
-                </div>
-                <div class="lyrics-hidden col-md-4 col-xs-10 col-xs-offset-1 col-md-offset-1">
-                    <div class="lyrics">
-                        <ul class="text-left" id="geci">
-                        </ul>
-                    </div>
-                </div>
-                <div class="poster col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
-                    <div class="quote" title="生成海报"><i class="fa fa-quote-left"></i></div>
-                    <div class="bg-margin">
-                        <div class="g-bgimg-hidden">
-                        <div class="g-bgimg"></div>
-                        </div>
-                    </div>
-                    <div class="g-lyrics-hidden">
-                        <div class="g-lyrics">
-                            <ul>
-                                <li class="title text-right"></li>
-                                <li class="creator text-right"></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="modify col-xs-12 text-center">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <a href="#" onclick="change()" class="col-xs-4">样式</a>
-                                <a href="#" onclick="change()" class="checked col-xs-4" >颜色</a>
-                                <a href="#" onclick="change()" class="col-xs-4">随机</a>
+    <div class="container-fluid">
+        <!--标题-->
+        <div class="site-title-1 text-center col-xs-7 col-md-6">Lyrics</div>
+        <div class="site-title-2 text-center col-xs-7 col-md-6">Poster</div>
+
+        <div class="row">
+
+            <!-- 搜索框 -->
+            <div class="col-md-3 search" style="padding: 0 3vh;">
+                <div>
+                    <div class="row">
+                        <form action="#" method="POST" role="form" class="text-center">
+                            <input type="image" src="./assetes/button.gif">
+                
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="search-form" placeholder="Search Songs…">
                             </div>
-                        </div>
-                        <div class="menu container-fluid col-xs-12" id="changeColor">
-                            <div class="row modify-select">
-                            <button class="color1 col-xs-2 col-xs-offset-1"></button>
-                            <button class="color2 col-xs-2 col-xs-offset-2"></button>
-                            <button class="color3 col-xs-2 col-xs-offset-2"></button>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <div class="result">
+                            <div class="songs container-fluid row">
+                                <img src="https://p2.music.126.net/P4KR5uo9hcjlXdu-rNYZVg==/109951166200307285.jpg" alt="" class="img-circle" title="获取歌词">
+                                <p class="col-xs-8 text-center" title="获取歌词">君の知らない物語<br>supercell</p>
+                            </div>
+
+                            <div class="songs container-fluid row">
+                                <img src="https://p2.music.126.net/P4KR5uo9hcjlXdu-rNYZVg==/109951166200307285.jpg" alt="" class="img-circle" title="获取歌词">
+                                <p class="col-xs-8 text-center" title="获取歌词">君の知らない物語<br>supercell</p>
+                            </div>
+
+                            <div class="songs container-fluid row">
+                                <img src="https://p2.music.126.net/P4KR5uo9hcjlXdu-rNYZVg==/109951166200307285.jpg" alt="" class="img-circle" title="获取歌词">
+                                <p class="col-xs-8 text-center" title="获取歌词">君の知らない物語<br>supercell</p>
+                            </div>
+
+                            <div class="songs container-fluid row">
+                                <img src="https://p2.music.126.net/P4KR5uo9hcjlXdu-rNYZVg==/109951166200307285.jpg" alt="" class="img-circle" title="获取歌词">
+                                <p class="col-xs-8 text-center" title="获取歌词">君の知らない物語<br>supercell</p>
                             </div>
                         </div>
                     </div>
-                    <div>&nbsp;</div>
                 </div>
             </div>
+                
+            <!--歌词栏-->
+            <div class="col-md-9" style="padding: 0 3vh;margin-top: 10vh;">
+
+                <div>
+                    <div class="row"></div>
+
+                    <div class="row" style="background-color: rgba(196, 165, 171, 0.85);">
+                        <div class="edit">
+
+                            <div class="col-md-5" style="margin: 0 8vh; height: 80vh;">
+                                
+                                <!-- <div class="lyrics-select">
+                                    <div class="mask"></div>
+                                    <img src="" id="s-bgimg" crossorigin="anonymous" />
+                                </div> -->
+
+                                <div class="lyrics-hidden mask" style="height: 80vh;">
+                                    <div class="lyrics">
+                                        <ul class="text-left" id="geci">
+                                        </ul>
+                                    </div>
+                                    <img src="" id="s-bgimg" crossorigin="anonymous" />
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-5" >
+
+                                <div class="poster">
+                                    <div class="quote" title="生成海报"><i class="fa fa-quote-left"></i></div>
+                                    <div class="bg-margin">
+                                        <div class="g-bgimg-hidden">
+                                        <div class="g-bgimg"></div>
+                                        </div>
+                                    </div>
+                                    <div class="g-lyrics-hidden">
+                                        <div class="g-lyrics">
+                                            <ul>
+                                                <li class="title text-right"></li>
+                                                <li class="creator text-right"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="modify col-xs-12 text-center">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <a href="#" onclick="change()" class="col-xs-4">样式</a>
+                                                <a href="#" onclick="change()" class="checked col-xs-4" >颜色</a>
+                                                <a href="#" onclick="change()" class="col-xs-4">随机</a>
+                                            </div>
+                                        </div>
+                                        <div class="menu container-fluid col-xs-12" id="changeColor">
+                                            <div class="row modify-select">
+                                            <button class="color1 col-xs-2 col-xs-offset-1"></button>
+                                            <button class="color2 col-xs-2 col-xs-offset-2"></button>
+                                            <button class="color3 col-xs-2 col-xs-offset-2"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>&nbsp;</div>
+                                </div>
+
+                            </div>
+                            
+
+
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
         </div>
+
+        
+
+        
+
+
     </div>
+   
+    
+    
     <script>
         var info; // 声明歌曲信息
         var LyricsFormer; // 歌词处理1
