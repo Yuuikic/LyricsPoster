@@ -19,26 +19,26 @@
     </style>
 </head>
 <body>
+<div class="container-fluid">
+    <!--标题-->
+    <div class="site-title-1 text-center col-xs-7 col-md-6">Lyrics</div>
+    <div class="site-title-2 text-center col-xs-7 col-md-6">Poster</div>
 
-    <div class="container-fluid">
-        <!--标题-->
-        <div class="site-title-1 text-center col-xs-7 col-md-6">Lyrics</div>
-        <div class="site-title-2 text-center col-xs-7 col-md-6">Poster</div>
+    <div class="row">
 
-        <div class="row">
+        <!-- 搜索框 -->
+        <div class="col-md-3 search" style="padding: 0 3vh;">
+            <div>
+                <div class="row">
+                    <form action="#" method="POST" role="form" class="text-center">
+                        <input type="image" src="./assetes/button.gif">
+            
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="search-form" placeholder="Search Songs…">
+                        </div>
+                    </form>
+                </div>
 
-            <!-- 搜索框 -->
-            <div class="col-md-3 search" style="padding: 0 3vh;">
-                <div>
-                    <div class="row">
-                        <form action="#" method="POST" role="form" class="text-center">
-                            <input type="image" src="./assetes/button.gif">
-                
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="search-form" placeholder="Search Songs…">
-                            </div>
-                        </form>
-                    </div>
                     <div class="row">
                         <div class="result">
                             <div class="songs container-fluid row">
@@ -157,6 +157,24 @@
         var sourceImage;
         var colorThief;
         var color;
+        function gainId(){
+            let url = "https://yuulyrics.vercel.app/search?keywords="+$("#gainId #search-form").val();
+            $.ajax({
+                url,
+                data:{limit:"5"},
+                type:"post",
+                dataType:"json",
+                xhrFields:{withCredentials:true}
+            }).then(function(data){
+                $("#content").html("<ul></ul>")
+                let songList = data.result.songs;
+                for (let i = 0; i < songList.length; i++) {
+                    $img = <img src = "songList[i].album."
+                    $li = `<li onclick="gainLyric('${songList[i].id}')">name:${songList[i].name}</li>`
+                    $("#content ul").append($li)
+                }
+            })
+        }
         $("img,p").click(function(){
             // 获取歌词
             $.ajax({
