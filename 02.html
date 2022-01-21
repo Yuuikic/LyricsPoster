@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        function gainId(){
+            let url = "https://yuulyrics.vercel.app/search?keywords="+$("#gainId #search-form").val();
+            $.ajax({
+                url,
+                data:{limit:"5"},
+                type:"post",
+                dataType:"json",
+                xhrFields:{withCredentials:true}
+            }).then(function(data){
+                $("#content").html("<ul></ul>")
+                let songList = data.result.songs;
+                for (let i = 0; i < songList.length; i++) {
+                    $li = `<li onclick="gainLyric('${songList[i].id}')">name:${songList[i].name}</li>`
+                    $("#content ul").append($li)
+                }
+            })
+        }
+
+        function gainLyric(id){
+            let url = "https://yuulyrics.vercel.app/lyric?id="+id;
+            $.ajax({
+                url,
+                type:"post",
+                dataType:"json",
+                xhrFields:{withCredentials:true}
+            }).then(function(data){
+                let regExp = new RegExp(".*</li>","g");
+                let lyric = "<li>"+data.lrc.lyric.replace(/\[.*\]/g,"");
+                let lyricLi = lyric.replaceAll("\n","</li><li>").match(regExp);
+                $("#content").html(lyricLi)
+            })
+        }
+    </script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row" id="gainId">
+            <div class="col-md-2">
+                <input type="text" class="form-control " id="search-form" placeholder="请输入歌名">
+            </div>
+            <button class="btn btn-primary" onclick="gainId()" >查询</button>
+        </div>
+        <div class="row" id="content">
+
+        </div>
+    </div>
+</body>
+</html>

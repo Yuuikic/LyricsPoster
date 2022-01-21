@@ -19,14 +19,13 @@
     <div class="site-title-1 text-center col-xs-7 col-md-6">Lyrics</div>
     <div class="site-title-2 text-center col-xs-7 col-md-6">Poster</div>
     <div class="search col-md-3 col-md-offset-0 col-xs-8 col-xs-offset-2 "> <!-- 搜索框 -->
-        <form action="#" method="POST" role="form" class="text-center">
-            <input type="image" src="./assetes/button.gif">
-
+        <form action="" method="POST" role="form" class="text-center">
+            <input type="image" src="./assetes/button.gif" onclick="gainId()">
             <div class="form-group">
                 <input type="text" class="form-control" id="search-form" placeholder="Search Songs…">
             </div>
         </form>
-        <div class="result">
+        <div class="result"> <!-- 结果区域 -->
             <div class="songs container-fluid row">
                 <img src="https://p2.music.126.net/P4KR5uo9hcjlXdu-rNYZVg==/109951166200307285.jpg" alt="" class="img-circle" title="获取歌词">
                 <p class="col-xs-8 text-center" title="获取歌词">君の知らない物語<br>supercell</p>
@@ -91,6 +90,24 @@
         var sourceImage;
         var colorThief;
         var color;
+        function gainId(){
+            let url = "https://yuulyrics.vercel.app/search?keywords="+$("#gainId #search-form").val();
+            $.ajax({
+                url,
+                data:{limit:"5"},
+                type:"post",
+                dataType:"json",
+                xhrFields:{withCredentials:true}
+            }).then(function(data){
+                $("#content").html("<ul></ul>")
+                let songList = data.result.songs;
+                for (let i = 0; i < songList.length; i++) {
+                    $img = <img src = "songList[i].album."
+                    $li = `<li onclick="gainLyric('${songList[i].id}')">name:${songList[i].name}</li>`
+                    $("#content ul").append($li)
+                }
+            })
+        }
         $("img,p").click(function(){
             // 获取歌词
             $.ajax({
