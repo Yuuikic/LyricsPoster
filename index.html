@@ -14,15 +14,21 @@
     <script src="./js/jquery-3.6.0.js"></script>
     <script src="./js/color-thief.min.js"></script>
     <title>歌词海报生成器</title>
-    <style>
-    
-    </style>
+    <script>
+        function query(){
+            $("#imgButton").attr("src","./assetes/button.gif")
+            let timer = setTimeout(() => {
+                console.log("111111111111111");
+                $("#imgButton").attr("src","./assetes/button 0.png")
+            },1000);
+        }
+    </script>
 </head>
 <body>
 <div class="container-fluid">
     <!--标题-->
-    <div class="site-title-1 text-center col-xs-7 col-md-6">Lyrics</div>
-    <div class="site-title-2 text-center col-xs-7 col-md-6">Poster</div>
+    <div class="site-title-1 text-center col-xs-7 col-md-2 col-md-offset-2">Lyrics</div>
+    <div class="site-title-2 text-center col-xs-3 col-md-2 col-md-offset-2">Poster</div>
 
     <div class="row">
 
@@ -30,8 +36,9 @@
         <div class="col-md-3 search" style="padding: 0 3vh;">
             <div>
                 <div class="row">
-                    <form action="#" method="POST" role="form" class="text-center">
-                        <input type="image" src="./assetes/button.gif">
+                    <form action="#" method="post" role="form" class="text-center">
+                        <input id="imgButton" type="image" onclick ="query(); return false;" src="./assetes/button 0.png">
+                        
             
                         <div class="form-group">
                             <input type="text" class="form-control" id="search-form" placeholder="Search Songs…">
