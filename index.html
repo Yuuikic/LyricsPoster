@@ -27,7 +27,36 @@
                 $("#imgButton").attr("src","./assetes/button 0.png")
             },1000);
         }
+        function fontSizeUp(){
+            let fontSize = $(".g-lyrics ul>li").css("font-size");
+            let unit =fontSize.slice(-2);
+            let size = parseFloat(fontSize) + 5;
+            if(size>50){
+                return;
+            }
+            $(".g-lyrics ul>li").css("font-size",size+unit)
+        }
+        function fontSizeLow(){
+            let fontSize = $(".g-lyrics ul>li").css("font-size");
+            let unit =fontSize.slice(-2);
+            let size = parseFloat(fontSize) - 5;
+            if(size<10){
+                return;
+            }
+            $(".g-lyrics ul>li").css("font-size",size+unit)
+        }
+        function changeFontFamily(){
+            if($("#fontFamily").val()=="defFamily"){
+                console.log(1);
+                $(".g-lyrics ul>li").css("font-family",'SimSun, Georgia, "Times New Roman", Times, serif')
+            }else{
+                console.log($(".g-lyrics ul>li").css("font-family"));
+                let fontFamily = `"Helvetica Neue", Helvetica, Arial, ${$("#fontFamily").val()}`;
+                $(".g-lyrics ul>li").css("font-family",fontFamily)
+            }
+        }
     </script>
+
 </head>
 <body>
 <div class="container-fluid page">
@@ -103,11 +132,13 @@
                                                 <button onclick="fontSizeLow()" class="btn btn-default">-</button>
                                             </div>
                                             <div>
-                                                <select name="fontFamily" class="form-control" id="fontFamily">
-                                                    <option></option>
-                                                    <option></option>
-                                                    <option></option>
-                                                    <option></option>
+                                                <select name="fontFamily" class="form-control" onclick="changeFontFamily()" id="fontFamily">
+                                                    <option value="defFamily">初始化</option>
+                                                    <option value="serif">衬线</option>
+                                                    <option value="sans-serif">无衬线</option>
+                                                    <option value="MS-Mincho">明朝(日语)</option>
+                                                    <option value="cursive">cursive</option>
+                                                    <option value="fantasy">fantasy</option>
                                                 </select>
                                             </div>
                                             <div>
@@ -153,6 +184,10 @@
         function getinfo(){
             $(".songs").remove();
             // 搜索关键词获取搜索结果及id
+            if($("#search-form").val()==null||$("#search-form").val()==""){
+                return;
+            }
+
             $.ajax({
                 url: "https://yuulyrics.vercel.app/search?keywords="+$("#search-form").val()+"&limit=5",
                 type:"post",
