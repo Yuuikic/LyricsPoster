@@ -7,14 +7,14 @@
     <meta name="renderer" content="webkit"/>
     <meta name="force-rendering" content="webkit"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="./css/lyricsposter.css">
     <link rel="shortcut icon" href="./assetes/favicon.ico" type="image/x-icon">
     <script src="./js/jquery-3.6.0.js"></script>
     <script src="./js/color-thief.min.js"></script>
     <script src="./bootstrap/js/bootstrap.js"></script>
-    <title>TAiOS</title>
+    <title>歌词海报生成器</title>
     <script>
         $('#myTabs a').click(function (e) {
             e.preventDefault()
@@ -27,19 +27,14 @@
                 $("#imgButton").attr("src","./assetes/button 0.png")
             },1000);
         }
-        function fontSizeUp(){
-            console.log($(".g-lyrics-li").prop("style"));
-        }
     </script>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid page">
     <!--标题-->
-    <div class="site-title-2 col-md-6 col-md-offset-2">世界崩坏边缘的咏叹调</div>
-    <div class="site-title-1 col-md-6 col-md-offset-2">The Aria In Owari Sekai</div>
-
+    <div class="site-title-1 text-center col-xs-7 col-md-2 col-md-offset-2">Poster</div>
+    <div class="site-title-2 text-center col-xs-3 col-md-2 col-md-offset-2">Lyrics</div>
     <div class="row">
-
         <!-- 搜索框 -->
         <div class="col-md-3 search" style="padding: 0 3vh;">
             <div>
@@ -51,7 +46,6 @@
                         </div>
                     </form>
                 </div>
-
                     <div class="row">
                         <div class="result">
                         </div>
@@ -60,34 +54,22 @@
             </div>
                 
             <!--歌词栏-->
-            <div class="col-md-9" style="padding: 0 3vh;margin-top: 10vh;">
-
-                <div>
-                    <div class="row"></div>
-
-                    <div class="row" style="background-color: rgba(196, 165, 171, 0.85); height: 100vh;">
-                        <div class="edit">
-
-                            <div class="col-md-5" style="margin: 0 8vh; height: 80vh;">
-                                
-                                <!-- <div class="lyrics-select">
+            <div class="col-md-9 container edit" style="margin-top: calc(6.5% - 10px);">
+                    <div class="row">
+                            <div class="col-md-4 col-md-offset-1 col-xs-10 col-xs-offset-1" style="padding: 0px;">
+                                <div class="lyrics-select">
                                     <div class="mask"></div>
                                     <img src="" id="s-bgimg" crossorigin="anonymous" />
-                                </div> -->
-
-                                <div class="lyrics-hidden mask" style="height: 80vh;">
+                                </div>
+                                <div class="lyrics-hidden">
                                     <div class="lyrics">
                                         <ul class="text-left" id="geci">
                                         </ul>
                                     </div>
-                                    <img src="" id="s-bgimg" crossorigin="anonymous" />
                                 </div>
-
                             </div>
-
-                            <div class="col-md-5" >
-
-                                <div class="poster">
+                            <div class="col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1" >
+                                <div class="poster col-xs-12">
                                     <div class="quote" title="生成海报"><i class="fa fa-quote-left"></i></div>
                                     <div class="bg-margin">
                                         <div class="g-bgimg-hidden">
@@ -102,7 +84,6 @@
                                             </ul>
                                         </div>
                                     </div>
-
                                     <div class="modify">
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">样式表</a></li>
@@ -152,44 +133,12 @@
                                             </div>
                                         </div>
                                         <div role="tabpanel" class="tab-pane" id="settings"></div>
-                                    </div>
-                                    
-                                    <!-- <div class="modify col-xs-12 text-center">
-                                        <div class="container-fluid">
-                                            <div class="row">
-                                                <a href="#" onclick="change()" class="col-xs-4">样式</a>
-                                                <a href="#" onclick="change()" class="checked col-xs-4" >颜色</a>
-                                                <a href="#" onclick="change()" class="col-xs-4">随机</a>
-                                            </div>
-                                        </div>
-                                        <div class="menu container-fluid col-xs-12" id="changeColor">
-                                            <div class="row modify-select">
-                                                <button class="color1 col-xs-2 col-xs-offset-1"></button>
-                                                <button class="color2 col-xs-2 col-xs-offset-2"></button>
-                                                <button class="color3 col-xs-2 col-xs-offset-2"></button>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                 </div>
-
                             </div>
-                            
-
-
-                        </div>
-                    </div>
-                </div>
-                
+                    </div>             
             </div>
-
         </div>
-
-        
-
-        
-
-
-    </div>  
+    </div>
     <script>
         var LyricsFormer; // 歌词处理1
         var LyricsLatter; // 歌词处理2(结果)
@@ -200,28 +149,27 @@
         var songinfo = new Array(6);
         var songid = new Array(6);
         var songList;
-        // var orderid;
         var lyricLi;
         function getinfo(){
+            $(".songs").remove();
             // 搜索关键词获取搜索结果及id
             $.ajax({
-                url: "https://yuulyrics.vercel.app/search?keywords="+$("#search-form").val()+"&limit=6",
+                url: "https://yuulyrics.vercel.app/search?keywords="+$("#search-form").val()+"&limit=5",
                 type:"post",
                 dataType:"json",
                 xhrFields:{withCredentials:true},
                 success: function(data){
                         songList = data.result.songs;
-                        for (let i = 0; i < 6; i++) {
+                        for (let i = 0; i < 5; i++) {
                               songid[i] = songList[i].id,
                               songinfo[i] = songList[i]
-                            //   songinfo[i].order = i
                             //   console.log(songinfo[i].order),
                             //   console.log(songinfo[i])
                 };
                 }
             }).then(function(){
             // 获取歌曲信息
-            for (let i = 0; i < 6; i++){
+            for (let i = 0; i < 5; i++){
                   $.ajax({
                         url: "https://yuulyrics.vercel.app/song/detail?ids="+songid[i],
                         type: 'get',
@@ -238,12 +186,6 @@
                                 `<p class="col-xs-8 text-center" tiltle="获取歌词" style="" onclick="getLyrics(${songinfo[i].id})">${songinfo[i].name}<br>${songinfo[i].artists[0].name}</p>
                                 </div>`
                               $(".result").append($div)
-                            //   $(".songs img,p").click(function(){
-                            //       if($(this).hasClass("songs-selected"))
-                            //         $(this).removeClass("songs-selected");
-                            //       else
-                            //         $(this).addClass("songs-selected")
-                            //   })
                   })
             }
             }).then(function(){   
@@ -279,17 +221,23 @@
                         });
                     }
                   })
-            }; 
+            }
     $(".quote").click(function(){
-        // 将选中歌词移动至生成区域
+        // 清空海报中歌词
         $(".g-lyrics-li").remove();
+        // 由于歌词选中效果this的影响，歌词选中效果的click函数不会失效。
+        // 添加下面函数让海报区域的歌词也有选中-取消选中的效果
+        $(".g-lyrics-li").click(function(){
+            $(this).removeClass("selected-lyrics");
+        });
+        // 调整选中的歌词顺序，添加到海报区域
         $($(".selected-lyrics").toArray().reverse()).each(function(index,data){
             $(data).removeClass("selected-lyrics").addClass("g-lyrics-li")
             $(".g-lyrics ul").prepend(data)
         });
         // 重新导入歌词文本(避免了被移动到右边后，左边消失)
-        $("#geci").html(lyricLi)
-        // 颜色
+        $("#geci").html(lyricLi);
+        // 获取专辑封面主颜色
         sourceImage = document.getElementById("s-bgimg");
         colorThief = new ColorThief();
         color = colorThief.getPalette(sourceImage,5);
@@ -297,6 +245,13 @@
         $(".color1").css("background","rgb("+color[0]+")");
         $(".color2").css("background","rgb("+color[1]+")");
         $(".color3").css("background","rgb("+color[2]+")");
+        // 再次添加选中歌词函数，让用户可以重新选择歌词
+        $(".lyrics li").click(function() {
+            if($(this).hasClass("selected-lyrics"))
+                $(this).removeClass("selected-lyrics");
+            else
+                $(this).addClass("selected-lyrics");
+        });
     });
     // 切换颜色
     $(".color1").click(function(){

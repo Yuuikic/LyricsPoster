@@ -1,0 +1,356 @@
+  @charset "utf-8";
+  @media (max-width: 970px){
+    html{font-size:7px;}
+  }
+  body{
+      height: 100%;
+      background-size: cover;
+      background-image: url('https://oss.yuuiki.cn/2022/01/12/a249047937cdfb2151565f96e98ebd82.png!yuuwebp');
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-position: center 0;
+  }
+  /* 去除列表样式 */
+    li{
+    list-style-type: none;
+    }
+  /* 搜索框与表单样式 */
+    .search{
+      /* margin-top: 20vh; */
+    }
+    #search-form{
+      border-width: 3px;
+      border-color: white;
+      border-radius: 4vh;
+      height: 8vh;
+      font-size: 3rem;
+      background: linear-gradient(120deg, #e8cbc0, #636fa4);
+    }
+    .form-control::placeholder{
+      color: rgb(109, 104, 105);
+      text-align: center;
+      font-family: sans-serif;
+      font-weight: lighter;
+    }
+    .form-control:focus{
+      border-color: #86a3bd;
+    }
+    .result{
+      min-height: 9vh;
+      background-color: rgba(26, 23, 23, 0.25);
+      border-radius: 15px;
+      padding: 10px;
+      overflow: scroll;
+    }
+    .result::-webkit-scrollbar {
+      display: none; /* Chrome Safari 隐藏滚动条*/
+    }
+    .songs{
+      height: 9vh;
+      background-color: rgba(26, 23, 23, 0.25);
+      border-radius: 10px;
+      padding: 5px;
+      margin: 7px 0px;
+    }
+    .songs img{
+      max-height: 100%;
+      margin: 0px 10px;
+      transition: 600ms;
+    }
+    .songs img:hover{
+      transform: rotate(360deg);
+    }
+    .songs p{
+      font-size: 2rem;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      color: silver;
+      padding: 0px;
+      margin: 0px;
+      text-decoration: none;
+      transition: 300ms;
+    }
+    .songs p:hover{
+      background-color: rgba(214, 196, 214, 0.5);
+      border-radius: 50px;
+      color: rgb(63, 64, 65);
+    }
+    /* 编辑区域背景 */
+    .edit{
+      /* height: 85vh; */
+      background-color: rgba(196, 165, 171, 0.85);
+      /* margin-top: 15vh; */
+      padding: 0px;
+      /* overflow: scroll; */
+      z-index: 0;
+      scrollbar-width: none; /* Firefox */
+    }
+    .edit::-webkit-scrollbar {
+      display: none; /* Chrome Safari 隐藏滚动条*/
+    }
+    /* 歌词选择区域样式 */
+    .lyrics-select{
+      position: relative;
+      height: 50rem;
+      margin-top: 4vw;
+      padding-left: 0px;
+      padding-right: 0px;
+      overflow: hidden;
+      border-radius: 20px;
+      z-index: 2;
+    }
+    /* 歌词文本 */
+    .lyrics{
+      position: relative;
+      height: 71vh;
+      list-style-type: none;
+      color: #ffffff;
+      font-size: 4rem;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-top: 40px;
+      font-family: SimSun, Georgia, 'Times New Roman', Times, serif;
+      overflow: scroll;
+      scrollbar-width: none; /* Firefox */
+      z-index: 3;
+    }
+    /* 歌词行间距 */
+    .lyrics > ul > li{
+        margin-bottom: 30px;
+    }
+    /* 小屏幕时取消hover效果 */
+    @media screen and (min-width: 970px) {
+      .lyrics li:hover{
+        background-color: rgba(196,165,171,0.25);
+        border-radius: 10px;
+      }
+    }
+    /* 选择歌词 */
+    .selected-lyrics{
+      background-color: rgba(196,165,171,0.25);
+      border-radius: 10px;
+    }
+    .lyrics::-webkit-scrollbar {
+      display: none; /* Chrome Safari 隐藏滚动条*/
+    }
+    /* 选择歌词区域背景模糊效果组件1 */
+    .lyrics-hidden{
+      /* position: absolute; */
+      margin-top: 4vw;
+      height: 50rem;
+      overflow: hidden;
+    }
+    /* 海报生成区域 */
+    .poster{
+      height: 78vh;
+      margin-top: 4vw;
+      padding: 0px; /* 使歌词内容居中 */
+    }
+    /* 生成的海报主题色（背景色） */
+    .bg-margin{
+      background-color: rgba(73, 73, 73, 0.2);
+      height: 500px;
+      padding: 30px 30px;
+      overflow: hidden;
+    }
+    /* 选择歌词区域背景模糊效果组件2 */
+    #s-bgimg{
+      position: relative;
+      bottom: 53rem;
+      height: 72vh;
+      background-size: cover;
+      background-position: center;
+      filter: blur(25px);
+      overflow: hidden;
+      z-index: 1;
+    }
+    /* 图片暗色遮罩 */
+    .mask{
+      border-radius: 20px;
+      position: relative;
+      height: 50rem;
+      background-color: rgba(73, 73, 73, 0.2);
+      z-index: 2;
+    }
+    /* 海报生成（generate）区域模糊效果组件1 */
+    .g-bgimg-hidden{
+      width: 100%;
+      overflow: hidden;
+    }
+    /* 海报生成（generate）区域模糊效果组件2 */
+    .g-bgimg{
+      height: 0;
+      width: 100%;
+      padding-top: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      filter: blur(20px);
+    }
+    /* 海报生成（generate）区域模糊效果组件3 */
+    .g-lyrics-hidden{
+      position: absolute;
+      height: 500px;
+      top: 4vw;
+      padding: 30px 30px;
+      overflow: hidden;
+    }
+    /* 小屏幕设备的生成海报背景色、歌词 */
+    @media screen and (max-width: 970px) {
+      .bg-margin{
+        background-color: #635438;
+        height: 330px;
+        padding: 30px 30px;
+        overflow: hidden;
+      }
+      .g-lyrics-hidden{
+        position: absolute;
+        height: 330px;
+        top: 0px;
+        padding: 30px 30px;
+        overflow: hidden;
+      }
+    }
+    /* 海报的歌词文字样式 */
+    .g-lyrics{
+      height: 0;
+      width: 100%;
+      padding-bottom: 100%;
+      position: relative;
+      font-family: SimSun, Georgia, 'Times New Roman', Times, serif;
+      color: #fffefd;
+      overflow: scroll;
+      z-index: 3;
+      scrollbar-width: none; /* Firefox */
+    }
+    .g-lyrics::-webkit-scrollbar {
+      display: none; /* Chrome Safari 隐藏滚动条*/
+    }
+    /* 调整歌词和行间距 */
+    .g-lyrics-li{
+      margin: 20px;
+      padding: 0 auto;
+      font-size: 4.5rem;
+      font-family: SimSun, Georgia, 'Times New Roman', Times, serif;
+      color: #fffefd;
+    }
+    /* 引号样式 */
+    .quote{
+      position: absolute;
+      margin-left: 5px;
+      font-size: 8rem;
+      color: rgba(188, 181, 176, 0.85);
+      z-index: 2;
+      transition: 600ms;
+    }
+    .quote:hover{
+      font-size: 12rem;
+    }
+    /* 歌曲名与作者样式 */
+    .title{
+      font-size: 2.5rem;
+      float: right;
+    }
+    .creator{
+      float: right;
+      font-size: 2.5rem;
+      letter-spacing: 3px;
+      padding-right: 10px; /* 使作者右端与书名号对齐 */
+    }
+    /* 标题Lyrics */
+    .site-title-1{
+      font-size: 5.5rem;
+      font-family: SimSun, 'Times New Roman', Times, serif;
+      font-weight: bolder;
+      letter-spacing: 3px;
+      display: inline-block;
+      position: absolute;
+      z-index: 1;
+      left: 6rem;
+      top: 5.8rem;
+      background-color: rgb(93, 89, 151);
+      /* background: linear-gradient(120deg, #44329b, #a8c0ff); */
+      -webkit-background-clip: text;
+      color: transparent;
+      overflow: visible;
+  }
+  /* 标题Posters */
+  .site-title-2{
+      font-size: 5.5rem;
+      font-family: SimSun, 'Times New Roman', Times, serif;
+      font-weight: bolder;
+      letter-spacing: 3px;
+      display: inline-block;
+      position: absolute;
+      z-index: 2;
+      background-color: rgb(102, 98, 168);
+      /* background: linear-gradient(120deg, #a8c0ff, #44329b); */
+      -webkit-background-clip: text;
+      color: transparent;
+  }
+    /* 菜单 */
+    .modify{
+      border-radius: 40px;
+      margin-top: 15px;
+      padding: 0px;
+      max-height: 300px;
+    }
+    .modify a{
+      font-size: 25px;
+      display:table-cell; 
+      vertical-align:bottom;
+      font-family: SimSun, Georgia, 'Times New Roman', Times, serif;
+      font-weight: bold;
+      padding: 0px;
+      color: rgb(133, 113, 113);
+      text-decoration: none;
+    }
+    .modify .checked{
+      background: rgb(255, 197, 197);
+    }
+    .modify a:hover{
+      background: rgb(255, 197, 197);
+    }
+    .modify a{
+      border-radius: 15px 15px 0 0;;
+    }
+    #changeColor button{
+      margin: 0 10px;
+      height: 60px;
+      width: 60px;
+      border-width: 0px;
+      border-radius: 15px;
+    }
+    .menu{
+      background: rgb(255, 197, 197);
+      border-radius: 0 0 15px 15px;
+    }
+    .modify-select{
+      padding: 8px 0;
+    }
+    .color1{
+      background: rgba(73, 73, 73, 0.2);
+    }
+    .color2{
+      background: rgba(73, 73, 73, 0.2);
+    }
+    .color3{
+      background: rgba(73, 73, 73, 0.2);
+    }
+
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+      color: rgb(133, 113, 113);
+      background-color: rgb(255, 197, 197);
+      border: 0px;
+    }
+    .nav-tabs {
+      border-bottom: 1px solid rgb(255, 197, 197);
+    }   
+    .nav-tabs > li > a {
+      border: 0px;
+    }
+    .modify li a:hover{
+      background-color: rgb(255, 197, 197);
+    }
+    #panes > div{
+      background-color: rgb(255, 197, 197);
+      border-radius: 0 0 15px 15px;
+    }
