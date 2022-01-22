@@ -14,71 +14,123 @@
     <script src="./js/jquery-3.6.0.js"></script>
     <script src="./js/color-thief.min.js"></script>
     <title>歌词海报生成器</title>
+    <script>
+        function query(){
+            $("#imgButton").attr("src","./assetes/button.gif")
+            let timer = setTimeout(() => {
+                console.log("(๑•̀ㅂ•́)و✧");
+                $("#imgButton").attr("src","./assetes/button 0.png")
+            },1000);
+        }
+    </script>
 </head>
 <body>
-    <div class="site-title-1 text-center col-xs-7 col-md-6">Lyrics</div>
-    <div class="site-title-2 text-center col-xs-7 col-md-6">Poster</div>
-    <div class="search col-md-3 col-md-offset-0 col-xs-8 col-xs-offset-2 "> <!-- 搜索框 -->
-            <input type="image" src="./assetes/button.gif" onclick="gainId()">
-            <div class="form-group">
-                <input type="text" class="form-control" id="search-form" placeholder="Search Songs…">
-            </div>
-        <div class="result"> <!-- 结果区域 -->
-            <div class="songs container-fluid row">
-                <img src="https://p2.music.126.net/P4KR5uo9hcjlXdu-rNYZVg==/109951166200307285.jpg" alt="专辑封面" class="img-circle" title="获取歌词">
-                <p class="col-xs-8 text-center" title="获取歌词">君の知らない物語<br>supercell</p>
-            </div>
-        </div>
-    </div>
-    <div class="edit col-md-9 col-xs-12">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="lyrics-select col-md-4 col-xs-10 col-xs-offset-1 col-md-offset-1">
-                    <div class="mask"></div>
-                    <img src="" id="s-bgimg" crossorigin="anonymous" />
+<div class="container-fluid">
+    <!--标题-->
+    <div class="site-title-1 text-center col-xs-7 col-md-2 col-md-offset-2">Lyrics</div>
+    <div class="site-title-2 text-center col-xs-3 col-md-2 col-md-offset-2">Poster</div>
+
+    <div class="row">
+
+        <!-- 搜索框 -->
+        <div class="col-md-3 search" style="padding: 0 3vh;">
+            <div>
+                <div class="row">
+                    <form action="#" method="post" role="form" class="text-center">
+                        <input id="imgButton" type="image" onclick ="query(); getinfo(); return false;" src="./assetes/button 0.png">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="search-form" placeholder="Search Songs…">
+                        </div>
+                    </form>
                 </div>
-                <div class="lyrics-hidden col-md-4 col-xs-10 col-xs-offset-1 col-md-offset-1">
-                    <div class="lyrics">
-                        <ul class="text-left" id="geci">
-                        </ul>
-                    </div>
-                </div>
-                <div class="poster col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
-                    <div class="quote" title="生成海报"><i class="fa fa-quote-left"></i></div>
-                    <div class="bg-margin">
-                        <div class="g-bgimg-hidden">
-                        <div class="g-bgimg"></div>
+
+                    <div class="row">
+                        <div class="result">
                         </div>
                     </div>
-                    <div class="g-lyrics-hidden">
-                        <div class="g-lyrics">
-                            <ul>
-                                <li class="title text-right"></li>
-                                <li class="creator text-right"></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="modify col-xs-12 text-center">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <a href="#" onclick="change()" class="col-xs-4">样式</a>
-                                <a href="#" onclick="change()" class="checked col-xs-4" >颜色</a>
-                                <a href="#" onclick="change()" class="col-xs-4">随机</a>
+                </div>
+            </div>
+                
+            <!--歌词栏-->
+            <div class="col-md-9" style="padding: 0 3vh;margin-top: 10vh;">
+
+                <div>
+                    <div class="row"></div>
+
+                    <div class="row" style="background-color: rgba(196, 165, 171, 0.85);">
+                        <div class="edit">
+
+                            <div class="col-md-5" style="margin: 0 8vh; height: 80vh;">
+                                
+                                <!-- <div class="lyrics-select">
+                                    <div class="mask"></div>
+                                    <img src="" id="s-bgimg" crossorigin="anonymous" />
+                                </div> -->
+
+                                <div class="lyrics-hidden mask" style="height: 80vh;">
+                                    <div class="lyrics">
+                                        <ul class="text-left" id="geci">
+                                        </ul>
+                                    </div>
+                                    <img src="" id="s-bgimg" crossorigin="anonymous" />
+                                </div>
+
                             </div>
-                        </div>
-                        <div class="menu container-fluid col-xs-12" id="changeColor">
-                            <div class="row modify-select">
-                            <button class="color1 col-xs-2 col-xs-offset-1"></button>
-                            <button class="color2 col-xs-2 col-xs-offset-2"></button>
-                            <button class="color3 col-xs-2 col-xs-offset-2"></button>
+
+                            <div class="col-md-5" >
+
+                                <div class="poster">
+                                    <div class="quote" title="生成海报"><i class="fa fa-quote-left"></i></div>
+                                    <div class="bg-margin">
+                                        <div class="g-bgimg-hidden">
+                                        <div class="g-bgimg"></div>
+                                        </div>
+                                    </div>
+                                    <div class="g-lyrics-hidden">
+                                        <div class="g-lyrics">
+                                            <ul>
+                                                <li class="title text-right"></li>
+                                                <li class="creator text-right"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="modify col-xs-12 text-center">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <a href="#" onclick="change()" class="col-xs-4">样式</a>
+                                                <a href="#" onclick="change()" class="checked col-xs-4" >颜色</a>
+                                                <a href="#" onclick="change()" class="col-xs-4">随机</a>
+                                            </div>
+                                        </div>
+                                        <div class="menu container-fluid col-xs-12" id="changeColor">
+                                            <div class="row modify-select">
+                                            <button class="color1 col-xs-2 col-xs-offset-1"></button>
+                                            <button class="color2 col-xs-2 col-xs-offset-2"></button>
+                                            <button class="color3 col-xs-2 col-xs-offset-2"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>&nbsp;</div>
+                                </div>
+
                             </div>
+                            
+
+
                         </div>
                     </div>
-                    <div>&nbsp;</div>
                 </div>
+                
             </div>
+
         </div>
-    </div>
+
+        
+
+        
+
+
+    </div>  
     <script>
         var LyricsFormer; // 歌词处理1
         var LyricsLatter; // 歌词处理2(结果)
@@ -86,55 +138,79 @@
         var sourceImage; //获取封面主色
         var colorThief;
         var color;
-        var songid;
-        function gainId(){
+        var songinfo = new Array(6);
+        var songid = new Array(6);
+        var songList;
+        // var orderid;
+        var lyricLi;
+        function getinfo(){
+            // 搜索关键词获取搜索结果及id
             $.ajax({
-                url: "https://yuulyrics.vercel.app/search?keywords="+$("#search-form").val()+"&limit=5",
+                url: "https://yuulyrics.vercel.app/search?keywords="+$("#search-form").val()+"&limit=6",
                 type:"post",
                 dataType:"json",
                 xhrFields:{withCredentials:true},
                 success: function(data){
-                let songList = data.result.songs;
-                for (let i = 0; i < songList.length; i++) {
-                    // 获取歌曲信息
-                    $.ajax({
-                        url: "https://yuulyrics.vercel.app/song/detail?ids="+songList[i].id,
+                        songList = data.result.songs;
+                        for (let i = 0; i < 6; i++) {
+                              songid[i] = songList[i].id,
+                              songinfo[i] = songList[i]
+                            //   songinfo[i].order = i
+                            //   console.log(songinfo[i].order),
+                            //   console.log(songinfo[i])
+                };
+                }
+            }).then(function(){
+            // 获取歌曲信息
+            for (let i = 0; i < 6; i++){
+                  $.ajax({
+                        url: "https://yuulyrics.vercel.app/song/detail?ids="+songid[i],
                         type: 'get',
                         dataType: 'json',
                         xhrFields: {withCredentials: true},
                         success: function(data){
-                            console.log("https://yuulyrics.vercel.app/song/detail?ids="+songList[i].id)
-                            let info = data.songs[0].al.picUrl
-                            // 修改背景图片
-                            albumimg = info +"?param=500y500"+"?timestamp="+new Date().getTime();
-                            $("#s-bgimg").attr("src",albumimg);
-                            $(".g-bgimg").css("background-image","url("+albumimg+")");
+                        songinfo[i].album.picUrl = data.songs[0].al.picUrl
+                        //console.log("https://yuulyrics.vercel.app/song/detail?ids="+songList[i].id)
+                        // console.log(songinfo[i].album.picUrl)
                         }
-                    }).then(function(){
-                        // 展示搜索结果
-                        $div = `<div class="songs container-fluid row">`+
-                                "<img src="+albumimg+`" alt="专辑封面" class="img-circle" title="获取歌词">`+
-                                `<p class="col-xs-8 text-center" tiltle="获取歌词" style="">${songList[i].name}<br>${songList[i].artists[0].name}</p>
+                  }).then(function(){ //显示结果
+                    $div = `<div class="songs container-fluid row">`+
+                                "<img src="+songinfo[i].album.picUrl+`?param=500y500 alt="" class="img-circle" title="获取歌词" onclick="getLyrics('${songid[i]}')" name="${songinfo[i].name}" artist="${songinfo[i].artists[0].name}">`+
+                                `<p class="col-xs-8 text-center" tiltle="获取歌词" style="" onclick="getLyrics(${songinfo[i].id})">${songinfo[i].name}<br>${songinfo[i].artists[0].name}</p>
                                 </div>`
-                        console.log(albumimg)
-                        $(".result").append($div)
-                       })
-                }
-                }
+                              $(".result").append($div)
+                            //   $(".songs img,p").click(function(){
+                            //       if($(this).hasClass("songs-selected"))
+                            //         $(this).removeClass("songs-selected");
+                            //       else
+                            //         $(this).addClass("songs-selected")
+                            //   })
+                  })
+            }
+            }).then(function(){   
             })
         };
-        $("img,p").click(function(){
-            // 获取歌词
-            $.ajax({
-                    url: 'https://yuulyrics.vercel.app/lyric?id=825646',
+        function getLyrics(id){
+                  // 获取歌词和封面
+                  $.ajax({
+                    url: 'https://yuulyrics.vercel.app/lyric?id='+id,
                     type: 'get',
                     dataType: 'json',
                     xhrFields: {withCredentials: true},
                     success: function(data){
-                        // 导入歌词文本
-                        LyricsFormer = data.lrc.lyric.replace(/\[.*\]/g,"<li>");
-                        LyricsLatter = LyricsFormer.replace("\n","</li>");
-                        document.getElementById('geci').innerHTML = LyricsLatter;
+                        let regExp = new RegExp(".*</li>","g");
+                        let lyric = "<li>"+data.lrc.lyric.replace(/\[.*\]/g,"");
+                        lyricLi = lyric.replaceAll("\n","</li><li>").match(regExp);
+                        $("#geci").html(lyricLi)
+                        // 修改背景图片
+                        albumimg = $("[onclick*='"+id+"']").attr("src")
+                        $("#s-bgimg").attr("src",albumimg);
+                        $(".g-bgimg").css("background-image","url("+albumimg+")");
+                        // 歌曲名及艺术家
+                        title = $("[onclick*='"+id+"']").attr("name")
+                        artist = $("[onclick*='"+id+"']").attr("artist")
+                        $(".title").html("《"+title+"》");
+                        $(".creator").html("—"+artist);
                         // 歌词选中效果
                         $(".lyrics li").click(function() {
                             if($(this).hasClass("selected-lyrics"))
@@ -143,20 +219,17 @@
                                 $(this).addClass("selected-lyrics");
                         });
                     }
-            })
-
-        });
+                  })
+            }; 
     $(".quote").click(function(){
         // 将选中歌词移动至生成区域
+        $(".g-lyrics-li").remove();
         $($(".selected-lyrics").toArray().reverse()).each(function(index,data){
             $(data).removeClass("selected-lyrics").addClass("g-lyrics-li")
             $(".g-lyrics ul").prepend(data)
         });
         // 重新导入歌词文本(避免了被移动到右边后，左边消失)
-        $("#geci").html(LyricsLatter)
-        // 生成海报的歌曲名及艺术家
-        $(".title").html("《"+info.songs[0].name+"》");
-        $(".creator").html("—"+info.songs[0].ar[0].name);
+        $("#geci").html(lyricLi)
         // 颜色
         sourceImage = document.getElementById("s-bgimg");
         colorThief = new ColorThief();

@@ -36,7 +36,7 @@
       border-color: #86a3bd;
     }
     .result{
-      height: 63vh;
+      /* height: 63vh; */
       background-color: rgba(26, 23, 23, 0.25);
       border-radius: 15px;
       padding: 10px;
@@ -61,13 +61,12 @@
       transform: rotate(360deg);
     }
     .songs p{
-      height: 8vh;
       font-size: 2rem;
       font-family: Georgia, 'Times New Roman', Times, serif;
       color: silver;
-      padding-bottom: 10px;
-      overflow: hidden;
+      padding: 0px;
       margin: 0px;
+      text-decoration: none;
       transition: 300ms;
     }
     .songs p:hover{
@@ -77,11 +76,11 @@
     }
     /* 编辑区域背景 */
     .edit{
-      height: 85vh;
+      /* height: 85vh; */
       background-color: rgba(196, 165, 171, 0.85);
-      margin-top: 15vh;
+      /* margin-top: 15vh; */
       padding: 0px;
-      overflow: scroll;
+      /* overflow: scroll; */
       z-index: 0;
       scrollbar-width: none; /* Firefox */
     }
@@ -102,7 +101,7 @@
     /* 歌词文本 */
     .lyrics{
       position: relative;
-      height: 50rem;
+      height: 71vh;
       list-style-type: none;
       color: #ffffff;
       font-size: 4rem;
@@ -135,7 +134,7 @@
     }
     /* 选择歌词区域背景模糊效果组件1 */
     .lyrics-hidden{
-      position: absolute;
+      /* position: absolute; */
       margin-top: 4vw;
       height: 50rem;
       overflow: hidden;
@@ -156,8 +155,8 @@
     /* 选择歌词区域背景模糊效果组件2 */
     #s-bgimg{
       position: relative;
-      bottom: 50rem;
-      height: 50rem;
+      bottom: 53rem;
+      height: 72vh;
       background-size: cover;
       background-position: center;
       filter: blur(25px);
@@ -166,6 +165,7 @@
     }
     /* 图片暗色遮罩 */
     .mask{
+      border-radius: 20px;
       position: relative;
       height: 50rem;
       background-color: rgba(73, 73, 73, 0.2);
@@ -189,7 +189,7 @@
     .g-lyrics-hidden{
       position: absolute;
       height: 500px;
-      top: 0px;
+      top: 4vw;
       padding: 30px 30px;
       overflow: hidden;
     }

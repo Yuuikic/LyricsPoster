@@ -5,15 +5,62 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Document</title>
+      <script src="./js/jquery-3.6.0.js"></script>
       <script>
-            var imgStatus = 0
-            function loadimg(){
-                  console.log('加载完成')
-                  imgStatus = 1
+      // 歌曲信息数组
+      var songinfo = new Array(6)
+      var songid = new Array(6)
+      var songList
+      function getinfo(){
+            $.ajax({
+                url: "https://yuulyrics.vercel.app/search?keywords=君の知らない物語"+$("#search-form").val()+"&limit=6",
+                type:"post",
+                dataType:"json",
+                xhrFields:{withCredentials:true},
+                success: function(data){
+                        songList = data.result.songs;
+                        for (let i = 0; i < 6; i++) {
+                              songid[i] = songList[i].id,
+                              songinfo[i] = songList[i]
+                              // console.log(songid[i]),
+                              // console.log(songinfo[i])
+                };
+                }
+            }).then(function(){
+            // 获取歌曲信息
+            for (let i = 0; i < 6; i++){
+                  $.ajax({
+                        url: "https://yuulyrics.vercel.app/song/detail?ids="+songid[i],
+                        type: 'get',
+                        dataType: 'json',
+                        xhrFields: {withCredentials: true},
+                        success: function(data){
+                        //console.log("https://yuulyrics.vercel.app/song/detail?ids="+songList[i].id)
+                        songinfo[i].album.picUrl = data.songs[0].al.picUrl
+                        // console.log(songinfo[i].album.picUrl)
+                        }
+                  })
             }
+            }).then(function(){
+            // 获取歌词信息
+            for (let i = 0; i < 6; i++){
+                  $.ajax({
+                    url: 'https://yuulyrics.vercel.app/lyric?id='+songid[i],
+                    type: 'get',
+                    dataType: 'json',
+                    xhrFields: {withCredentials: true},
+                    success: function(data){
+                        songinfo[i].lyrics = data.lrc.lyric
+                        console.log(songinfo[i].id)
+                        console.log(songinfo[i].lyrics)
+                    }
+                  })
+            }
+            })
+        };
       </script>
 </head>
 <body>
-      <img src="https://raw.githubusercontent.com/Yuuikic/LyricsPoster/main/assetes/button.gif" alt="" onload="loadimg(),console.log(imgStatus)">
+      <input type="image" src="./assetes/button.gif" onclick="getinfo()">
 </body>
 </html>
