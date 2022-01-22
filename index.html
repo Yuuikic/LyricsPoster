@@ -37,7 +37,9 @@
             <div>
                 <div class="row">
                     <form action="#" method="post" role="form" class="text-center">
-                        <input id="imgButton" type="image" onclick ="query(); getinfo(); return false;" src="./assetes/button 0.png">
+                        <input id="imgButton" type="image" onclick ="query(); return false;" src="./assetes/button 0.png">
+                        
+            
                         <div class="form-group">
                             <input type="text" class="form-control" id="search-form" placeholder="Search Songs…">
                         </div>
@@ -46,6 +48,25 @@
 
                     <div class="row">
                         <div class="result">
+                            <div class="songs container-fluid row">
+                                <img src="https://p2.music.126.net/P4KR5uo9hcjlXdu-rNYZVg==/109951166200307285.jpg" alt="" class="img-circle" title="获取歌词">
+                                <p class="col-xs-8 text-center" title="获取歌词">君の知らない物語<br>supercell</p>
+                            </div>
+
+                            <div class="songs container-fluid row">
+                                <img src="https://p2.music.126.net/P4KR5uo9hcjlXdu-rNYZVg==/109951166200307285.jpg" alt="" class="img-circle" title="获取歌词">
+                                <p class="col-xs-8 text-center" title="获取歌词">君の知らない物語<br>supercell</p>
+                            </div>
+
+                            <div class="songs container-fluid row">
+                                <img src="https://p2.music.126.net/P4KR5uo9hcjlXdu-rNYZVg==/109951166200307285.jpg" alt="" class="img-circle" title="获取歌词">
+                                <p class="col-xs-8 text-center" title="获取歌词">君の知らない物語<br>supercell</p>
+                            </div>
+
+                            <div class="songs container-fluid row">
+                                <img src="https://p2.music.126.net/P4KR5uo9hcjlXdu-rNYZVg==/109951166200307285.jpg" alt="" class="img-circle" title="获取歌词">
+                                <p class="col-xs-8 text-center" title="获取歌词">君の知らない物語<br>supercell</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -130,87 +151,49 @@
         
 
 
-    </div>  
+    </div>
+   
+    
+    
     <script>
+        var info; // 声明歌曲信息
         var LyricsFormer; // 歌词处理1
         var LyricsLatter; // 歌词处理2(结果)
-        var albumimg; //专辑封面
-        var sourceImage; //获取封面主色
+        var albumimg;
+        var smallsize;
+        var sourceImage;
         var colorThief;
         var color;
-        var songinfo = new Array(6);
-        var songid = new Array(6);
-        var songList;
-        // var orderid;
-        var lyricLi;
-        function getinfo(){
-            // 搜索关键词获取搜索结果及id
+        function gainId(){
+            let url = "https://yuulyrics.vercel.app/search?keywords="+$("#gainId #search-form").val();
             $.ajax({
-                url: "https://yuulyrics.vercel.app/search?keywords="+$("#search-form").val()+"&limit=6",
+                url,
+                data:{limit:"5"},
                 type:"post",
                 dataType:"json",
-                xhrFields:{withCredentials:true},
-                success: function(data){
-                        songList = data.result.songs;
-                        for (let i = 0; i < 6; i++) {
-                              songid[i] = songList[i].id,
-                              songinfo[i] = songList[i]
-                            //   songinfo[i].order = i
-                            //   console.log(songinfo[i].order),
-                            //   console.log(songinfo[i])
-                };
+                xhrFields:{withCredentials:true}
+            }).then(function(data){
+                $("#content").html("<ul></ul>")
+                let songList = data.result.songs;
+                for (let i = 0; i < songList.length; i++) {
+                    $img = <img src = "songList[i].album."
+                    $li = `<li onclick="gainLyric('${songList[i].id}')">name:${songList[i].name}</li>`
+                    $("#content ul").append($li)
                 }
-            }).then(function(){
-            // 获取歌曲信息
-            for (let i = 0; i < 6; i++){
-                  $.ajax({
-                        url: "https://yuulyrics.vercel.app/song/detail?ids="+songid[i],
-                        type: 'get',
-                        dataType: 'json',
-                        xhrFields: {withCredentials: true},
-                        success: function(data){
-                        songinfo[i].album.picUrl = data.songs[0].al.picUrl
-                        //console.log("https://yuulyrics.vercel.app/song/detail?ids="+songList[i].id)
-                        // console.log(songinfo[i].album.picUrl)
-                        }
-                  }).then(function(){ //显示结果
-                    $div = `<div class="songs container-fluid row">`+
-                                "<img src="+songinfo[i].album.picUrl+`?param=500y500 alt="" class="img-circle" title="获取歌词" onclick="getLyrics('${songid[i]}')" name="${songinfo[i].name}" artist="${songinfo[i].artists[0].name}">`+
-                                `<p class="col-xs-8 text-center" tiltle="获取歌词" style="" onclick="getLyrics(${songinfo[i].id})">${songinfo[i].name}<br>${songinfo[i].artists[0].name}</p>
-                                </div>`
-                              $(".result").append($div)
-                            //   $(".songs img,p").click(function(){
-                            //       if($(this).hasClass("songs-selected"))
-                            //         $(this).removeClass("songs-selected");
-                            //       else
-                            //         $(this).addClass("songs-selected")
-                            //   })
-                  })
-            }
-            }).then(function(){   
             })
-        };
-        function getLyrics(id){
-                  // 获取歌词和封面
-                  $.ajax({
-                    url: 'https://yuulyrics.vercel.app/lyric?id='+id,
+        }
+        $("img,p").click(function(){
+            // 获取歌词
+            $.ajax({
+                    url: 'https://yuulyrics.vercel.app/lyric?id=825646',
                     type: 'get',
                     dataType: 'json',
                     xhrFields: {withCredentials: true},
                     success: function(data){
-                        let regExp = new RegExp(".*</li>","g");
-                        let lyric = "<li>"+data.lrc.lyric.replace(/\[.*\]/g,"");
-                        lyricLi = lyric.replaceAll("\n","</li><li>").match(regExp);
-                        $("#geci").html(lyricLi)
-                        // 修改背景图片
-                        albumimg = $("[onclick*='"+id+"']").attr("src")
-                        $("#s-bgimg").attr("src",albumimg);
-                        $(".g-bgimg").css("background-image","url("+albumimg+")");
-                        // 歌曲名及艺术家
-                        title = $("[onclick*='"+id+"']").attr("name")
-                        artist = $("[onclick*='"+id+"']").attr("artist")
-                        $(".title").html("《"+title+"》");
-                        $(".creator").html("—"+artist);
+                        // 导入歌词文本
+                        LyricsFormer = data.lrc.lyric.replace(/\[.*\]/g,"<li>");
+                        LyricsLatter = LyricsFormer.replace("\n","</li>");
+                        document.getElementById('geci').innerHTML = LyricsLatter;
                         // 歌词选中效果
                         $(".lyrics li").click(function() {
                             if($(this).hasClass("selected-lyrics"))
@@ -219,17 +202,34 @@
                                 $(this).addClass("selected-lyrics");
                         });
                     }
-                  })
-            }; 
+            })
+            // 获取歌曲信息
+            $.ajax({
+                    url: 'https://yuulyrics.vercel.app/song/detail?ids=825646',
+                    type: 'get',
+                    dataType: 'json',
+                    xhrFields: {withCredentials: true},
+                    success: function(data){
+                            info = data
+                            // 修改背景图片
+                            albumimg = info.songs[0].al.picUrl;
+                            smallsize = albumimg + '?param=500y500'; // api调整图片大小
+                            $("#s-bgimg").attr("src",smallsize);
+                            $(".g-bgimg").css("background-image","url("+smallsize+")");
+                    }
+                })
+        });
     $(".quote").click(function(){
         // 将选中歌词移动至生成区域
-        $(".g-lyrics-li").remove();
         $($(".selected-lyrics").toArray().reverse()).each(function(index,data){
             $(data).removeClass("selected-lyrics").addClass("g-lyrics-li")
             $(".g-lyrics ul").prepend(data)
         });
         // 重新导入歌词文本(避免了被移动到右边后，左边消失)
-        $("#geci").html(lyricLi)
+        $("#geci").html(LyricsLatter)
+        // 生成海报的歌曲名及艺术家
+        $(".title").html("《"+info.songs[0].name+"》");
+        $(".creator").html("—"+info.songs[0].ar[0].name);
         // 颜色
         sourceImage = document.getElementById("s-bgimg");
         colorThief = new ColorThief();
