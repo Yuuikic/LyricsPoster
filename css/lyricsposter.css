@@ -8,7 +8,7 @@
 
   @font-face {
     font-family: jp;
-    src: url(/webfonts/MSMINCHO.TTF);
+    src: url(../webfonts/MSMINCHO.TTF);
   }
 
   body {
