@@ -47,16 +47,25 @@
         }
         function changeFontFamily(){
             if($("#fontFamily").val()=="defFamily"){
-                console.log(1);
                 $(".g-lyrics ul>li").css("font-family",'SimSun, Georgia, "Times New Roman", Times, serif')
             }else{
-                console.log($(".g-lyrics ul>li").css("font-family"));
                 let fontFamily = `"Helvetica Neue", Helvetica, Arial, ${$("#fontFamily").val()}`;
                 $(".g-lyrics ul>li").css("font-family",fontFamily)
             }
         }
-    </script>
+        function changGraphical(no){
+            console.log(1);
+            if(no == 1){
+                $(".g-bgimg-hidden").css("border","0px none rgb(51, 51, 51)")
+            }
+            if(no == 2){
+                console.log($(".g-bgimg-hidden").css("border-right"));
+                $(".g-bgimg-hidden").css("border-right")
+            }
+            $(".g-bgimg-hidden").css("border-right","70px solid transparent;");
 
+        }
+    </script>
 </head>
 <body>
 <div class="container-fluid page">
@@ -142,15 +151,15 @@
                                                 </select>
                                             </div>
                                             <div>
-                                                <label for="fontFamily">背景图形</label>
+                                                <label>背景图形</label>
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="backGraphical" id="inlineRadio1" value="option1"> 方形
+                                                    <input type="radio" name="backGraphical" onclick="changGraphical(1)" id="square" value="square"> 方形
                                                   </label>
                                                   <label class="radio-inline">
-                                                    <input type="radio" name="backGraphical" id="inlineRadio2" value="option2"> 菱形
+                                                    <input type="radio" name="backGraphical" onclick="changGraphical(2)" id="diamond" value="diamond"> 菱形
                                                   </label>
                                                   <label class="radio-inline">
-                                                    <input type="radio" name="backGraphical" id="inlineRadio3" value="option3"> 星形
+                                                    <input type="radio" name="backGraphical" onclick="changGraphical(3)" id="star" value="star"> 星形
                                                   </label>
                                             </div>
                                          
@@ -207,7 +216,7 @@
             for (let i = 0; i < 5; i++){
                   $.ajax({
                         url: "https://yuulyrics.vercel.app/song/detail?ids="+songid[i],
-                        type: 'get',
+                        type: 'post',
                         dataType: 'json',
                         xhrFields: {withCredentials: true},
                         success: function(data){
@@ -230,7 +239,7 @@
                   // 获取歌词和封面
                   $.ajax({
                     url: 'https://yuulyrics.vercel.app/lyric?id='+id,
-                    type: 'get',
+                    type: 'post',
                     dataType: 'json',
                     xhrFields: {withCredentials: true},
                     success: function(data){
