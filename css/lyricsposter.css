@@ -18,7 +18,7 @@
     .search{
       /* margin-top: 20vh; */
     }
-    .form-control{
+    #search-form{
       border-width: 3px;
       border-color: white;
       border-radius: 4vh;
@@ -266,7 +266,8 @@
       z-index: 1;
       left: 6rem;
       top: 5.8rem;
-      background: linear-gradient(120deg, #44329b, #a8c0ff);
+      background-color: rgb(93, 89, 151);
+      /* background: linear-gradient(120deg, #44329b, #a8c0ff); */
       -webkit-background-clip: text;
       color: transparent;
       overflow: visible;
@@ -280,7 +281,8 @@
       display: inline-block;
       position: absolute;
       z-index: 2;
-      background: linear-gradient(120deg, #a8c0ff, #44329b);
+      background-color: rgb(102, 98, 168);
+      /* background: linear-gradient(120deg, #a8c0ff, #44329b); */
       -webkit-background-clip: text;
       color: transparent;
   }
@@ -288,12 +290,11 @@
     .modify{
       border-radius: 40px;
       margin-top: 15px;
-      margin-bottom: 20px;
       padding: 0px;
       max-height: 300px;
     }
     .modify a{
-      font-size: 3rem;
+      font-size: 25px;
       display:table-cell; 
       vertical-align:bottom;
       font-family: SimSun, Georgia, 'Times New Roman', Times, serif;
@@ -312,7 +313,9 @@
       border-radius: 15px 15px 0 0;;
     }
     #changeColor button{
+      margin: 0 10px;
       height: 60px;
+      width: 60px;
       border-width: 0px;
       border-radius: 15px;
     }
@@ -321,8 +324,7 @@
       border-radius: 0 0 15px 15px;
     }
     .modify-select{
-      padding-top: 10px;
-      padding-bottom: 10px;
+      padding: 8px 0;
     }
     .color1{
       background: rgba(73, 73, 73, 0.2);
@@ -332,4 +334,23 @@
     }
     .color3{
       background: rgba(73, 73, 73, 0.2);
+    }
+
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+      color: rgb(133, 113, 113);
+      background-color: rgb(255, 197, 197);
+      border: 0px;
+    }
+    .nav-tabs {
+      border-bottom: 1px solid rgb(255, 197, 197);
+    }   
+    .nav-tabs > li > a {
+      border: 0px;
+    }
+    .modify li a:hover{
+      background-color: rgb(255, 197, 197);
+    }
+    #panes > div{
+      background-color: rgb(255, 197, 197);
+      border-radius: 0 0 15px 15px;
     }

@@ -7,14 +7,19 @@
     <meta name="renderer" content="webkit"/>
     <meta name="force-rendering" content="webkit"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <link rel="stylesheet" href="./css/all.css">
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="./css/all.css">
     <link rel="stylesheet" href="./css/lyricsposter.css">
     <link rel="shortcut icon" href="./assetes/favicon.ico" type="image/x-icon">
     <script src="./js/jquery-3.6.0.js"></script>
     <script src="./js/color-thief.min.js"></script>
-    <title>歌词海报生成器</title>
+    <script src="./bootstrap/js/bootstrap.js"></script>
+    <title>TAiOS</title>
     <script>
+        $('#myTabs a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
         function query(){
             $("#imgButton").attr("src","./assetes/button.gif")
             let timer = setTimeout(() => {
@@ -22,13 +27,16 @@
                 $("#imgButton").attr("src","./assetes/button 0.png")
             },1000);
         }
+        function fontSizeUp(){
+            console.log($(".g-lyrics-li").prop("style"));
+        }
     </script>
 </head>
 <body>
 <div class="container-fluid">
     <!--标题-->
-    <div class="site-title-1 text-center col-xs-7 col-md-2 col-md-offset-2">Lyrics</div>
-    <div class="site-title-2 text-center col-xs-3 col-md-2 col-md-offset-2">Poster</div>
+    <div class="site-title-2 col-md-6 col-md-offset-2">世界崩坏边缘的咏叹调</div>
+    <div class="site-title-1 col-md-6 col-md-offset-2">The Aria In Owari Sekai</div>
 
     <div class="row">
 
@@ -57,7 +65,7 @@
                 <div>
                     <div class="row"></div>
 
-                    <div class="row" style="background-color: rgba(196, 165, 171, 0.85);">
+                    <div class="row" style="background-color: rgba(196, 165, 171, 0.85); height: 100vh;">
                         <div class="edit">
 
                             <div class="col-md-5" style="margin: 0 8vh; height: 80vh;">
@@ -94,7 +102,59 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="modify col-xs-12 text-center">
+
+                                    <div class="modify">
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">样式表</a></li>
+                                            <li role="presentation"><a href="#type" aria-controls="type" role="tab" data-toggle="tab">样式</a></li>
+                                            <li role="presentation"><a href="#changeColor" aria-controls="changeColor" role="tab" data-toggle="tab">颜色</a></li>
+                                            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">自定义歌词</a></li>
+                                        </ul>
+                                    </div>
+                                    
+                                    
+                                    <div class="tab-content" id="panes">
+                                        <div role="tabpanel" class="tab-pane active" id="home"></div>
+                                        <div role="tabpanel" class="tab-pane" id="type">
+                                            <div>
+                                                <label for="">字号</label>
+                                                <button onclick="fontSizeUp()" class="btn btn-default">+</button>
+                                                <button onclick="fontSizeLow()" class="btn btn-default">-</button>
+                                            </div>
+                                            <div>
+                                                <select name="fontFamily" class="form-control" id="fontFamily">
+                                                    <option></option>
+                                                    <option></option>
+                                                    <option></option>
+                                                    <option></option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label for="fontFamily">背景图形</label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="backGraphical" id="inlineRadio1" value="option1"> 方形
+                                                  </label>
+                                                  <label class="radio-inline">
+                                                    <input type="radio" name="backGraphical" id="inlineRadio2" value="option2"> 菱形
+                                                  </label>
+                                                  <label class="radio-inline">
+                                                    <input type="radio" name="backGraphical" id="inlineRadio3" value="option3"> 星形
+                                                  </label>
+                                            </div>
+                                         
+                                            <div><button>重置</button></div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="changeColor">
+                                            <div class="row modify-select text-center">
+                                                <button class="color1"></button>
+                                                <button class="color2"></button>
+                                                <button class="color3"></button>
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="settings"></div>
+                                    </div>
+                                    
+                                    <!-- <div class="modify col-xs-12 text-center">
                                         <div class="container-fluid">
                                             <div class="row">
                                                 <a href="#" onclick="change()" class="col-xs-4">样式</a>
@@ -104,13 +164,12 @@
                                         </div>
                                         <div class="menu container-fluid col-xs-12" id="changeColor">
                                             <div class="row modify-select">
-                                            <button class="color1 col-xs-2 col-xs-offset-1"></button>
-                                            <button class="color2 col-xs-2 col-xs-offset-2"></button>
-                                            <button class="color3 col-xs-2 col-xs-offset-2"></button>
+                                                <button class="color1 col-xs-2 col-xs-offset-1"></button>
+                                                <button class="color2 col-xs-2 col-xs-offset-2"></button>
+                                                <button class="color3 col-xs-2 col-xs-offset-2"></button>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div>&nbsp;</div>
+                                    </div> -->
                                 </div>
 
                             </div>
