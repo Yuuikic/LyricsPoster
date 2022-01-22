@@ -183,17 +183,23 @@
                         });
                     }
                   })
-            }; 
+            }
     $(".quote").click(function(){
-        // 将选中歌词移动至生成区域
+        // 清空海报中歌词
         $(".g-lyrics-li").remove();
+        // 由于歌词选中效果this的影响，歌词选中效果的click函数不会失效。
+        // 添加下面函数让海报区域的歌词也有选中-取消选中的效果
+        $(".g-lyrics-li").click(function(){
+            $(this).removeClass("selected-lyrics");
+        });
+        // 调整选中的歌词顺序，添加到海报区域
         $($(".selected-lyrics").toArray().reverse()).each(function(index,data){
             $(data).removeClass("selected-lyrics").addClass("g-lyrics-li")
             $(".g-lyrics ul").prepend(data)
         });
         // 重新导入歌词文本(避免了被移动到右边后，左边消失)
-        $("#geci").html(lyricLi)
-        // 颜色
+        $("#geci").html(lyricLi);
+        // 获取专辑封面主颜色
         sourceImage = document.getElementById("s-bgimg");
         colorThief = new ColorThief();
         color = colorThief.getPalette(sourceImage,5);
@@ -201,6 +207,13 @@
         $(".color1").css("background","rgb("+color[0]+")");
         $(".color2").css("background","rgb("+color[1]+")");
         $(".color3").css("background","rgb("+color[2]+")");
+        // 再次添加选中歌词函数，让用户可以重新选择歌词
+        $(".lyrics li").click(function() {
+            if($(this).hasClass("selected-lyrics"))
+                $(this).removeClass("selected-lyrics");
+            else
+                $(this).addClass("selected-lyrics");
+        });
     });
     // 切换颜色
     $(".color1").click(function(){
