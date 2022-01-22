@@ -25,11 +25,13 @@
     </script>
 </head>
 <body>
-<div class="container-fluid page">
+<div class="container-fluid">
     <!--标题-->
-    <div class="site-title-1 text-center col-xs-7 col-md-2 col-md-offset-2">Poster</div>
-    <div class="site-title-2 text-center col-xs-3 col-md-2 col-md-offset-2">Lyrics</div>
+    <div class="site-title-1 text-center col-xs-7 col-md-2 col-md-offset-2">Lyrics</div>
+    <div class="site-title-2 text-center col-xs-3 col-md-2 col-md-offset-2">Poster</div>
+
     <div class="row">
+
         <!-- 搜索框 -->
         <div class="col-md-3 search" style="padding: 0 3vh;">
             <div>
@@ -41,6 +43,7 @@
                         </div>
                     </form>
                 </div>
+
                     <div class="row">
                         <div class="result">
                         </div>
@@ -49,22 +52,34 @@
             </div>
                 
             <!--歌词栏-->
-            <div class="col-md-9 container edit" style="margin-top: calc(6.5% - 10px);">
-                    <div class="row">
-                            <div class="col-md-4 col-md-offset-1 col-xs-10 col-xs-offset-1" style="padding: 0px;">
-                                <div class="lyrics-select">
+            <div class="col-md-9" style="padding: 0 3vh;margin-top: 10vh;">
+
+                <div>
+                    <div class="row"></div>
+
+                    <div class="row" style="background-color: rgba(196, 165, 171, 0.85);">
+                        <div class="edit">
+
+                            <div class="col-md-5" style="margin: 0 8vh; height: 80vh;">
+                                
+                                <!-- <div class="lyrics-select">
                                     <div class="mask"></div>
                                     <img src="" id="s-bgimg" crossorigin="anonymous" />
-                                </div>
-                                <div class="lyrics-hidden">
+                                </div> -->
+
+                                <div class="lyrics-hidden mask" style="height: 80vh;">
                                     <div class="lyrics">
                                         <ul class="text-left" id="geci">
                                         </ul>
                                     </div>
+                                    <img src="" id="s-bgimg" crossorigin="anonymous" />
                                 </div>
+
                             </div>
-                            <div class="col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1" >
-                                <div class="poster col-xs-12">
+
+                            <div class="col-md-5" >
+
+                                <div class="poster">
                                     <div class="quote" title="生成海报"><i class="fa fa-quote-left"></i></div>
                                     <div class="bg-margin">
                                         <div class="g-bgimg-hidden">
@@ -95,12 +110,27 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div>&nbsp;</div>
                                 </div>
+
                             </div>
-                    </div>             
+                            
+
+
+                        </div>
+                    </div>
+                </div>
+                
             </div>
+
         </div>
-    </div>
+
+        
+
+        
+
+
+    </div>  
     <script>
         var LyricsFormer; // 歌词处理1
         var LyricsLatter; // 歌词处理2(结果)
@@ -111,27 +141,28 @@
         var songinfo = new Array(6);
         var songid = new Array(6);
         var songList;
+        // var orderid;
         var lyricLi;
         function getinfo(){
-            $(".songs").remove();
             // 搜索关键词获取搜索结果及id
             $.ajax({
-                url: "https://yuulyrics.vercel.app/search?keywords="+$("#search-form").val()+"&limit=5",
+                url: "https://yuulyrics.vercel.app/search?keywords="+$("#search-form").val()+"&limit=6",
                 type:"post",
                 dataType:"json",
                 xhrFields:{withCredentials:true},
                 success: function(data){
                         songList = data.result.songs;
-                        for (let i = 0; i < 5; i++) {
+                        for (let i = 0; i < 6; i++) {
                               songid[i] = songList[i].id,
                               songinfo[i] = songList[i]
+                            //   songinfo[i].order = i
                             //   console.log(songinfo[i].order),
                             //   console.log(songinfo[i])
                 };
                 }
             }).then(function(){
             // 获取歌曲信息
-            for (let i = 0; i < 5; i++){
+            for (let i = 0; i < 6; i++){
                   $.ajax({
                         url: "https://yuulyrics.vercel.app/song/detail?ids="+songid[i],
                         type: 'get',
@@ -148,6 +179,12 @@
                                 `<p class="col-xs-8 text-center" tiltle="获取歌词" style="" onclick="getLyrics(${songinfo[i].id})">${songinfo[i].name}<br>${songinfo[i].artists[0].name}</p>
                                 </div>`
                               $(".result").append($div)
+                            //   $(".songs img,p").click(function(){
+                            //       if($(this).hasClass("songs-selected"))
+                            //         $(this).removeClass("songs-selected");
+                            //       else
+                            //         $(this).addClass("songs-selected")
+                            //   })
                   })
             }
             }).then(function(){   
