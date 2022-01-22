@@ -25,64 +25,79 @@
     </script>
 </head>
 <body>
-    <div class="site-title-1 text-center col-xs-7 col-md-6">Lyrics</div>
-    <div class="site-title-2 text-center col-xs-7 col-md-6">Poster</div>
-    <div class="search col-md-3 col-md-offset-0 col-xs-8 col-xs-offset-2 "> <!-- 搜索框 -->
-        <form action="#" method="post" role="form" class="text-center">
-            <input id="imgButton" type="image" onclick ="query(); getinfo(); return false;" src="./assetes/button 0.png">
-            <div class="form-group">
-                <input type="text" class="form-control" id="search-form" placeholder="Search Songs…">
+<div class="container-fluid page">
+    <!--标题-->
+    <div class="site-title-1 text-center col-xs-7 col-md-2 col-md-offset-2">Poster</div>
+    <div class="site-title-2 text-center col-xs-3 col-md-2 col-md-offset-2">Lyrics</div>
+    <div class="row">
+        <!-- 搜索框 -->
+        <div class="col-md-3 search" style="padding: 0 3vh;">
+            <div>
+                <div class="row">
+                    <form action="#" method="post" role="form" class="text-center">
+                        <input id="imgButton" type="image" onclick ="query(); getinfo(); return false;" src="./assetes/button 0.png">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="search-form" placeholder="Search Songs…">
+                        </div>
+                    </form>
+                </div>
+                    <div class="row">
+                        <div class="result">
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
-        <div class="result"> <!-- 结果区域 -->
-        </div>
-    </div>
-    <div class="edit col-md-9 col-xs-12">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="lyrics-select col-md-4 col-xs-10 col-xs-offset-1 col-md-offset-1">
-                    <div class="mask"></div>
-                    <img src="" id="s-bgimg" crossorigin="anonymous" />
-                </div>
-                <div class="lyrics-hidden col-md-4 col-xs-10 col-xs-offset-1 col-md-offset-1">
-                    <div class="lyrics">
-                        <ul class="text-left" id="geci">
-                        </ul>
-                    </div>
-                </div>
-                <div class="poster col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
-                    <div class="quote" title="生成海报"><i class="fa fa-quote-left"></i></div>
-                    <div class="bg-margin">
-                        <div class="g-bgimg-hidden">
-                        <div class="g-bgimg"></div>
-                        </div>
-                    </div>
-                    <div class="g-lyrics-hidden">
-                        <div class="g-lyrics">
-                            <ul>
-                                <li class="title text-right"></li>
-                                <li class="creator text-right"></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="modify col-xs-12 text-center">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <a href="#" onclick="change()" class="col-xs-4">样式</a>
-                                <a href="#" onclick="change()" class="checked col-xs-4" >颜色</a>
-                                <a href="#" onclick="change()" class="col-xs-4">随机</a>
+                
+            <!--歌词栏-->
+            <div class="col-md-9 container edit" style="margin-top: calc(6.5% - 10px);">
+                    <div class="row">
+                            <div class="col-md-4 col-md-offset-1 col-xs-10 col-xs-offset-1" style="padding: 0px;">
+                                <div class="lyrics-select">
+                                    <div class="mask"></div>
+                                    <img src="" id="s-bgimg" crossorigin="anonymous" />
+                                </div>
+                                <div class="lyrics-hidden">
+                                    <div class="lyrics">
+                                        <ul class="text-left" id="geci">
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="menu container-fluid col-xs-12" id="changeColor">
-                            <div class="row modify-select">
-                            <button class="color1 col-xs-2 col-xs-offset-1"></button>
-                            <button class="color2 col-xs-2 col-xs-offset-2"></button>
-                            <button class="color3 col-xs-2 col-xs-offset-2"></button>
+                            <div class="col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1" >
+                                <div class="poster col-xs-12">
+                                    <div class="quote" title="生成海报"><i class="fa fa-quote-left"></i></div>
+                                    <div class="bg-margin">
+                                        <div class="g-bgimg-hidden">
+                                        <div class="g-bgimg"></div>
+                                        </div>
+                                    </div>
+                                    <div class="g-lyrics-hidden">
+                                        <div class="g-lyrics">
+                                            <ul>
+                                                <li class="title text-right"></li>
+                                                <li class="creator text-right"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="modify col-xs-12 text-center">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <a href="#" onclick="change()" class="col-xs-4">样式</a>
+                                                <a href="#" onclick="change()" class="checked col-xs-4" >颜色</a>
+                                                <a href="#" onclick="change()" class="col-xs-4">随机</a>
+                                            </div>
+                                        </div>
+                                        <div class="menu container-fluid col-xs-12" id="changeColor">
+                                            <div class="row modify-select">
+                                            <button class="color1 col-xs-2 col-xs-offset-1"></button>
+                                            <button class="color2 col-xs-2 col-xs-offset-2"></button>
+                                            <button class="color3 col-xs-2 col-xs-offset-2"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div>&nbsp;</div>
-                </div>
+                    </div>             
             </div>
         </div>
     </div>
@@ -101,13 +116,13 @@
             $(".songs").remove();
             // 搜索关键词获取搜索结果及id
             $.ajax({
-                url: "https://yuulyrics.vercel.app/search?keywords="+$("#search-form").val()+"&limit=6",
+                url: "https://yuulyrics.vercel.app/search?keywords="+$("#search-form").val()+"&limit=5",
                 type:"post",
                 dataType:"json",
                 xhrFields:{withCredentials:true},
                 success: function(data){
                         songList = data.result.songs;
-                        for (let i = 0; i < 6; i++) {
+                        for (let i = 0; i < 5; i++) {
                               songid[i] = songList[i].id,
                               songinfo[i] = songList[i]
                             //   console.log(songinfo[i].order),
@@ -116,7 +131,7 @@
                 }
             }).then(function(){
             // 获取歌曲信息
-            for (let i = 0; i < 6; i++){
+            for (let i = 0; i < 5; i++){
                   $.ajax({
                         url: "https://yuulyrics.vercel.app/song/detail?ids="+songid[i],
                         type: 'get',

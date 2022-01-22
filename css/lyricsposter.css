@@ -9,6 +9,16 @@
       background-attachment: fixed;
       background-repeat: no-repeat;
       background-position: center 0;
+      overflow: scroll;
+  }
+  body::-webkit-scrollbar {
+    display: none; /* Chrome Safari 隐藏滚动条*/
+  }
+  .row{
+    margin: 0px;
+  }
+  .page{
+    padding:10px 0 0 0 ;
   }
   /* 去除列表样式 */
     li{
@@ -36,10 +46,11 @@
       border-color: #86a3bd;
     }
     .result{
-      /* height: 63vh; */
+      min-height: 9vh;
       background-color: rgba(26, 23, 23, 0.25);
       border-radius: 15px;
       padding: 10px;
+      margin-bottom: 5vh;
       overflow: scroll;
     }
     .result::-webkit-scrollbar {
@@ -61,12 +72,13 @@
       transform: rotate(360deg);
     }
     .songs p{
+      height: 8vh;
       font-size: 2rem;
       font-family: Georgia, 'Times New Roman', Times, serif;
       color: silver;
-      padding: 0px;
+      padding-bottom: 10px;
+      overflow: hidden;
       margin: 0px;
-      text-decoration: none;
       transition: 300ms;
     }
     .songs p:hover{
@@ -76,11 +88,9 @@
     }
     /* 编辑区域背景 */
     .edit{
-      /* height: 85vh; */
       background-color: rgba(196, 165, 171, 0.85);
-      /* margin-top: 15vh; */
       padding: 0px;
-      /* overflow: scroll; */
+      overflow: scroll;
       z-index: 0;
       scrollbar-width: none; /* Firefox */
     }
@@ -134,16 +144,18 @@
     }
     /* 选择歌词区域背景模糊效果组件1 */
     .lyrics-hidden{
-      /* position: absolute; */
+      position: absolute;
       margin-top: 4vw;
+      bottom: 0;
       height: 50rem;
       overflow: hidden;
     }
     /* 海报生成区域 */
     .poster{
-      height: 78vh;
+      /* height: 78vh; */
       margin-top: 4vw;
-      padding: 0px; /* 使歌词内容居中 */
+      margin-bottom: 20px;
+      padding: 0px; /* 使歌词居中 */
     }
     /* 生成的海报主题色（背景色） */
     .bg-margin{
@@ -155,8 +167,8 @@
     /* 选择歌词区域背景模糊效果组件2 */
     #s-bgimg{
       position: relative;
-      bottom: 53rem;
-      height: 72vh;
+      bottom: 50rem;
+      height: 50rem;
       background-size: cover;
       background-position: center;
       filter: blur(25px);
@@ -189,7 +201,8 @@
     .g-lyrics-hidden{
       position: absolute;
       height: 500px;
-      top: 4vw;
+      width: 100%;
+      top: 0px;
       padding: 30px 30px;
       overflow: hidden;
     }
@@ -243,14 +256,13 @@
     }
     .quote:hover{
       font-size: 12rem;
+      color: rgb(193, 207, 248);
     }
     /* 歌曲名与作者样式 */
     .title{
       font-size: 2.5rem;
-      float: right;
     }
     .creator{
-      float: right;
       font-size: 2.5rem;
       letter-spacing: 3px;
       padding-right: 10px; /* 使作者右端与书名号对齐 */
