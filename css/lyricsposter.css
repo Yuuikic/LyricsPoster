@@ -216,20 +216,19 @@
   /* 生成的海报主题色（背景色） */
   .bg-margin {
     background-color: rgba(73, 73, 73, 0.2);
-    height: 500px;
+    min-height: 500px;
     padding: 30px 30px;
     overflow: hidden;
-    transition: 2000ms;
+    transition: 500ms;
   }
 
   /* 选择歌词区域背景模糊效果组件2 */
   #s-bgimg {
     position: relative;
     bottom: 50rem;
-    height: 50rem;
-    background-size: cover;
-    background-position: center;
+    height: 100%;
     filter: blur(25px);
+    padding: 0px;
     overflow: hidden;
     z-index: 1;
     display: none;
@@ -253,10 +252,10 @@
   /* 海报生成（generate）区域模糊效果组件2 */
   .g-bgimg {
     height: 0;
-    width: 100%;
     padding-top: 100%;
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     filter: blur(25px);
     display: none;
   }
@@ -613,9 +612,14 @@
   }
   #BottomBorder{
     background-color: rgba(92, 92, 92, 0.548);
-    height: 20%;
+    max-height: 100px;
     width: 100%; 
-    padding: 15px 0;
+    padding: 10px 0;
     color: #fff;
     display: none;
+    transition: 3000ms;
+    font-size: 2rem;
+  }
+  #imgBottom{
+    height: 80px;
   }

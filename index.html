@@ -102,7 +102,7 @@
                     <div class="lyrics-select-outer col-md-4 col-md-offset-1 col-xs-10 col-xs-offset-1">
                         <div class="lyrics-select">
                             <div class="mask"></div>
-                            <img src="" id="s-bgimg" crossorigin="anonymous" />
+                            <img src="" id="s-bgimg" crossorigin="anonymous" class="col-xs-12"/>
                         </div>
                         <div class="lyrics-hidden">
                             <div class="lyrics">
@@ -118,20 +118,7 @@
                                 <div class="g-bgimg-hidden">
                                     <div class="g-bgimg"></div>
                                 </div>
-                                <div class="row" id="BottomBorder">
-                                    <div class="col-md-4 text-center" style="height: 100%;">
-                                        <img src="./assetes/歌词海报.png" id="imgBottom" height="100%" style="border-radius: 5px;">
-                                    </div>
-                                    <div class="col-md-8" style="height: 100%;padding-left: 0;">
-                                        <div style="height: 70%;" id="textBottom">
-                                            <div id="songTitle">1111</div>
-                                            <div id="singer">1111</div>
-                                        </div>
-                                        <div style="height: 40%;">
-                                            <span id="tag" style="font-size: 12px; color: #ccc;">Music</span>
-                                        </div>
-                                    </div>
-                            </div>
+                                
                             </div>
                             <div class="g-lyrics-hidden">
                                 <div class="g-lyrics" id="glyrics">
@@ -139,6 +126,20 @@
                                         <li class="title text-right"></li>
                                         <li class="creator text-right"></li>
                                     </ul>
+                                </div>
+                                <div class="row" id="BottomBorder">
+                                    <div class="col-md-4 text-center">
+                                        <img src="" id="imgBottom" style="border-radius: 5px;">
+                                    </div>
+                                    <div class="col-md-8" style="height: 80px;padding-left: 0;">
+                                        <div style="height: 70%;" id="textBottom">
+                                            <div id="songTitle"></div>
+                                            <div id="singer"></div>
+                                        </div>
+                                        <div style="height: 30%;">
+                                            <span id="tag" style="font-size: 1.5rem; color: #ccc;">Music</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modify container-fluid">
@@ -165,7 +166,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div role="tabpanel" class="tab-pane container-fluid" id="characters" style="padding: 0;">
+                                <div role="tabpanel" class="tab-pane container-fluid" id="characters"
+                                    style="padding: 0;">
                                     <div class="row">
                                         <div class="col-xs-4 text-center" id="fontSize">
                                             <button onclick="fontSizeUp()" class="btn col-xs-5 col-xs-offset-1"><i
@@ -182,7 +184,7 @@
                                             <option value="fantasy">fantasy</option>
                                         </select>
                                         <button class="btn colorPickerbtn col-xs-2 col-xs-offset-1">颜色</button>
-                                        <input type="color" id="colorPicker" value="#fffefd"/>
+                                        <input type="color" id="colorPicker" value="#fffefd" />
                                     </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="changeColor">
@@ -212,7 +214,9 @@
             var lyricLi;
             function getinfo() {
                 $(".bg-margin").css("background-color", "rgba(73, 73, 73, 0.2)")
+                // $(".bg-margin").css("height", "500px")
                 $(".songs").remove();
+                $("#BottomBorder").css("display","none");
                 $(".result").fadeOut("3000ms");
                 $(".result").fadeIn("3000ms");
                 $("#s-bgimg").fadeOut("slow");
@@ -279,7 +283,7 @@
                         $(".g-bgimg").css("background-image", "url(" + albumimg + ")");
                         $("#s-bgimg").fadeIn("slow");
                         $(".g-bgimg").fadeIn("slow");
-                        $("#imgBottom").attr("src",albumimg);
+                        $("#imgBottom").attr("src", albumimg);
                         // 歌曲名及艺术家
                         title = $("[onclick*='" + id + "']").attr("name")
                         artist = $("[onclick*='" + id + "']").attr("artist")
@@ -296,10 +300,6 @@
                 })
             }
             $(".quote").click(function () {
-                //显示歌曲信息框
-                $("#BottomBorder").css("display","block");
-                $("#imgBottom").css("width",$("#imgBottom").css("height"));
-
                 // 清空海报中歌词
                 $(".g-lyrics-li").remove();
                 // 由于歌词选中效果this的影响，歌词选中效果的click函数不会失效。
@@ -313,6 +313,15 @@
                     $(".g-lyrics ul").prepend(data)
                     $(".g-lyrics ul").fadeIn("slow")
                 });
+                console.log($(".g-lyrics-hidden").css("height"))
+                //显示歌曲信息框
+                $("#BottomBorder").css("display", "block");
+                var gLyricsHeight = $(".g-lyrics").height();
+                var BottomBorderMargin = 340 - gLyricsHeight;
+                if ($(".g-lyrics-hidden").css("height") == "500px") {
+                    $("#BottomBorder").css("margin-top", BottomBorderMargin);
+                } ;
+                $("#imgBottom").css("width", $("#imgBottom").css("height"));
                 // 重新导入歌词文本(避免了被移动到右边后，左边消失)
                 $("#geci").html(lyricLi);
                 // 获取专辑封面主颜色
@@ -331,14 +340,16 @@
                     else
                         $(this).addClass("selected-lyrics");
                 });
-                $(".bg-margin").css("height", parseFloat($(".g-lyrics-hidden").css("height"))*1.25 + "px");
-                $(".g-bgimg-hidden").css("height", "80%");
+                // 海报高度自适应
+                $(".bg-margin").css("height", $(".g-lyrics-hidden").css("height"));
+                console.log($(".g-lyrics-hidden").css("height"))
+                $(".g-bgimg-hidden").css("height", "100%");
                 $(".g-bgimg").css("height", "100%");
             });
             // 切换颜色
-            function changeBackroundColor(id){
+            function changeBackroundColor(id) {
                 $(".bg-margin").css("background-color", "rgb(" + color[id] + ")");
-                $("#BottomBorder").css("background", "rgba(" + color[(id+1)%3] + " ,0.3)")
+                $("#BottomBorder").css("background", "rgba(" + color[(id + 1) % 3] + " ,0.3)")
             }
             // 更改背景图片模糊
             function changeblur() {
