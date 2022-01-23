@@ -282,7 +282,7 @@
                         // 歌曲名及艺术家
                         title = $("[onclick*='" + id + "']").attr("name")
                         artist = $("[onclick*='" + id + "']").attr("artist")
-                        $("#songTitle").html("《" + title + "》");
+                        $("#songTitle").html(title);
                         $("#singer").html(artist);
                         // 歌词选中效果
                         $(".lyrics li").click(function () {
