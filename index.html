@@ -73,9 +73,6 @@
             blurvalue = $("#blur").val();
             $(".g-bgimg").css("filter", "blur(" + blurvalue + "px)")
         }
-        $(function(){
-            $("#imgBottom").css("width",$("#imgBottom").css("height"));
-        })
     </script>
 </head>
 
@@ -281,13 +278,12 @@
                         $(".g-bgimg").css("background-image", "url(" + albumimg + ")");
                         $("#s-bgimg").fadeIn("slow");
                         $(".g-bgimg").fadeIn("slow");
+                        $("#imgBottom").attr("src",albumimg);
                         // 歌曲名及艺术家
                         title = $("[onclick*='" + id + "']").attr("name")
                         artist = $("[onclick*='" + id + "']").attr("artist")
-                        $(".title").html("《" + title + "》");
-                        $(".creator").html("—" + artist);
-                        $(".title").fadeIn("slow");
-                        $(".creator").fadeIn("slow");
+                        $("#songTitle").html("《" + title + "》");
+                        $("#singer").html(artist);
                         // 歌词选中效果
                         $(".lyrics li").click(function () {
                             if ($(this).hasClass("selected-lyrics"))
@@ -301,8 +297,7 @@
             $(".quote").click(function () {
                 //显示歌曲信息框
                 $("#BottomBorder").css("display","block");
-
-
+                $("#imgBottom").css("width",$("#imgBottom").css("height"));
 
                 // 清空海报中歌词
                 $(".g-lyrics-li").remove();
@@ -324,6 +319,7 @@
                 colorThief = new ColorThief();
                 color = colorThief.getPalette(sourceImage, 5);
                 $(".bg-margin").css("background-color", "rgb(" + color[0] + ")");
+                $("#BottomBorder").css("background", "rgba(" + color[1] + " ,0.3)")
                 $(".color1").css("background", "rgb(" + color[0] + ")");
                 $(".color2").css("background", "rgb(" + color[1] + ")");
                 $(".color3").css("background", "rgb(" + color[2] + ")");
@@ -342,7 +338,7 @@
             // 切换颜色
             function changeBackroundColor(id){
                 $(".bg-margin").css("background-color", "rgb(" + color[id] + ")");
-                $("#BottomBorder").css("background-color", "rgb(" + color[id] + ")");
+                $("#BottomBorder").css("background", "rgba(" + color[(id+1)%3] + " ,0.3)")
             }
         </script>
 </body>
