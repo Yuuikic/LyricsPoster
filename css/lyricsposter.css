@@ -8,13 +8,19 @@
 
   @font-face {
     font-family: jp;
-    src: url(../webfonts/MSMINCHO.TTF);
+    src: url("https://oss.yuuiki.cn/site/webfonts/MSMINCHO.TTF");
   }
+
+  @font-face {
+    font-family: Clerical;
+    src: url("https://oss.yuuiki.cn/site/webfonts/ClericalFont-SC.ttf");
+  }
+
 
   body {
     height: 100%;
     background-size: cover;
-    background-image: url('https://oss.yuuiki.cn/2022/01/12/a249047937cdfb2151565f96e98ebd82.png!yuuwebp');
+    background-image: url('https://oss.yuuiki.cn/2022/01/24/3637a7a18f9e587d8e08a1be13d4af0f.jpg!yuuwebp');
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center 0;
@@ -64,7 +70,7 @@
     border-color: #86a3bd;
   }
 
-  #search-form:hover{
+  #search-form:hover {
     box-shadow: rgb(93, 89, 151) -10px 0px 10px inset;
   }
 
@@ -488,6 +494,52 @@
     outline: none;
   }
 
+  /* #thanks{
+    padding-bottom: 0px;
+  } */
+
+  #thanks a{
+    font-size: 1.7rem;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  #thanks button{
+    background: rgba(196, 165, 171, 0.25);
+    height: 45px;
+    width: 100%;
+    padding: 0px;
+    border-radius: 20px;
+    border-color: rgba(241, 143, 156, 0.5);
+    transition: 400ms;
+  }
+  #thanks button:hover {
+    background: rgba(196, 165, 171, 0.8);
+    color: rgb(114, 162, 250);
+    box-shadow: rgb(143, 136, 136) 0 0 2px;
+  }
+
+  #thanks button:focus {
+    outline: none;
+    color: rgb(114, 162, 250);
+  }
+
+  #thanks div{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .profiles{
+    background-color: rgba(207, 86, 107, 0.3);
+    border-radius: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  #thanks img{
+    padding: 5px 0px;
+  }
+
   .color1 {
     background: rgba(73, 73, 73, 0.2);
   }
@@ -610,16 +662,19 @@
   .colorPickerbtn:focus {
     outline: none;
   }
-  #BottomBorder{
+
+  #BottomBorder {
     background-color: rgba(92, 92, 92, 0.548);
     max-height: 100px;
-    width: 100%; 
+    width: 100%;
     padding: 10px 0;
     color: #fff;
     display: none;
     transition: 3000ms;
     font-size: 2rem;
   }
-  #imgBottom{
+
+  #imgBottom {
     height: 80px;
+    width: 80px;
   }

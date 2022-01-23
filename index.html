@@ -8,10 +8,13 @@
     <meta name="renderer" content="webkit" />
     <meta name="force-rendering" content="webkit" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="https://oss.yuuiki.cn/site/css/all.css">
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="./css/lyricsposter.css">
     <link rel="shortcut icon" href="./assetes/favicon.ico" type="image/x-icon">
+    <link href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
     <script src="./js/jquery-3.6.0.js"></script>
     <script src="./js/color-thief.min.js"></script>
     <script src="./bootstrap/js/bootstrap.js"></script>
@@ -22,30 +25,40 @@
             $(this).tab('show')
         })
         function query() {
-            $("#imgButton").attr("src", "./assetes/button.gif")
+            $("#imgButton").attr("src", "https://oss.yuuiki.cn/2021/11/29/26c30d71b178cf5bc9f811c3085f50e5.gif")
             let timer = setTimeout(() => {
                 console.log("(๑•̀ㅂ•́)و✧");
-                $("#imgButton").attr("src", "./assetes/button 0.png")
+                $("#imgButton").attr("src", "https://oss.yuuiki.cn/2022/01/22/2f552f50f8f7de99af0842fe67110d73.png")
             }, 1000);
         }
-        function fontSizeUp() {
-            let lyricsSize = $(".g-lyrics-li").css("font-size");
-            let unit = lyricsSize.slice(-2);
-            let size = parseFloat(lyricsSize) + 5;
-            if (size > 45) {
-                return;
-            }
-            $(".g-lyrics-li").css("font-size", size + unit)
-        }
-        function fontSizeLow() {
-            let lyricsSize = $(".g-lyrics-li").css("font-size");
-            let unit = lyricsSize.slice(-2);
-            let size = parseFloat(lyricsSize) - 5;
-            if (size < 30) {
-                return;
-            }
-            $(".g-lyrics-li").css("font-size", size + unit)
-        }
+        // function fontSizeUp() {
+        //     let lyricsSize = $(".g-lyrics-li").css("font-size");
+        //     let unit = lyricsSize.slice(-2);
+        //     let size = parseFloat(lyricsSize) + 5;
+        //     if (size > 45) {
+        //         return;
+        //     }
+        //     $(".g-lyrics-li").css("font-size", size + unit)
+        //     var gLyricsHeight = $(".g-lyrics").height();
+        //     var BottomBorderMargin = 340 - gLyricsHeight;
+        //     if ($(".g-lyrics-hidden").css("height") == "500px") {
+        //         $("#BottomBorder").css("margin-top", BottomBorderMargin);
+        //     };
+        // }
+        // function fontSizeLow() {
+        //     let lyricsSize = $(".g-lyrics-li").css("font-size");
+        //     let unit = lyricsSize.slice(-2);
+        //     let size = parseFloat(lyricsSize) - 5;
+        //     if (size < 30) {
+        //         return;
+        //     }
+        //     $(".g-lyrics-li").css("font-size", size + unit)
+        //     var gLyricsHeight = $(".g-lyrics").height();
+        //     var BottomBorderMargin = 340 - gLyricsHeight;
+        //     if ($(".g-lyrics-hidden").css("height") == "500px") {
+        //         $("#BottomBorder").css("margin-top", BottomBorderMargin);
+        //     };
+        // }
         function changeFontFamily() {
             if ($("#fontFamily").val() == "serif") {
                 let fontFamily = `SimSun, Georgia, 'Times New Roman', Times, ${$("#fontFamily").val()}`;
@@ -54,6 +67,8 @@
                 $(".g-lyrics ul>li").css("font-family", "jp")
             } else if ($("#fontFamily").val() == "sans-serif") {
                 $(".g-lyrics ul>li").css("font-family", "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif")
+            } else if ($("#fontFamily").val() == "Clerical") {
+                $(".g-lyrics ul>li").css("font-family", "Clerical")
             }
         }
         function changGraphical(no) {
@@ -83,7 +98,7 @@
                     <div class="row">
                         <form action="#" method="post" role="form" class="text-center">
                             <input id="imgButton" type="image" onclick="query(); getinfo(); return false;"
-                                src="./assetes/button 0.png">
+                                src="https://oss.yuuiki.cn/2022/01/22/2f552f50f8f7de99af0842fe67110d73.png">
                             <div class="form-group">
                                 <input type="text" class="form-control" id="search-form" placeholder="Search Songs…">
                             </div>
@@ -102,7 +117,7 @@
                     <div class="lyrics-select-outer col-md-4 col-md-offset-1 col-xs-10 col-xs-offset-1">
                         <div class="lyrics-select">
                             <div class="mask"></div>
-                            <img src="" id="s-bgimg" crossorigin="anonymous" class="col-xs-12"/>
+                            <img src="" id="s-bgimg" crossorigin="anonymous" class="col-xs-12" />
                         </div>
                         <div class="lyrics-hidden">
                             <div class="lyrics">
@@ -118,7 +133,7 @@
                                 <div class="g-bgimg-hidden">
                                     <div class="g-bgimg"></div>
                                 </div>
-                                
+
                             </div>
                             <div class="g-lyrics-hidden">
                                 <div class="g-lyrics" id="glyrics">
@@ -150,8 +165,8 @@
                                             aria-controls="type" role="tab" data-toggle="tab">文字</a></li>
                                     <li role="presentation" class="col-xs-3 text-center"><a href="#changeColor"
                                             aria-controls="changeColor" role="tab" data-toggle="tab">颜色</a></li>
-                                    <li role="presentation" class="col-xs-3 text-center"><a href="#settings"
-                                            aria-controls="settings" role="tab" data-toggle="tab">样式</a></li>
+                                    <li role="presentation" class="col-xs-3 text-center"><a href="#thanks"
+                                            aria-controls="settings" role="tab" data-toggle="tab">鸣谢</a></li>
                                 </ul>
                             </div>
                             <div class="tab-content" id="panes">
@@ -169,19 +184,18 @@
                                 <div role="tabpanel" class="tab-pane container-fluid" id="characters"
                                     style="padding: 0;">
                                     <div class="row">
-                                        <div class="col-xs-4 text-center" id="fontSize">
+                                        <!-- <div class="col-xs-4 text-center" id="fontSize">
                                             <button onclick="fontSizeUp()" class="btn col-xs-5 col-xs-offset-1"><i
                                                     class="fas fa-plus"></i></button>
                                             <button onclick="fontSizeLow()" class="btn col-xs-5"><i
                                                     class="fas fa-minus"></i></button>
-                                        </div>
-                                        <select name="fontFamily" class="col-xs-4" onclick="changeFontFamily()"
+                                        </div> -->
+                                        <select name="fontFamily" class="col-xs-8" onclick="changeFontFamily()"
                                             id="fontFamily">
                                             <option value="serif">衬线</option>
                                             <option value="sans-serif">无衬线</option>
                                             <option value="MS-Mincho">明朝(日语)</option>
-                                            <option value="cursive">cursive</option>
-                                            <option value="fantasy">fantasy</option>
+                                            <option value="Clerical">隶书</option>
                                         </select>
                                         <button class="btn colorPickerbtn col-xs-2 col-xs-offset-1">颜色</button>
                                         <input type="color" id="colorPicker" value="#fffefd" />
@@ -194,193 +208,255 @@
                                         <button class="color3" onclick="changeBackroundColor(2)"></button>
                                     </div>
                                 </div>
-                                <div role="tabpanel" class="tab-pane" id="settings"></div>
+                                <div role="tabpanel" class="tab-pane container-fluid" id="thanks"
+                                    style="padding-bottom: 0px; padding: 10px 5px 0px 5px;">
+                                    <a href="https://github.com/Binaryify/NeteaseCloudMusicApi"
+                                        class="col-xs-3 text-center" target="_BLANK"><button
+                                            class="btn">API</button></a>
+                                    <a href="https://lokeshdhakar.com/projects/color-thief/"
+                                        class="col-xs-3 text-center" target="_BLANK"><button
+                                            class="btn">COLOR</button></a>
+                                    <a href="https://aplayer.js.org" class="col-xs-3 text-center"
+                                        target="_BLANK"><button class="btn">APlayer</button></a>
+                                    <a href="https://github.com/metowolf/MetingJS" class="col-xs-3 text-center"
+                                        target="_BLANK"><button class="btn">MetingJS</button></a>
+                                    <div class="row">
+                                        <img src="https://oss.yuuiki.cn/2021/08/28/d98c4d5eb7e99cf9120f07d77c20ef72.jpg"
+                                            alt="Yuuikic" class="img-circle col-xs-2" style="margin-left: 5%;"
+                                            title="Yuuikic 干啥啥不行">
+                                        <img src="./assetes/98089914.jpg" alt="FFFeather" class="img-circle col-xs-2"
+                                            style="margin-left: 5%;" title="FFFeather 就这？">
+                                        <p class="col-xs-5 col-xs-offset-1" style="margin-top: 20px;">Background: <br>&nbsp&nbsp&nbsp&nbsp&nbsp Photo by <span style="color: gray;">AndreBenz</span> on <span style="color: gray;">Unsplash</span></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <script>
-            var LyricsFormer; // 歌词处理1
-            var LyricsLatter; // 歌词处理2(结果)
-            var albumimg; //专辑封面
-            var sourceImage; //获取封面主色
-            var colorThief;
-            var color;
-            var songinfo = new Array(6);
-            var songid = new Array(6);
-            var songList;
-            var lyricLi;
-            function getinfo() {
-                $(".bg-margin").css("background-color", "rgba(73, 73, 73, 0.2)")
-                // $(".bg-margin").css("height", "500px")
-                $(".songs").remove();
-                $("#BottomBorder").css("display","none");
-                $(".result").fadeOut("3000ms");
-                $(".result").fadeIn("3000ms");
-                $("#s-bgimg").fadeOut("slow");
-                $(".g-bgimg").fadeOut("slow");
-                $(".lyrics ul").fadeOut("slow");
-                $(".title").fadeOut("slow");
-                $(".creator").fadeOut("slow");
-                $(".g-lyrics ul").fadeOut("slow")
-                // 搜索关键词获取搜索结果及id
-                if ($("#search-form").val() == null || $("#search-form").val() == "") {
-                    return;
-                }
-                $.ajax({
-                    url: "https://yuulyrics.vercel.app/search?keywords=" + $("#search-form").val() + "&limit=5",
-                    type: "post",
-                    dataType: "json",
-                    xhrFields: { withCredentials: true },
-                    success: function (data) {
-                        songList = data.result.songs;
-                        for (let i = 0; i < 5; i++) {
-                            songid[i] = songList[i].id,
-                                songinfo[i] = songList[i]
-                        };
-                    }
-                }).then(function () {
-                    // 获取歌曲信息
+    </div>
+    <script>
+        var LyricsFormer; // 歌词处理1
+        var LyricsLatter; // 歌词处理2(结果)
+        var albumimg; //专辑封面
+        var sourceImage; //获取封面主色
+        var colorThief;
+        var color;
+        var songinfo = new Array(6);
+        var songid = new Array(6);
+        var songList;
+        var lyricLi;
+        function getinfo() {
+            $(".bg-margin").css("background-color", "rgba(73, 73, 73, 0.2)")
+            $(".songs").remove();
+            $(".meting").remove()
+            $("#BottomBorder").css("display", "none");
+            $(".result").fadeOut("3000ms");
+            $(".result").fadeIn("3000ms");
+            $("#s-bgimg").fadeOut("slow");
+            $(".g-bgimg").fadeOut("slow");
+            $(".lyrics ul").fadeOut("slow");
+            $(".title").fadeOut("slow");
+            $(".creator").fadeOut("slow");
+            $(".g-lyrics ul").fadeOut("slow")
+            // 搜索关键词获取搜索结果及id
+            if ($("#search-form").val() == null || $("#search-form").val() == "") {
+                return;
+            }
+            $.ajax({
+                url: "https://yuulyrics.vercel.app/search?keywords=" + $("#search-form").val() + "&limit=5",
+                type: "post",
+                dataType: "json",
+                xhrFields: { withCredentials: true },
+                success: function (data) {
+                    songList = data.result.songs;
                     for (let i = 0; i < 5; i++) {
-                        $.ajax({
-                            url: "https://yuulyrics.vercel.app/song/detail?ids=" + songid[i],
-                            type: 'post',
-                            dataType: 'json',
-                            xhrFields: { withCredentials: true },
-                            success: function (data) {
-                                songinfo[i].album.picUrl = data.songs[0].al.picUrl
-                            }
-                        }).then(function () { //显示结果
-                            $div = `<div class="songs container-fluid row">` +
-                                "<img src=" + songinfo[i].album.picUrl + `?param=500y500 alt="" class="img-circle" title="获取歌词" onclick="getLyrics('${songid[i]}')" name="${songinfo[i].name}" artist="${songinfo[i].artists[0].name}">` +
-                                `<p class="col-xs-8 text-center" tiltle="获取歌词" style="" onclick="getLyrics(${songinfo[i].id})">${songinfo[i].name}<br>${songinfo[i].artists[0].name}</p>
+                        songid[i] = songList[i].id,
+                            songinfo[i] = songList[i]
+                    };
+                }
+            }).then(function () {
+                // 获取歌曲信息
+                for (let i = 0; i < 5; i++) {
+                    $.ajax({
+                        url: "https://yuulyrics.vercel.app/song/detail?ids=" + songid[i],
+                        type: 'post',
+                        dataType: 'json',
+                        xhrFields: { withCredentials: true },
+                        success: function (data) {
+                            songinfo[i].album.picUrl = data.songs[0].al.picUrl
+                        }
+                    }).then(function () { //显示结果
+                        $div = `<div class="songs container-fluid row">` +
+                            "<img src=" + songinfo[i].album.picUrl + `?param=500y500 alt="" class="img-circle" title="获取歌词" onclick="getansLyrics(${songid[i]})" name="${songinfo[i].name}" artist="${songinfo[i].artists[0].name}">` +
+                            `<p class="col-xs-8 text-center" tiltle="获取歌词" style="" onclick="getLyrics(${songinfo[i].id})">${songinfo[i].name}<br>${songinfo[i].artists[0].name}</p>
                                 </div>`
-                            $(".result").append($div)
-                            $(".songs").fadeIn("3000ms")
-                        })
-                    }
-                }).then(function () {
-                })
+                        $(".result").append($div)
+                        $(".songs").fadeIn("3000ms")
+                    })
+                }
+            }).then(function () {
+            })
+        };
+        function getansLyrics(id) {
+            // 获取歌词和封面
+            $(".meting").remove()
+            $.ajax({
+                url: 'https://yuulyrics.vercel.app/lyric?id=' + id,
+                type: 'post',
+                dataType: 'json',
+                xhrFields: { withCredentials: true },
+                success: function (data) {
+                    let regExp = new RegExp(".*</li>", "g");
+                    let tlyric = "<li>" + data.tlyric.lyric.replace(/\[.*\]/g, "");
+                    lyricLi = tlyric.replaceAll("\n", "</li><li>").match(regExp);
+                    $("#geci").html(lyricLi)
+                    $(".lyrics ul").fadeIn("slow")
+                    // 获取音乐
+                    $("body").append(`<meting-js class="meting" server="netease" type="song" fixed="true" id="` + id + `""></meting-js>`)
+                    // 获取背景图片
+                    albumimg = $("[onclick*='" + id + "']").attr("src")
+                    $("#s-bgimg").attr("src", albumimg);
+                    $(".g-bgimg").css("background-image", "url(" + albumimg + ")");
+                    $("#s-bgimg").fadeIn("slow");
+                    $(".g-bgimg").fadeIn("slow");
+                    $("#imgBottom").attr("src", albumimg);
+                    // 歌曲名及艺术家
+                    title = $("[onclick*='" + id + "']").attr("name")
+                    artist = $("[onclick*='" + id + "']").attr("artist")
+                    $("#songTitle").html(title);
+                    $("#singer").html(artist);
+                    // 歌词选中效果
+                    $(".lyrics li").click(function () {
+                        if ($(this).hasClass("selected-lyrics"))
+                            $(this).removeClass("selected-lyrics");
+                        else
+                            $(this).addClass("selected-lyrics");
+                    });
+                }
+            })
+        }
+        function getLyrics(id) {
+            // 获取歌词和封面
+            $(".meting").remove()
+            $.ajax({
+                url: 'https://yuulyrics.vercel.app/lyric?id=' + id,
+                type: 'post',
+                dataType: 'json',
+                xhrFields: { withCredentials: true },
+                success: function (data) {
+                    let regExp = new RegExp(".*</li>", "g");
+                    let lyric = "<li>" + data.lrc.lyric.replace(/\[.*\]/g, "");
+                    lyricLi = lyric.replaceAll("\n", "</li><li>").match(regExp);
+                    $("#geci").html(lyricLi)
+                    $(".lyrics ul").fadeIn("slow")
+                    // 获取音乐
+                    $("body").append(`<meting-js class="meting" server="netease" type="song" fixed="true" id="` + id + `""></meting-js>`)
+                    // 获取背景图片
+                    albumimg = $("[onclick*='" + id + "']").attr("src")
+                    $("#s-bgimg").attr("src", albumimg);
+                    $(".g-bgimg").css("background-image", "url(" + albumimg + ")");
+                    $("#s-bgimg").fadeIn("slow");
+                    $(".g-bgimg").fadeIn("slow");
+                    $("#imgBottom").attr("src", albumimg);
+                    // 歌曲名及艺术家
+                    title = $("[onclick*='" + id + "']").attr("name")
+                    artist = $("[onclick*='" + id + "']").attr("artist")
+                    $("#songTitle").html(title);
+                    $("#singer").html(artist);
+                    // 歌词选中效果
+                    $(".lyrics li").click(function () {
+                        if ($(this).hasClass("selected-lyrics"))
+                            $(this).removeClass("selected-lyrics");
+                        else
+                            $(this).addClass("selected-lyrics");
+                    });
+                }
+            })
+        }
+        $(".quote").click(function () {
+            // 清空海报中歌词
+            $(".g-lyrics-li").remove();
+            // 由于歌词选中效果this的影响，歌词选中效果的click函数不会失效。
+            // 添加下面函数让海报区域的歌词也有选中-取消选中的效果
+            $(".g-lyrics-li").click(function () {
+                $(this).removeClass("selected-lyrics");
+            });
+            // 调整选中的歌词顺序，添加到海报区域
+            $($(".selected-lyrics").toArray().reverse()).each(function (index, data) {
+                $(data).removeClass("selected-lyrics").addClass("g-lyrics-li")
+                $(".g-lyrics ul").prepend(data)
+                $(".g-lyrics ul").fadeIn("slow")
+            });
+            console.log($(".g-lyrics-hidden").css("height"))
+            //显示歌曲信息框
+            $("#BottomBorder").css("display", "block");
+            var gLyricsHeight = $(".g-lyrics").height();
+            var BottomBorderMargin = 340 - gLyricsHeight;
+            if ($(".g-lyrics-hidden").css("height") == "500px") {
+                $("#BottomBorder").css("margin-top", BottomBorderMargin);
             };
-            function getLyrics(id) {
-                // 获取歌词和封面
-                $.ajax({
-                    url: 'https://yuulyrics.vercel.app/lyric?id=' + id,
-                    type: 'post',
-                    dataType: 'json',
-                    xhrFields: { withCredentials: true },
-                    success: function (data) {
-                        let regExp = new RegExp(".*</li>", "g");
-                        let lyric = "<li>" + data.lrc.lyric.replace(/\[.*\]/g, "");
-                        lyricLi = lyric.replaceAll("\n", "</li><li>").match(regExp);
-                        $("#geci").html(lyricLi)
-                        $(".lyrics ul").fadeIn("slow")
-                        // 获取背景图片
-                        albumimg = $("[onclick*='" + id + "']").attr("src")
-                        $("#s-bgimg").attr("src", albumimg);
-                        $(".g-bgimg").css("background-image", "url(" + albumimg + ")");
-                        $("#s-bgimg").fadeIn("slow");
-                        $(".g-bgimg").fadeIn("slow");
-                        $("#imgBottom").attr("src", albumimg);
-                        // 歌曲名及艺术家
-                        title = $("[onclick*='" + id + "']").attr("name")
-                        artist = $("[onclick*='" + id + "']").attr("artist")
-                        $("#songTitle").html(title);
-                        $("#singer").html(artist);
-                        // 歌词选中效果
-                        $(".lyrics li").click(function () {
-                            if ($(this).hasClass("selected-lyrics"))
-                                $(this).removeClass("selected-lyrics");
-                            else
-                                $(this).addClass("selected-lyrics");
-                        });
-                    }
-                })
-            }
-            $(".quote").click(function () {
-                // 清空海报中歌词
-                $(".g-lyrics-li").remove();
-                // 由于歌词选中效果this的影响，歌词选中效果的click函数不会失效。
-                // 添加下面函数让海报区域的歌词也有选中-取消选中的效果
-                $(".g-lyrics-li").click(function () {
+            // $("#imgBottom").css("width", $("#imgBottom").css("height"));
+            // 重新导入歌词文本(避免了被移动到右边后，左边消失)
+            $("#geci").html(lyricLi);
+            // 获取专辑封面主颜色
+            sourceImage = document.getElementById("s-bgimg");
+            colorThief = new ColorThief();
+            color = colorThief.getPalette(sourceImage, 5);
+            $(".bg-margin").css("background-color", "rgb(" + color[0] + ")");
+            $("#BottomBorder").css("background", "rgba(" + color[1] + " ,0.3)")
+            $(".color1").css("background", "rgb(" + color[0] + ")");
+            $(".color2").css("background", "rgb(" + color[1] + ")");
+            $(".color3").css("background", "rgb(" + color[2] + ")");
+            // 再次添加选中歌词函数，让用户可以重新选择歌词
+            $(".lyrics li").click(function () {
+                if ($(this).hasClass("selected-lyrics"))
                     $(this).removeClass("selected-lyrics");
-                });
-                // 调整选中的歌词顺序，添加到海报区域
-                $($(".selected-lyrics").toArray().reverse()).each(function (index, data) {
-                    $(data).removeClass("selected-lyrics").addClass("g-lyrics-li")
-                    $(".g-lyrics ul").prepend(data)
-                    $(".g-lyrics ul").fadeIn("slow")
-                });
-                console.log($(".g-lyrics-hidden").css("height"))
-                //显示歌曲信息框
-                $("#BottomBorder").css("display", "block");
-                var gLyricsHeight = $(".g-lyrics").height();
-                var BottomBorderMargin = 340 - gLyricsHeight;
-                if ($(".g-lyrics-hidden").css("height") == "500px") {
-                    $("#BottomBorder").css("margin-top", BottomBorderMargin);
-                } ;
-                $("#imgBottom").css("width", $("#imgBottom").css("height"));
-                // 重新导入歌词文本(避免了被移动到右边后，左边消失)
-                $("#geci").html(lyricLi);
-                // 获取专辑封面主颜色
-                sourceImage = document.getElementById("s-bgimg");
-                colorThief = new ColorThief();
-                color = colorThief.getPalette(sourceImage, 5);
-                $(".bg-margin").css("background-color", "rgb(" + color[0] + ")");
-                $("#BottomBorder").css("background", "rgba(" + color[1] + " ,0.3)")
-                $(".color1").css("background", "rgb(" + color[0] + ")");
-                $(".color2").css("background", "rgb(" + color[1] + ")");
-                $(".color3").css("background", "rgb(" + color[2] + ")");
-                // 再次添加选中歌词函数，让用户可以重新选择歌词
-                $(".lyrics li").click(function () {
-                    if ($(this).hasClass("selected-lyrics"))
-                        $(this).removeClass("selected-lyrics");
-                    else
-                        $(this).addClass("selected-lyrics");
-                });
-                // 海报高度自适应
-                $(".bg-margin").css("height", $(".g-lyrics-hidden").css("height"));
-                console.log($(".g-lyrics-hidden").css("height"))
-                $(".g-bgimg-hidden").css("height", "100%");
-                $(".g-bgimg").css("height", "100%");
+                else
+                    $(this).addClass("selected-lyrics");
             });
-            // 切换颜色
-            function changeBackroundColor(id) {
-                $(".bg-margin").css("background-color", "rgb(" + color[id] + ")");
-                $("#BottomBorder").css("background", "rgba(" + color[(id + 1) % 3] + " ,0.3)")
-            }
-            // 更改背景图片模糊
-            function changeblur() {
-                blurvalue = $("#blur").val();
-                $(".g-bgimg").css("filter", "blur(" + blurvalue + "px)")
-            }
-            //自定义背景图片
-            const gbgimg = document.getElementsByClassName('g-bgimg');
-            const file = document.getElementById('file');
-            const reader = new FileReader();
-            reader.addEventListener("load", function () {
-                $(".g-bgimg").css("background-image", `url(${reader.result})`)
-            }, false);
-            file.addEventListener('change', function () {
-                const image = this.files[0];
-                if (image) reader.readAsDataURL(image);
-            }, false);
-            // 绑定点击事件以替换input file样式
-            $("#uploadimg").click(function () {
-                $("#file").click();
+            // 海报高度自适应
+            $(".bg-margin").css("height", $(".g-lyrics-hidden").css("height"));
+            // console.log($(".g-lyrics-hidden").css("height"))
+            $(".g-bgimg-hidden").css("height", "100%");
+            $(".g-bgimg").css("height", "100%");
+        });
+        // 切换颜色
+        function changeBackroundColor(id) {
+            $(".bg-margin").css("background-color", "rgb(" + color[id] + ")");
+            $("#BottomBorder").css("background", "rgba(" + color[(id + 1) % 3] + " ,0.3)")
+        }
+        // 更改背景图片模糊
+        function changeblur() {
+            blurvalue = $("#blur").val();
+            $(".g-bgimg").css("filter", "blur(" + blurvalue + "px)")
+        }
+        //自定义背景图片
+        const gbgimg = document.getElementsByClassName('g-bgimg');
+        const file = document.getElementById('file');
+        const reader = new FileReader();
+        reader.addEventListener("load", function () {
+            $(".g-bgimg").css("background-image", `url(${reader.result})`)
+        }, false);
+        file.addEventListener('change', function () {
+            const image = this.files[0];
+            if (image) reader.readAsDataURL(image);
+        }, false);
+        // 绑定点击事件以替换input file样式
+        $("#uploadimg").click(function () {
+            $("#file").click();
+        });
+        // 自定义字体颜色
+        $(".colorPickerbtn").click(function () {
+            $("#colorPicker").click()
+        });
+        colorPicker.addEventListener("input", glyrics, false);
+        colorPicker.addEventListener("change", watchColorPicker, false);
+        function watchColorPicker(event) {
+            document.querySelectorAll("#glyrics").forEach(function (p) {
+                p.style.color = event.target.value;
             });
-            // 自定义字体颜色
-            $(".colorPickerbtn").click(function () {
-                $("#colorPicker").click()
-            });
-            colorPicker.addEventListener("input", glyrics, false);
-            colorPicker.addEventListener("change", watchColorPicker, false);
-            function watchColorPicker(event) {
-                document.querySelectorAll("#glyrics").forEach(function (p) {
-                    p.style.color = event.target.value;
-                });
-            }
-        </script>
+        }
+    </script>
 </body>
