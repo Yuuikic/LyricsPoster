@@ -64,6 +64,10 @@
     border-color: #86a3bd;
   }
 
+  #search-form:hover{
+    box-shadow: rgb(93, 89, 151) -10px 0px 10px inset;
+  }
+
   .result {
     min-height: 9vh;
     background-color: rgba(26, 23, 23, 0.25);
