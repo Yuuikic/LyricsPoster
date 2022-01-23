@@ -73,6 +73,9 @@
             blurvalue = $("#blur").val();
             $(".g-bgimg").css("filter", "blur(" + blurvalue + "px)")
         }
+        $(function(){
+            $("#imgBottom").css("width",$("#imgBottom").css("height"));
+        })
     </script>
 </head>
 
@@ -123,6 +126,20 @@
                                 <div class="g-bgimg-hidden">
                                     <div class="g-bgimg"></div>
                                 </div>
+                                <div class="row" id="BottomBorder">
+                                        <div class="col-md-4 text-center" style="height: 100%;">
+                                            <img src="./assetes/歌词海报.png" id="imgBottom" height="100%" style="border-radius: 5px;">
+                                        </div>
+                                        <div class="col-md-8" style="height: 100%;padding-left: 0;">
+                                            <div style="height: 70%;" id="textBottom">
+                                                <div id="songTitle">1111</div>
+                                                <div id="singer">1111</div>
+                                            </div>
+                                            <div style="height: 40%;">
+                                                <span id="tag" style="font-size: 12px; color: #ccc;">Music</span>
+                                            </div>
+                                        </div>
+                                </div>
                             </div>
                             <div class="g-lyrics-hidden">
                                 <div class="g-lyrics">
@@ -172,9 +189,9 @@
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="changeColor">
                                     <div class="row modify-select text-center">
-                                        <button class="color1"></button>
-                                        <button class="color2"></button>
-                                        <button class="color3"></button>
+                                        <button class="color1" onclick="changeBackroundColor(0)"></button>
+                                        <button class="color2" onclick="changeBackroundColor(1)"></button>
+                                        <button class="color3" onclick="changeBackroundColor(2)"></button>
                                     </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="settings"></div>
@@ -282,6 +299,11 @@
                 })
             }
             $(".quote").click(function () {
+                //显示歌曲信息框
+                $("#BottomBorder").css("display","block");
+
+
+
                 // 清空海报中歌词
                 $(".g-lyrics-li").remove();
                 // 由于歌词选中效果this的影响，歌词选中效果的click函数不会失效。
@@ -312,19 +334,15 @@
                     else
                         $(this).addClass("selected-lyrics");
                 });
-                $(".bg-margin").css("height", $(".g-lyrics-hidden").css("height"));
-                $(".g-bgimg-hidden").css("height", "100%");
+                console.log($(".lyrics").css("height"));
+                $(".bg-margin").css("height", parseFloat($(".g-lyrics-hidden").css("height"))*1.25 + "px");
+                $(".g-bgimg-hidden").css("height", "80%");
                 $(".g-bgimg").css("height", "100%");
             });
             // 切换颜色
-            $(".color1").click(function () {
-                $(".bg-margin").css("background-color", "rgb(" + color[0] + ")")
-            })
-            $(".color2").click(function () {
-                $(".bg-margin").css("background-color", "rgb(" + color[1] + ")")
-            })
-            $(".color3").click(function () {
-                $(".bg-margin").css("background-color", "rgb(" + color[2] + ")")
-            })
+            function changeBackroundColor(id){
+                $(".bg-margin").css("background-color", "rgb(" + color[id] + ")");
+                $("#BottomBorder").css("background-color", "rgb(" + color[id] + ")");
+            }
         </script>
 </body>

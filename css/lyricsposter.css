@@ -260,7 +260,7 @@
   /* 海报生成（generate）区域模糊效果组件3 */
   .g-lyrics-hidden {
     position: absolute;
-    min-height: 500px;
+    min-height: 400px;
     width: 100%;
     top: 0px;
     padding: 30px 30px;
@@ -553,4 +553,13 @@
 
   input[type="range"]::-webkit-slider-thumb:active {
     transform: scale(1.4);
+  }
+
+  #BottomBorder{
+    background-color: rgba(92, 92, 92, 0.548);
+    height: 20%;
+    width: 100%; 
+    padding: 15px 0;
+    color: #fff;
+    display: none;
   }
