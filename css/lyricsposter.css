@@ -197,10 +197,6 @@
     /* Chrome Safari 隐藏滚动条*/
   }
 
-  .lyrics-select-outer {
-    padding: 0;
-  }
-
   /* 选择歌词区域背景模糊效果组件1 */
   .lyrics-hidden {
     position: absolute;
@@ -217,15 +213,6 @@
     margin-bottom: 20px;
     padding: 0px;
     /* 使歌词居中 */
-  }
-
-  /* 生成的海报主题色（背景色） */
-  .bg-margin {
-    background-color: rgba(73, 73, 73, 0.2);
-    min-height: 500px;
-    padding: 30px 30px;
-    overflow: hidden;
-    transition: 500ms;
   }
 
   /* 选择歌词区域背景模糊效果组件2 */
@@ -267,14 +254,31 @@
     display: none;
   }
 
-  /* 海报生成（generate）区域模糊效果组件3 */
-  .g-lyrics-hidden {
-    position: absolute;
-    min-height: 500px;
-    width: 100%;
-    top: 0px;
-    padding: 30px 30px;
-    overflow: hidden;
+
+  @media screen and (min-width: 970px) {
+
+    /* 生成的海报主题色（背景色） */
+    .bg-margin {
+      background-color: rgba(73, 73, 73, 0.2);
+      min-height: 500px;
+      padding: 30px 30px;
+      overflow: hidden;
+      transition: 500ms;
+    }
+
+    /* 海报生成（generate）区域模糊效果组件3 */
+    .g-lyrics-hidden {
+      position: absolute;
+      min-height: 500px;
+      width: 100%;
+      top: 0px;
+      padding: 30px 30px;
+      overflow: hidden;
+    }
+
+    .lyrics-select-outer {
+      padding: 0;
+    }
   }
 
   /* 小屏幕设备的生成海报背景色、歌词 */
@@ -347,18 +351,17 @@
   }
 
   /* 歌曲名与作者样式 */
-  .title {
+  /* .title {
     font-size: 2.5rem;
     display: none;
-  }
+  } */
 
-  .creator {
+  /* .creator {
     font-size: 2.5rem;
     letter-spacing: 3px;
     padding-right: 10px;
-    /* 使作者右端与书名号对齐 */
     display: none;
-  }
+  } */
 
   /* 标题Lyrics */
   .site-title-1 {
@@ -389,6 +392,10 @@
     background: linear-gradient(120deg, #a8c0ff, #44329b);
     -webkit-background-clip: text;
     color: transparent;
+  }
+
+  #textBottom {
+    font-size: 2rem;
   }
 
   /* 菜单 */
@@ -495,17 +502,7 @@
     outline: none;
   }
 
-  /* #picshot{
-    padding-bottom: 0px;
-  } */
-
-  #picshot a{
-    font-size: 1.7rem;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  #picshot button{
+  #picshot button {
     background: rgba(196, 165, 171, 0.25);
     height: 45px;
     padding: 0px;
@@ -515,6 +512,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
   }
+
   #picshot button:hover {
     background: rgba(196, 165, 171, 0.8);
     color: rgb(114, 162, 250);
@@ -524,22 +522,6 @@
   #picshot button:focus {
     outline: none;
     color: rgb(114, 162, 250);
-  }
-
-  #picshot div{
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-
-  .profiles{
-    background-color: rgba(207, 86, 107, 0.3);
-    border-radius: 30px;
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-
-  #picshot img{
-    padding: 5px 0px;
   }
 
   .color1 {

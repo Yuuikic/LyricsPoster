@@ -91,8 +91,8 @@
 <body>
     <div class="container-fluid page">
         <!--标题-->
-        <div class="site-title-1 text-center col-xs-7 col-md-2 col-md-offset-2">Poster</div>
-        <div class="site-title-2 text-center col-xs-3 col-md-2 col-md-offset-2">Lyrics</div>
+        <div class="site-title-1 text-center col-xs-6 col-md-2 col-md-offset-2">Poster</div>
+        <div class="site-title-2 text-center col-xs-6 col-md-2 col-md-offset-2">Lyrics</div>
         <div class="row">
             <!-- 搜索框 -->
             <div class="col-md-3 search" style="padding: 0 3vh;">
@@ -128,7 +128,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
+                    <div class="col-md-5 col-md-offset-1 col-xs-12">
                         <div class="poster col-xs-12">
                             <div id="gPoster">
                                 <div class="quote" title="生成海报"><i class="fa fa-quote-left"></i></div>
@@ -145,17 +145,18 @@
                                         </ul>
                                     </div>
                                     <div class="row" id="BottomBorder">
-                                        <div class="col-md-4 text-center">
+                                        <div class="col-xs-4 text-center">
                                             <img src="" id="imgBottom" crossorigin="anonymous"
                                                 style="border-radius: 5px;">
                                         </div>
-                                        <div class="col-md-8" style="height: 80px;padding-left: 0;">
+                                        <div class="col-xs-8" style="height: 80px;padding-left: 0;">
                                             <div style="height: 70%;" id="textBottom">
                                                 <div id="songTitle"></div>
                                                 <div id="singer"></div>
                                             </div>
                                             <div style="height: 30%;">
-                                                <span id="tag" style="font-size: 1.5rem; color: #ccc;">Music</span>
+                                                <span id="tag" style="font-size: 1.5rem; color: #ccc;">Creat with
+                                                    TAiOS</span>
                                             </div>
                                         </div>
                                     </div>
@@ -212,31 +213,10 @@
                                         <button class="color3" onclick="changeBackroundColor(2)"></button>
                                     </div>
                                 </div>
-                                <div role="tabpanel" class="tab-pane container-fluid" id="picshot"
-                                    style="padding-bottom: 0px; padding: 10px 5px 0px 5px;">
-                                    <button class="btn col-xs-8 col-xs-offset-2" onclick="screenshot()">截图</button>
-                                    <!-- <a href="https://github.com/Binaryify/NeteaseCloudMusicApi"
-                                        class="col-xs-3 text-center" target="_BLANK"><button
-                                            class="btn">API</button></a>
-                                    <a href="https://lokeshdhakar.com/projects/color-thief/"
-                                        class="col-xs-3 text-center" target="_BLANK"><button
-                                            class="btn">COLOR</button></a>
-                                    <a href="https://aplayer.js.org" class="col-xs-3 text-center"
-                                        target="_BLANK"><button class="btn">APlayer</button></a>
-                                    <a href="https://github.com/metowolf/MetingJS" class="col-xs-3 text-center"
-                                        target="_BLANK"><button class="btn">MetingJS</button></a>
-                                    <div class="row">
-                                        <img src="https://oss.yuuiki.cn/2021/08/28/d98c4d5eb7e99cf9120f07d77c20ef72.jpg"
-                                            alt="Yuuikic" class="img-circle col-xs-2" style="margin-left: 5%;"
-                                            title="Yuuikic 干啥啥不行">
-                                        <img src="./assetes/98089914.jpg" alt="FFFeather" class="img-circle col-xs-2"
-                                            style="margin-left: 5%;" title="FFFeather 就这？">
-                                        <p class="col-xs-5 col-xs-offset-1" style="margin-top: 20px;">Background:
-                                            <br>&nbsp&nbsp&nbsp&nbsp&nbsp Photo by <span
-                                                style="color: gray;">AndreBenz</span> on <span
-                                                style="color: gray;">Unsplash</span>
-                                        </p>
-                                    </div> -->
+                                <div role="tabpanel" class="tab-pane container-fluid" id="picshot">
+                                    <button class="btn col-xs-7" onclick="screenshot()">截图</button>
+                                    <button class="btn col-xs-4 col-xs-offset-1" onclick="changeAd()"
+                                        style="color: rgb(243, 103, 126); font-size: 2rem;">❤</button>
                                 </div>
                             </div>
                         </div>
@@ -402,8 +382,12 @@
             //显示歌曲信息框
             $("#BottomBorder").css("display", "block");
             var gLyricsHeight = $(".g-lyrics").height();
-            var BottomBorderMargin = 340 - gLyricsHeight;
             if ($(".g-lyrics-hidden").css("height") == "500px") {
+                let BottomBorderMargin = 340 - gLyricsHeight;
+                $("#BottomBorder").css("margin-top", BottomBorderMargin);
+            };
+            if ($(".g-lyrics-hidden").css("height") == "350px") {
+                let BottomBorderMargin = 190 - gLyricsHeight;
                 $("#BottomBorder").css("margin-top", BottomBorderMargin);
             };
             // $("#imgBottom").css("width", $("#imgBottom").css("height"));
@@ -475,9 +459,14 @@
                 // Export canvas as a blob 
                 canvas.toBlob(function (blob) {
                     // Generate file download
-                    window.saveAs(blob, "yourwebsite_screenshot.png");
+                    window.saveAs(blob, Date().slice(0,21)+".png");
                 });
             });
+        }
+        // 更换广告内容
+        function changeAd() {
+            $('#tag').html('❤')
+            $("#tag").css("color","rgb(243, 103, 126)")
         }
     </script>
 </body>
