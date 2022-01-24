@@ -1,4 +1,4 @@
-![TAiOS](../../TAiOS.png)
+![TAiOS](./assetes/TAiONS.png)
 
 # TAiONS
 
@@ -12,9 +12,9 @@ Demo：[https://taios.nonon.moe/](https://taios.nonon.moe/)
 
 ~~其实是Yuuikic的前端学习和练手项目~~
 
-![Snipaste_2022-01-25_00-46-24](../../Snipaste_2022-01-25_00-46-24.png)
+![Snipaste_2022-01-25_00-46-24](./assetes/home.png)
 
-![example](../../example.png)
+![example](./assetes/example.png)
 
 ## 想要实现的功能
 
@@ -65,7 +65,7 @@ Demo：[https://taios.nonon.moe/](https://taios.nonon.moe/)
 
 ### 特别鸣谢
 
-   <img src="https://avatars.githubusercontent.com/u/98089914?v=4" alt="" style="height: 100px;border-radius:50%;"><img src="http://mushengw.cn/wp-content/uploads/2021/11/2AE81886F3B79FA2C99D48DCAF5247EF-e1636376912701.jpg" alt="" style="height: 100px;border-radius:50%;">
+   <img src="https://avatars.githubusercontent.com/u/98089914?v=4" alt="" style="height: 100px;border-radius:50%;">    <img src="http://mushengw.cn/wp-content/uploads/2021/11/2AE81886F3B79FA2C99D48DCAF5247EF-e1636376912701.jpg" alt="" style="height: 100px;border-radius:50%;">
 
 一个教会了我一大堆东西
 
