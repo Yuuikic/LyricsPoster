@@ -2,7 +2,7 @@
 
   @media (max-width: 970px) {
     html {
-      font-size: 7px;
+      font-size: 8px;
     }
   }
 
@@ -247,7 +247,7 @@
     height: 0;
     padding-top: 100%;
     background-size: cover;
-    opacity: 0.5;
+    opacity: 0.7;
     background-repeat: no-repeat;
     background-position: center;
     filter: blur(25px);
@@ -395,7 +395,7 @@
   }
 
   #textBottom {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   /* 菜单 */

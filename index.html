@@ -155,7 +155,7 @@
                                                 <div id="singer"></div>
                                             </div>
                                             <div style="height: 30%;">
-                                                <span id="tag" style="font-size: 1.5rem; color: #ccc;">Creat with
+                                                <span id="tag" style="font-size: 1.5rem; color: #ccc; padding-left: 2px;">Created with
                                                     TAiOS</span>
                                             </div>
                                         </div>
@@ -216,7 +216,7 @@
                                 <div role="tabpanel" class="tab-pane container-fluid" id="picshot">
                                     <button class="btn col-xs-7" onclick="screenshot()">截图</button>
                                     <button class="btn col-xs-4 col-xs-offset-1" onclick="changeAd()"
-                                        style="color: rgb(243, 103, 126); font-size: 2rem;">❤</button>
+                                        style="color: rgb(243, 103, 126); font-size: 2rem;"><i class="fas fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -365,6 +365,8 @@
             })
         }
         $(".quote").click(function () {
+            //隐藏APlayer歌词
+            $('.aplayer-lrc').addClass('aplayer-lrc-hide')
             // 清空海报中歌词
             $(".g-lyrics-li").remove();
             // 由于歌词选中效果this的影响，歌词选中效果的click函数不会失效。
@@ -465,8 +467,12 @@
         }
         // 更换广告内容
         function changeAd() {
-            $('#tag').html('❤')
+            $('#tag').html('<i class="fas fa-heart"></i>')
             $("#tag").css("color","rgb(243, 103, 126)")
+            $('#picshot i').animate({'font-size':'2.5rem'},'fast')
+            $('#picshot i').animate({'font-size':'2rem'},'fast')
+            $('#tag').animate({'font-size':'1.7rem'},'fast')
+            $('#tag').animate({'font-size':'1.5rem'},'fast')
         }
     </script>
 </body>
