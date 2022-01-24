@@ -25,9 +25,7 @@ Demo：[https://taios.nonon.moe/](https://taios.nonon.moe/)
 
 竟然都做出来了（逃
 
-## 使用说明
-
-### 使用步骤：
+## 使用步骤
 
 1. 在**搜索框**中输入。
 2. 回车，或者点击搜索框上方**图片**搜索。
@@ -51,8 +49,6 @@ Demo：[https://taios.nonon.moe/](https://taios.nonon.moe/)
    值得注意的是，由于项目依赖html2canvas的原因，使用“截图—截图”**无法**截取带背景模糊的样式的海报。
 
 5. GPL V3.0
-
----
 
 ## 鸣谢
 
