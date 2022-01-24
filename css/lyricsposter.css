@@ -260,6 +260,7 @@
     height: 0;
     padding-top: 100%;
     background-size: cover;
+    opacity: 0.5;
     background-repeat: no-repeat;
     background-position: center;
     filter: blur(25px);
@@ -494,37 +495,38 @@
     outline: none;
   }
 
-  /* #thanks{
+  /* #picshot{
     padding-bottom: 0px;
   } */
 
-  #thanks a{
+  #picshot a{
     font-size: 1.7rem;
     padding-left: 10px;
     padding-right: 10px;
   }
 
-  #thanks button{
+  #picshot button{
     background: rgba(196, 165, 171, 0.25);
     height: 45px;
-    width: 100%;
     padding: 0px;
     border-radius: 20px;
     border-color: rgba(241, 143, 156, 0.5);
     transition: 400ms;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
-  #thanks button:hover {
+  #picshot button:hover {
     background: rgba(196, 165, 171, 0.8);
     color: rgb(114, 162, 250);
     box-shadow: rgb(143, 136, 136) 0 0 2px;
   }
 
-  #thanks button:focus {
+  #picshot button:focus {
     outline: none;
     color: rgb(114, 162, 250);
   }
 
-  #thanks div{
+  #picshot div{
     margin-top: 10px;
     margin-bottom: 10px;
   }
@@ -536,7 +538,7 @@
     padding-right: 5px;
   }
 
-  #thanks img{
+  #picshot img{
     padding: 5px 0px;
   }
 

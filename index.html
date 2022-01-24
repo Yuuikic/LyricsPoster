@@ -18,7 +18,9 @@
     <script src="./js/jquery-3.6.0.js"></script>
     <script src="./js/color-thief.min.js"></script>
     <script src="./bootstrap/js/bootstrap.js"></script>
-    <title>歌词海报生成器</title>
+    <script src="./js/html2canvas.min.js"></script>
+    <script src="./js/FileSaver.min.js"></script>
+    <title>TAiOS</title>
     <script>
         $('#myTabs a').click(function (e) {
             e.preventDefault()
@@ -71,18 +73,18 @@
                 $(".g-lyrics ul>li").css("font-family", "Clerical")
             }
         }
-        function changGraphical(no) {
-            console.log(1);
-            if (no == 1) {
-                $(".g-bgimg-hidden").css("border", "0px none rgb(51, 51, 51)")
-            }
-            if (no == 2) {
-                console.log($(".g-bgimg-hidden").css("border-right"));
-                $(".g-bgimg-hidden").css("border-right")
-            }
-            $(".g-bgimg-hidden").css("border-right", "70px solid transparent;");
+        // function changGraphical(no) {
+        //     console.log(1);
+        //     if (no == 1) {
+        //         $(".g-bgimg-hidden").css("border", "0px none rgb(51, 51, 51)")
+        //     }
+        //     if (no == 2) {
+        //         console.log($(".g-bgimg-hidden").css("border-right"));
+        //         $(".g-bgimg-hidden").css("border-right")
+        //     }
+        //     $(".g-bgimg-hidden").css("border-right", "70px solid transparent;");
 
-        }
+        // }
     </script>
 </head>
 
@@ -128,31 +130,33 @@
                     </div>
                     <div class="col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
                         <div class="poster col-xs-12">
-                            <div class="quote" title="生成海报"><i class="fa fa-quote-left"></i></div>
-                            <div class="bg-margin">
-                                <div class="g-bgimg-hidden">
-                                    <div class="g-bgimg"></div>
-                                </div>
-
-                            </div>
-                            <div class="g-lyrics-hidden">
-                                <div class="g-lyrics" id="glyrics">
-                                    <ul>
-                                        <li class="title text-right"></li>
-                                        <li class="creator text-right"></li>
-                                    </ul>
-                                </div>
-                                <div class="row" id="BottomBorder">
-                                    <div class="col-md-4 text-center">
-                                        <img src="" id="imgBottom" style="border-radius: 5px;">
+                            <div id="gPoster">
+                                <div class="quote" title="生成海报"><i class="fa fa-quote-left"></i></div>
+                                <div class="bg-margin">
+                                    <div class="g-bgimg-hidden">
+                                        <div class="g-bgimg"></div>
                                     </div>
-                                    <div class="col-md-8" style="height: 80px;padding-left: 0;">
-                                        <div style="height: 70%;" id="textBottom">
-                                            <div id="songTitle"></div>
-                                            <div id="singer"></div>
+                                </div>
+                                <div class="g-lyrics-hidden">
+                                    <div class="g-lyrics" id="glyrics">
+                                        <ul>
+                                            <li class="title text-right"></li>
+                                            <li class="creator text-right"></li>
+                                        </ul>
+                                    </div>
+                                    <div class="row" id="BottomBorder">
+                                        <div class="col-md-4 text-center">
+                                            <img src="" id="imgBottom" crossorigin="anonymous"
+                                                style="border-radius: 5px;">
                                         </div>
-                                        <div style="height: 30%;">
-                                            <span id="tag" style="font-size: 1.5rem; color: #ccc;">Music</span>
+                                        <div class="col-md-8" style="height: 80px;padding-left: 0;">
+                                            <div style="height: 70%;" id="textBottom">
+                                                <div id="songTitle"></div>
+                                                <div id="singer"></div>
+                                            </div>
+                                            <div style="height: 30%;">
+                                                <span id="tag" style="font-size: 1.5rem; color: #ccc;">Music</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -165,8 +169,8 @@
                                             aria-controls="type" role="tab" data-toggle="tab">文字</a></li>
                                     <li role="presentation" class="col-xs-3 text-center"><a href="#changeColor"
                                             aria-controls="changeColor" role="tab" data-toggle="tab">颜色</a></li>
-                                    <li role="presentation" class="col-xs-3 text-center"><a href="#thanks"
-                                            aria-controls="settings" role="tab" data-toggle="tab">鸣谢</a></li>
+                                    <li role="presentation" class="col-xs-3 text-center"><a href="#picshot"
+                                            aria-controls="settings" role="tab" data-toggle="tab">截图</a></li>
                                 </ul>
                             </div>
                             <div class="tab-content" id="panes">
@@ -208,9 +212,10 @@
                                         <button class="color3" onclick="changeBackroundColor(2)"></button>
                                     </div>
                                 </div>
-                                <div role="tabpanel" class="tab-pane container-fluid" id="thanks"
+                                <div role="tabpanel" class="tab-pane container-fluid" id="picshot"
                                     style="padding-bottom: 0px; padding: 10px 5px 0px 5px;">
-                                    <a href="https://github.com/Binaryify/NeteaseCloudMusicApi"
+                                    <button class="btn col-xs-8 col-xs-offset-2" onclick="screenshot()">截图</button>
+                                    <!-- <a href="https://github.com/Binaryify/NeteaseCloudMusicApi"
                                         class="col-xs-3 text-center" target="_BLANK"><button
                                             class="btn">API</button></a>
                                     <a href="https://lokeshdhakar.com/projects/color-thief/"
@@ -226,8 +231,12 @@
                                             title="Yuuikic 干啥啥不行">
                                         <img src="./assetes/98089914.jpg" alt="FFFeather" class="img-circle col-xs-2"
                                             style="margin-left: 5%;" title="FFFeather 就这？">
-                                        <p class="col-xs-5 col-xs-offset-1" style="margin-top: 20px;">Background: <br>&nbsp&nbsp&nbsp&nbsp&nbsp Photo by <span style="color: gray;">AndreBenz</span> on <span style="color: gray;">Unsplash</span></p>
-                                    </div>
+                                        <p class="col-xs-5 col-xs-offset-1" style="margin-top: 20px;">Background:
+                                            <br>&nbsp&nbsp&nbsp&nbsp&nbsp Photo by <span
+                                                style="color: gray;">AndreBenz</span> on <span
+                                                style="color: gray;">Unsplash</span>
+                                        </p>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -389,7 +398,7 @@
                 $(".g-lyrics ul").prepend(data)
                 $(".g-lyrics ul").fadeIn("slow")
             });
-            console.log($(".g-lyrics-hidden").css("height"))
+            // console.log($(".g-lyrics-hidden").css("height"))
             //显示歌曲信息框
             $("#BottomBorder").css("display", "block");
             var gLyricsHeight = $(".g-lyrics").height();
@@ -456,6 +465,18 @@
         function watchColorPicker(event) {
             document.querySelectorAll("#glyrics").forEach(function (p) {
                 p.style.color = event.target.value;
+            });
+        }
+        // 保存图片
+        var save = document.getElementById('gPoster')
+        function screenshot() {
+            // Generate screenshot and download
+            html2canvas(save, { useCORS: true, allowTaint: true }).then(function (canvas) {
+                // Export canvas as a blob 
+                canvas.toBlob(function (blob) {
+                    // Generate file download
+                    window.saveAs(blob, "yourwebsite_screenshot.png");
+                });
             });
         }
     </script>
