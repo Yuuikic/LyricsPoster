@@ -178,9 +178,11 @@
                                 <div role="tabpanel" class="tab-pane imgedit" id="home">
                                     <div class="container-fluid">
                                         <div class="row">
-                                            <span class="imgedit-text col-xs-4 text-center">背景模糊</span>
-                                            <input type="range" id="blur" class="col-xs-8" min="0" max="50" step="1"
+                                            <span class="imgedit-text col-xs-3 text-center">模糊<br>透明度</span>
+                                            <input type="range" id="blur" min="0" max="50" step="1"
                                                 value="25" onmouseup="changeblur()">
+                                            <input type="range" id="opacity" min="0.2" max="1" step="0.05"
+                                                value="0.7" onmouseup="changeopacity()">
                                             <input id='file' type='file' />
                                             <button id="uploadimg" class="btn col-xs-6 col-xs-offset-3">自定义背景</button>
                                         </div>
@@ -426,6 +428,11 @@
         function changeblur() {
             blurvalue = $("#blur").val();
             $(".g-bgimg").css("filter", "blur(" + blurvalue + "px)")
+        }
+        // 更改背景图片透明度
+        function changeopacity() {
+            opacityvalue = $("#opacity").val();
+            $(".g-bgimg").css("opacity", opacityvalue)
         }
         //自定义背景图片
         const gbgimg = document.getElementsByClassName('g-bgimg');
