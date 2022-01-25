@@ -474,6 +474,10 @@
     border-radius: 50px;
   }
 
+  #fontFamily:focus {
+    outline: none;
+  }
+
   #fontFamily option {
     background: rgba(196, 165, 171, 0.25);
   }
@@ -482,25 +486,6 @@
     height: 45px;
     margin: 20px auto;
     padding: 0;
-  }
-
-  #fontSize button {
-    background: rgba(196, 165, 171, 0.25);
-    height: 45px;
-    margin-right: 5px;
-    border-radius: 50px;
-    border-color: rgba(241, 143, 156, 0.5);
-    transition: 400ms;
-  }
-
-  #fontSize button:hover {
-    background: rgba(196, 165, 171, 0.8);
-    color: rgb(114, 162, 250);
-    box-shadow: rgb(143, 136, 136) 0 0 2px;
-  }
-
-  #fontSize button:focus {
-    outline: none;
   }
 
   #picshot button {

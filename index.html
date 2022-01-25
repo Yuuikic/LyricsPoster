@@ -180,9 +180,9 @@
                                         <div class="row">
                                             <span class="imgedit-text col-xs-3 text-center">模糊<br>透明度</span>
                                             <input type="range" id="blur" min="0" max="50" step="1"
-                                                value="25" onmouseup="changeblur()">
-                                            <input type="range" id="opacity" min="0.2" max="1" step="0.05"
-                                                value="0.7" onmouseup="changeopacity()">
+                                                value="25" onchange="changeblur()">
+                                            <input type="range" id="opacity" min="0" max="1" step="0.05"
+                                                value="0.7" onchange="changeopacity()">
                                             <input id='file' type='file' />
                                             <button id="uploadimg" class="btn col-xs-6 col-xs-offset-3">自定义背景</button>
                                         </div>
@@ -197,7 +197,7 @@
                                             <button onclick="fontSizeLow()" class="btn col-xs-5"><i
                                                     class="fas fa-minus"></i></button>
                                         </div> -->
-                                        <select name="fontFamily" class="col-xs-8" onclick="changeFontFamily()"
+                                        <select name="fontFamily" class="col-xs-8" onchange="changeFontFamily()"
                                             id="fontFamily">
                                             <option value="serif">衬线</option>
                                             <option value="sans-serif">无衬线</option>
