@@ -8,7 +8,7 @@
 
 一个在线歌词海报生成器是也。
 
-Demo：[https://taios.nonon.moe/](https://taios.nonon.moe/)
+Demo：[https://taions.nonon.moe/](https://taions.nonon.moe/)
 
 ~~其实是Yuuikic的前端学习和练手项目~~
 
@@ -46,7 +46,7 @@ Demo：[https://taios.nonon.moe/](https://taios.nonon.moe/)
 
 4. 目前可以自定义的样式：背景图片模糊、自定义背景图片、字体、文字颜色、背景色调。
 
-   值得注意的是，由于项目依赖html2canvas的原因，使用“截图—截图”**无法**截取带背景模糊的样式的海报。请清通过调节背景透明度以改善文字可读性。
+   值得注意的是，由于项目依赖html2canvas的原因，使用“截图—截图”**无法**截取带背景模糊的样式的海报。请通过调节背景透明度以改善文字可读性。
 
 5. GPL V3.0
 
@@ -58,6 +58,7 @@ Demo：[https://taios.nonon.moe/](https://taios.nonon.moe/)
 - 使用[FileSaver.js](https://github.com/eligrey/FileSaver.js/)保存截图图片
 - 使用[APlayer](https://aplayer.js.org/#/)作为音乐播放器
 - 使用[MetingJS](https://github.com/metowolf/MetingJS)简化播放器使用
+- 借鉴了Apple Music的样式（逃）
 
 ### 特别鸣谢
 
