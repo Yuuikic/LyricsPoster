@@ -58,6 +58,7 @@ Demo：[https://taios.nonon.moe/](https://taios.nonon.moe/)
 - 使用[FileSaver.js](https://github.com/eligrey/FileSaver.js/)保存截图图片
 - 使用[APlayer](https://aplayer.js.org/#/)作为音乐播放器
 - 使用[MetingJS](https://github.com/metowolf/MetingJS)简化播放器使用
+- 借鉴了Apple Music的样式（逃）
 
 ### 特别鸣谢
 
