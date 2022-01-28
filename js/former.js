@@ -40,13 +40,13 @@ function query() {
 function changeFontFamily() {
     if ($("#fontFamily").val() == "serif") {
         let fontFamily = `SimSun, Georgia, 'Times New Roman', Times, ${$("#fontFamily").val()}`;
-        $(".g-lyrics ul>li").css("font-family", fontFamily)
+        $(".g-lyrics li,.g-lyrics2 li").css("font-family", fontFamily)
     } else if ($("#fontFamily").val() == "MS-Mincho") {
-        $(".g-lyrics ul>li").css("font-family", "jp")
+        $(".g-lyrics li,.g-lyrics2 li").css("font-family", "jp")
     } else if ($("#fontFamily").val() == "sans-serif") {
-        $(".g-lyrics ul>li").css("font-family", "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif")
+        $(".g-lyrics li,.g-lyrics2 li").css("font-family", "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif")
     } else if ($("#fontFamily").val() == "Clerical") {
-        $(".g-lyrics ul>li").css("font-family", "Clerical")
+        $(".g-lyrics li,.g-lyrics2 li").css("font-family", "Clerical")
     }
 }
 // function changGraphical(no) {

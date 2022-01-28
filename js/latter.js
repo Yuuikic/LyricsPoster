@@ -8,6 +8,12 @@ var songinfo = new Array(6);
 var songid = new Array(6);
 var songList;
 var lyricLi;
+
+// 调整宝丽来相纸样式的海报高度
+$(document).ready(function () {
+      $(".g-bgimg2").css("height", $(".g-bgimg2").css("width"));
+      $(".g-lyrics2").css("height", 0.9 * parseFloat($(".g-bgimg2").css("width")));
+});
 function getinfo() {
       $(".bg-margin").css("background-color", "rgba(73, 73, 73, 0.2)")
       $(".songs").remove();
@@ -17,6 +23,8 @@ function getinfo() {
       $(".result").fadeIn("3000ms");
       $("#s-bgimg").fadeOut("slow");
       $(".g-bgimg").fadeOut("slow");
+      $(".g-lyrics2 ul").fadeOut("slow");
+      $(".g-bgimg2").css("background-image", "url()");
       $(".lyrics ul").fadeOut("slow");
       $(".title").fadeOut("slow");
       $(".creator").fadeOut("slow");
@@ -61,7 +69,7 @@ function getinfo() {
       })
 };
 function getansLyrics(id) {
-      // 获取歌词和封面
+      // 获取翻译歌词和封面
       $(".meting").remove()
       $.ajax({
             url: 'https://yuulyrics.vercel.app/lyric?id=' + id,
@@ -80,14 +88,10 @@ function getansLyrics(id) {
                   albumimg = $("[onclick*='" + id + "']").attr("src")
                   $("#s-bgimg").attr("src", albumimg);
                   $(".g-bgimg").css("background-image", "url(" + albumimg + ")");
+                  $(".g-bgimg2").css("background-image", "url(" + albumimg + ")");
                   $("#s-bgimg").fadeIn("slow");
                   $(".g-bgimg").fadeIn("slow");
                   $("#imgBottom").attr("src", albumimg);
-                  // 歌曲名及艺术家
-                  title = $("[onclick*='" + id + "']").attr("name")
-                  artist = $("[onclick*='" + id + "']").attr("artist")
-                  $("#songTitle").html(title);
-                  $("#singer").html(artist);
                   // 歌词选中效果
                   $(".lyrics li").click(function () {
                         if ($(this).hasClass("selected-lyrics"))
@@ -118,14 +122,15 @@ function getLyrics(id) {
                   albumimg = $("[onclick*='" + id + "']").attr("src")
                   $("#s-bgimg").attr("src", albumimg);
                   $(".g-bgimg").css("background-image", "url(" + albumimg + ")");
+                  $(".g-bgimg2").css("background-image", "url(" + albumimg + ")");
                   $("#s-bgimg").fadeIn("slow");
                   $(".g-bgimg").fadeIn("slow");
                   $("#imgBottom").attr("src", albumimg);
                   // 歌曲名及艺术家
                   title = $("[onclick*='" + id + "']").attr("name")
                   artist = $("[onclick*='" + id + "']").attr("artist")
-                  $("#songTitle").html(title);
-                  $("#singer").html(artist);
+                  $(".songTitle").html(title);
+                  $(".singer").html(artist);
                   // 歌词选中效果
                   $(".lyrics li").click(function () {
                         if ($(this).hasClass("selected-lyrics"))
@@ -136,7 +141,7 @@ function getLyrics(id) {
             }
       })
 }
-$(".quote").click(function () {
+$(".chevron-r,.chevron-d").click(function () {
       //隐藏APlayer歌词
       $('.aplayer-lrc').addClass('aplayer-lrc-hide')
       // 清空海报中歌词
@@ -149,11 +154,10 @@ $(".quote").click(function () {
       // 调整选中的歌词顺序，添加到海报区域
       $($(".selected-lyrics").toArray().reverse()).each(function (index, data) {
             $(data).removeClass("selected-lyrics").addClass("g-lyrics-li")
-            $(".g-lyrics ul").prepend(data)
-            $(".g-lyrics ul").fadeIn("slow")
+            $("#glyrics ul").prepend(data)
+            $("#glyrics ul").fadeIn("slow")
       });
-      // console.log($(".g-lyrics-hidden").css("height"))
-      //显示歌曲信息框
+      //显示歌曲信息框&高度自适应
       $("#BottomBorder").css("display", "block");
       var gLyricsHeight = $(".g-lyrics").height();
       if ($(".g-lyrics-hidden").css("height") == "500px") {
@@ -164,7 +168,6 @@ $(".quote").click(function () {
             let BottomBorderMargin = 190 - gLyricsHeight;
             $("#BottomBorder").css("margin-top", BottomBorderMargin);
       };
-      // $("#imgBottom").css("width", $("#imgBottom").css("height"));
       // 重新导入歌词文本(避免了被移动到右边后，左边消失)
       $("#geci").html(lyricLi);
       // 获取专辑封面主颜色
@@ -185,31 +188,43 @@ $(".quote").click(function () {
       });
       // 海报高度自适应
       $(".bg-margin").css("height", $(".g-lyrics-hidden").css("height"));
-      // console.log($(".g-lyrics-hidden").css("height"))
       $(".g-bgimg-hidden").css("height", "100%");
       $(".g-bgimg").css("height", "100%");
 });
 // 切换颜色
 function changeBackroundColor(id) {
-      $(".bg-margin").css("background-color", "rgb(" + color[id] + ")");
-      $("#BottomBorder").css("background", "rgba(" + color[(id + 1) % 3] + " ,0.3)")
+      if ($('#default').css('display') == 'none') {
+            alert('该样式不支持调整边框颜色')
+      } else {
+            $(".bg-margin").css("background-color", "rgb(" + color[id] + ")");
+            $("#BottomBorder").css("background", "rgba(" + color[(id + 1) % 3] + " ,0.3)")
+      }
 }
 // 更改背景图片模糊
 function changeblur() {
-      blurvalue = $("#blur").val();
-      $(".g-bgimg").css("filter", "blur(" + blurvalue + "px)")
+      if ($('#default').css('display') == 'none') {
+            alert('该样式不支持调整模糊')
+      } else {
+            blurvalue = $("#blur").val();
+            $(".g-bgimg").css("filter", "blur(" + blurvalue + "px)")
+            $(".g-lyrics2").css("backdrop-filter", "blur(" + blurvalue + "px)")
+      }
 }
 // 更改背景图片透明度
 function changeopacity() {
-      opacityvalue = $("#opacity").val();
-      $(".g-bgimg").css("opacity", opacityvalue)
+      if ($('#default').css('display') == 'none') {
+            alert('该样式不支持调整透明度')
+      } else {
+            opacityvalue = $("#opacity").val();
+            $(".g-bgimg,.g-bgimg2").css("opacity", opacityvalue)
+      }
 }
 //自定义背景图片
 const gbgimg = document.getElementsByClassName('g-bgimg');
 const file = document.getElementById('file');
 const reader = new FileReader();
 reader.addEventListener("load", function () {
-      $(".g-bgimg").css("background-image", `url(${reader.result})`)
+      $(".g-bgimg,.g-bgimg2").css("background-image", `url(${reader.result})`)
 }, false);
 file.addEventListener('change', function () {
       const image = this.files[0];
@@ -230,24 +245,73 @@ function watchColorPicker(event) {
             p.style.color = event.target.value;
       });
 }
-// 保存图片
-var save = document.getElementById('gPoster')
+// 保存图片截图
+var save1 = document.getElementById('default')
+var save2 = document.getElementById('Photographic')
 function screenshot() {
-      // Generate screenshot and download
-      html2canvas(save, { useCORS: true, allowTaint: true }).then(function (canvas) {
-            // Export canvas as a blob 
-            canvas.toBlob(function (blob) {
-                  // Generate file download
-                  window.saveAs(blob, Date().slice(0, 21) + ".png");
+      if ($('#default').css('display') == 'none') {
+            // Generate screenshot and download
+            html2canvas(save2, { useCORS: true, allowTaint: true }).then(function (canvas) {
+                  // Export canvas as a blob 
+                  canvas.toBlob(function (blob) {
+                        // Generate file download
+                        window.saveAs(blob, Date().slice(0, 21) + ".png");
+                  });
             });
-      });
+      } else {
+            // Generate screenshot and download
+            html2canvas(save1, { useCORS: true, allowTaint: true }).then(function (canvas) {
+                  // Export canvas as a blob 
+                  canvas.toBlob(function (blob) {
+                        // Generate file download
+                        window.saveAs(blob, Date().slice(0, 21) + ".png");
+                  });
+            });
+      }
 }
 // 更换广告内容
 function changeAd() {
-      $('#tag').html('<i class="fas fa-heart"></i>')
-      $("#tag").css("color", "rgb(243, 103, 126)")
+      if ($('#default').css('display') == 'none') {
+            $('.copyright').html('')
+      } else {
+            $('#tag').html('<i class="fas fa-heart"></i>')
+            $("#tag").css("color", "rgb(243, 103, 126)")
+            $('#tag').animate({ 'font-size': '1.7rem' }, 'fast')
+            $('#tag').animate({ 'font-size': '1.5rem' }, 'fast')
+      }
       $('#picshot i').animate({ 'font-size': '2.5rem' }, 'fast')
       $('#picshot i').animate({ 'font-size': '2rem' }, 'fast')
-      $('#tag').animate({ 'font-size': '1.7rem' }, 'fast')
-      $('#tag').animate({ 'font-size': '1.5rem' }, 'fast')
+}
+
+//更换样式
+function changestyle() {
+      if ($('#Photographic').css('display') == 'block') {
+            $('#default').css('display', 'block')
+            $('#Photographic').css('display', 'none')
+      } else {
+            $('#default').css('display', 'none')
+            $('#Photographic').css('display', 'block')
+      }
+      //显示歌曲信息框&高度自适应
+      $("#BottomBorder").css("display", "block");
+      var gLyricsHeight = $(".g-lyrics").height();
+      if ($(".g-lyrics-hidden").css("height") == "500px") {
+            let BottomBorderMargin = 340 - gLyricsHeight;
+            $("#BottomBorder").css("margin-top", BottomBorderMargin);
+      };
+      if ($(".g-lyrics-hidden").css("height") == "350px") {
+            let BottomBorderMargin = 190 - gLyricsHeight;
+            $("#BottomBorder").css("margin-top", BottomBorderMargin);
+      };
+      // 海报高度自适应
+      $(".bg-margin").css("height", $(".g-lyrics-hidden").css("height"));
+      $(".g-bgimg-hidden").css("height", "100%");
+      $(".g-bgimg").css("height", "100%");
+}
+
+function generate() {
+      $('.chevron-r').animate({ left: '50px' },'100ms');
+      $('.chevron-r').animate({ left: '0px' },'50ms');
+      $('.chevron-d').animate({ top: '50px' },'100ms');
+      $('.chevron-d').animate({ top: '0px' },'50ms');
 }

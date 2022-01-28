@@ -64,10 +64,28 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-5 col-md-offset-1 col-xs-12">
+                    <div class="col-xs-1 chevron-r" onclick="generate()">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="col-xs- chevron-d" onclick="generate()">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="col-md-5 col-xs-12">
                         <div class="poster col-xs-12">
-                            <div id="gPoster">
-                                <div class="quote" title="生成海报"><i class="fa fa-quote-left"></i></div>
+                            <div id="Photographic">
+                                <div class="g-bgimg2">
+                                    <div class="g-lyrics2" id="glyrics">
+                                        <ul>
+                                            <li class="text-center" style="font-size: 2rem; color: darkgray;">
+                                                <span class="songTitle"></span>·<span class="singer"></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="copyright">TAiONS</div>
+                                </div>
+                            </div>
+                            <div id="default">
+                                <div class="quote"><i class="fa fa-quote-left"></i></div>
                                 <div class="bg-margin">
                                     <div class="g-bgimg-hidden">
                                         <div class="g-bgimg"></div>
@@ -76,19 +94,18 @@
                                 <div class="g-lyrics-hidden">
                                     <div class="g-lyrics" id="glyrics">
                                         <ul>
-                                            <li class="title text-right"></li>
-                                            <li class="creator text-right"></li>
                                         </ul>
                                     </div>
                                     <div class="row" id="BottomBorder">
                                         <div class="col-xs-4 text-center">
-                                            <img src="" id="imgBottom" crossorigin="anonymous"
-                                                style="border-radius: 5px;">
+                                            <img src="https://cdn.jsdelivr.net/gh/yuuikic/argon-theme@1.2.8/stickers/genshin/stopit.png"
+                                                id="imgBottom" crossorigin="anonymous" style="border-radius: 5px;"
+                                                alt="专辑封面">
                                         </div>
                                         <div class="col-xs-8" style="height: 80px;padding-left: 0;">
                                             <div style="height: 70%;" id="textBottom">
-                                                <div id="songTitle"></div>
-                                                <div id="singer"></div>
+                                                <div class="songTitle"></div>
+                                                <div class="singer"></div>
                                             </div>
                                             <div style="height: 30%;">
                                                 <span id="tag"
@@ -154,9 +171,11 @@
                                     </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane container-fluid" id="picshot">
-                                    <button class="btn col-xs-7" onclick="screenshot()">截图</button>
-                                    <button class="btn col-xs-4 col-xs-offset-1" onclick="changeAd()"
-                                        style="color: rgb(243, 103, 126); font-size: 2rem;"><i
+                                    <button class="btn col-xs-3" onclick="changestyle()">样式</button>
+                                    <button class="btn col-xs-4" onclick="screenshot()"
+                                        style="margin-left: 10px;">截图</button>
+                                    <button class="btn col-xs-4" onclick="changeAd()"
+                                        style="color: rgb(243, 103, 126); font-size: 2rem; margin-left: 10px;"><i
                                             class="fas fa-heart"></i></button>
                                 </div>
                             </div>

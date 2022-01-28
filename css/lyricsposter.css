@@ -16,8 +16,9 @@
     src: url("https://oss.yuuiki.cn/site/webfonts/ClericalFont-SC.ttf");
   }
 
-  html{
-    scrollbar-width: none; /* 去除FireFox滚动条 */
+  html {
+    scrollbar-width: none;
+    /* 去除FireFox滚动条 */
   }
 
   body {
@@ -179,14 +180,6 @@
     margin-bottom: 30px;
   }
 
-  /* 小屏幕时取消hover效果 */
-  @media screen and (min-width: 970px) {
-    .lyrics li:hover {
-      background-color: rgba(196, 165, 171, 0.25);
-      border-radius: 10px;
-    }
-  }
-
   /* 选择歌词 */
   .selected-lyrics {
     background-color: rgba(196, 165, 171, 0.25);
@@ -255,8 +248,13 @@
     display: none;
   }
 
-
   @media screen and (min-width: 970px) {
+
+    /* 小屏幕时取消hover效果 */
+    .lyrics li:hover {
+      background-color: rgba(196, 165, 171, 0.25);
+      border-radius: 10px;
+    }
 
     /* 生成的海报主题色（背景色） */
     .bg-margin {
@@ -279,6 +277,25 @@
 
     .lyrics-select-outer {
       padding: 0;
+    }
+
+    /* 箭头样式 */
+    .chevron-r {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 25%;
+      font-size: 5rem;
+      transition: 200ms;
+    }
+
+    .chevron-r:hover {
+      font-size: 6rem;
+      color: cornflowerblue;
+    }
+
+    .chevron-d {
+      display: none;
     }
   }
 
@@ -304,6 +321,20 @@
     .lyrics-select-outer {
       padding-left: 15px;
       padding-right: 15px;
+    }
+
+    /* 箭头样式 */
+    .chevron-d {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      transition: 200ms;
+      margin-top: 20px;
+    }
+
+    .chevron-r {
+      display: none;
     }
   }
 
@@ -343,12 +374,60 @@
     font-size: 8rem;
     color: rgba(188, 181, 176, 0.85);
     z-index: 2;
-    transition: 600ms;
   }
 
-  .quote:hover {
-    font-size: 12rem;
-    color: rgb(193, 207, 248);
+  #default {
+    display: none;
+  }
+
+  #Photographic {
+    display: block;
+  }
+
+  .g-bgimg2 {
+    position: relative;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 3%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .g-lyrics2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: SimSun, Georgia, 'Times New Roman', Times, serif;
+    color: #fffefd;
+    border-style: solid;
+    border-top-width: 5px;
+    border-left-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 50px;
+    border-color: white;
+    backdrop-filter: blur(15px);
+    overflow: hidden;
+    z-index: 3;
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  .g-lyrics2 li {
+    margin: 20px;
+    font-size: 3rem;
+    font-family: SimSun, Georgia, 'Times New Roman', Times, serif;
+  }
+
+  .g-lyrics2 ul {
+    display: none;
+  }
+
+  .copyright {
+    color: rgb(175, 175, 175);
+    position: relative;
+    padding-left: 10px;
+    bottom: 35px;
   }
 
   /* 歌曲名与作者样式 */
