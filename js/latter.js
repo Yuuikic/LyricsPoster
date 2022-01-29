@@ -157,24 +157,13 @@ $(".chevron-r,.chevron-d").click(function () {
             $("#glyrics ul").prepend(data)
             $("#glyrics ul").fadeIn("slow")
       });
-      //显示歌曲信息框&高度自适应
-      $("#BottomBorder").css("display", "block");
-      var gLyricsHeight = $(".g-lyrics").height();
-      if ($(".g-lyrics-hidden").css("height") == "500px") {
-            let BottomBorderMargin = 340 - gLyricsHeight;
-            $("#BottomBorder").css("margin-top", BottomBorderMargin);
-      };
-      if ($(".g-lyrics-hidden").css("height") == "350px") {
-            let BottomBorderMargin = 190 - gLyricsHeight;
-            $("#BottomBorder").css("margin-top", BottomBorderMargin);
-      };
       // 重新导入歌词文本(避免了被移动到右边后，左边消失)
       $("#geci").html(lyricLi);
-      // 获取专辑封面主颜色
+      // 获取专辑封面主色颜色
       sourceImage = document.getElementById("s-bgimg");
       colorThief = new ColorThief();
       color = colorThief.getPalette(sourceImage, 5);
-      $(".bg-margin").css("background-image", "linear-gradient(to bottom right, rgb(" + color[0] +"), rgb(" +  color[1] + "))");
+      $(".bg-margin").css("background-image", "linear-gradient(to bottom right, rgb(" + color[0] + "), rgb(" + color[1] + "))");
       $("#BottomBorder").css("background", "rgba(" + color[1] + " ,0.3)")
       $(".color1").css("background", "rgb(" + color[0] + ")");
       $(".color2").css("background", "rgb(" + color[1] + ")");
@@ -186,17 +175,30 @@ $(".chevron-r,.chevron-d").click(function () {
             else
                   $(this).addClass("selected-lyrics");
       });
+      //显示歌曲信息框&高度自适应
+      $("#BottomBorder").css("display", "block");
+      var gLyricsHeight = parseFloat($(".g-lyrics").css("height"));
+      var BottomBorderHeight = parseFloat($("#BottomBorder").css("height"));
+      console.log(gLyricsHeight + BottomBorderHeight)
+      if (gLyricsHeight + BottomBorderHeight <= 440 && screen.width > 970) {
+            let BottomBorderMargin = 340 - gLyricsHeight;
+            $("#BottomBorder").css("margin-top", BottomBorderMargin);
+      } else if (gLyricsHeight + BottomBorderHeight <= 290 && screen.width < 970) {
+            let BottomBorderMargin = 190 - gLyricsHeight;
+            $("#BottomBorder").css("margin-top", BottomBorderMargin);
+      } else { $("#BottomBorder").css("margin-top", "0px"); }
       // 海报高度自适应
-      $(".bg-margin").css("height", $(".g-lyrics-hidden").css("height"));
+      $(".bg-margin").css("height", gLyricsHeight + BottomBorderHeight + 60);
+      $(".g-lyrics-hidden").css("height", gLyricsHeight + BottomBorderHeight + 60);
       $(".g-bgimg-hidden").css("height", "100%");
       $(".g-bgimg").css("height", "100%");
-});
+})
 // 切换颜色
 function changeBackroundColor(id) {
       if ($('#default').css('display') == 'none') {
             alert('该样式不支持调整边框颜色')
       } else {
-            $(".bg-margin").css("background-image", "linear-gradient(to bottom right, rgb(" + color[id] +"), rgb(" +  color[id + 1] + "))");
+            $(".bg-margin").css("background-image", "linear-gradient(to bottom right, rgb(" + color[id] + "), rgb(" + color[id + 1] + "))");
             $("#BottomBorder").css("background", "rgba(" + color[(id + 1) % 3] + " ,0.3)")
       }
 }
@@ -293,25 +295,25 @@ function changestyle() {
             $('#Photographic').css('display', 'block')
       }
       //显示歌曲信息框&高度自适应
-      $("#BottomBorder").css("display", "block");
-      var gLyricsHeight = $(".g-lyrics").height();
-      if ($(".g-lyrics-hidden").css("height") == "500px") {
+      var gLyricsHeight = parseFloat($(".g-lyrics").css("height"));
+      var BottomBorderHeight = parseFloat($("#BottomBorder").css("height"));
+      if (gLyricsHeight + BottomBorderHeight <= 500 && screen.width > 970) {
             let BottomBorderMargin = 340 - gLyricsHeight;
             $("#BottomBorder").css("margin-top", BottomBorderMargin);
-      };
-      if ($(".g-lyrics-hidden").css("height") == "350px") {
+      } else if (gLyricsHeight + BottomBorderHeight <= 350 && screen.width < 970) {
             let BottomBorderMargin = 190 - gLyricsHeight;
             $("#BottomBorder").css("margin-top", BottomBorderMargin);
-      };
+      } else { $("#BottomBorder").css("margin-top", "0px"); }
       // 海报高度自适应
-      $(".bg-margin").css("height", $(".g-lyrics-hidden").css("height"));
+      $(".bg-margin").css("height", gLyricsHeight + BottomBorderHeight + 60);
+      $(".g-lyrics-hidden").css("height", gLyricsHeight + BottomBorderHeight + 60);
       $(".g-bgimg-hidden").css("height", "100%");
       $(".g-bgimg").css("height", "100%");
 }
 
 function generate() {
-      $('.chevron-r').animate({ left: '50px' },'100ms');
-      $('.chevron-r').animate({ left: '0px' },'50ms');
-      $('.chevron-d').animate({ top: '50px' },'100ms');
-      $('.chevron-d').animate({ top: '0px' },'50ms');
+      $('.chevron-r').animate({ left: '50px' }, '100ms');
+      $('.chevron-r').animate({ left: '0px' }, '50ms');
+      $('.chevron-d').animate({ top: '50px' }, '100ms');
+      $('.chevron-d').animate({ top: '0px' }, '50ms');
 }

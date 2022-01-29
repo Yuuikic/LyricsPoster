@@ -16,6 +16,10 @@
     src: url("https://oss.yuuiki.cn/site/webfonts/ClericalFont-SC.ttf");
   }
 
+  :root{
+    scroll-behavior: smooth;
+  }
+
   html {
     scrollbar-width: none;
     /* 去除FireFox滚动条 */
@@ -277,6 +281,7 @@
 
     .lyrics-select-outer {
       padding: 0;
+      margin-bottom: 200px;
     }
 
     /* 箭头样式 */
@@ -303,7 +308,7 @@
   @media screen and (max-width: 970px) {
     .bg-margin {
       background-color: rgba(73, 73, 73, 0.2);
-      height: 350px;
+      min-height: 350px;
       padding: 30px 30px;
       overflow: hidden;
       transition: 2000ms;
@@ -719,7 +724,7 @@
     padding: 10px 0;
     color: #fff;
     display: none;
-    transition: 3000ms;
+    transition: 2000ms;
     font-size: 2rem;
   }
 
