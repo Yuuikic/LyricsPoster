@@ -174,7 +174,7 @@ $(".chevron-r,.chevron-d").click(function () {
       sourceImage = document.getElementById("s-bgimg");
       colorThief = new ColorThief();
       color = colorThief.getPalette(sourceImage, 5);
-      $(".bg-margin").css("background-color", "rgb(" + color[0] + ")");
+      $(".bg-margin").css("background-image", "linear-gradient(to bottom right, rgb(" + color[0] +"), rgb(" +  color[1] + "))");
       $("#BottomBorder").css("background", "rgba(" + color[1] + " ,0.3)")
       $(".color1").css("background", "rgb(" + color[0] + ")");
       $(".color2").css("background", "rgb(" + color[1] + ")");
@@ -196,7 +196,7 @@ function changeBackroundColor(id) {
       if ($('#default').css('display') == 'none') {
             alert('该样式不支持调整边框颜色')
       } else {
-            $(".bg-margin").css("background-color", "rgb(" + color[id] + ")");
+            $(".bg-margin").css("background-image", "linear-gradient(to bottom right, rgb(" + color[id] +"), rgb(" +  color[id + 1] + "))");
             $("#BottomBorder").css("background", "rgba(" + color[(id + 1) % 3] + " ,0.3)")
       }
 }
