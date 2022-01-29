@@ -295,12 +295,14 @@ function changestyle() {
             $('#Photographic').css('display', 'block')
       }
       //显示歌曲信息框&高度自适应
+      $("#BottomBorder").css("display", "block");
       var gLyricsHeight = parseFloat($(".g-lyrics").css("height"));
       var BottomBorderHeight = parseFloat($("#BottomBorder").css("height"));
-      if (gLyricsHeight + BottomBorderHeight <= 500 && screen.width > 970) {
+      console.log(gLyricsHeight + BottomBorderHeight)
+      if (gLyricsHeight + BottomBorderHeight <= 440 && screen.width > 970) {
             let BottomBorderMargin = 340 - gLyricsHeight;
             $("#BottomBorder").css("margin-top", BottomBorderMargin);
-      } else if (gLyricsHeight + BottomBorderHeight <= 350 && screen.width < 970) {
+      } else if (gLyricsHeight + BottomBorderHeight <= 290 && screen.width < 970) {
             let BottomBorderMargin = 190 - gLyricsHeight;
             $("#BottomBorder").css("margin-top", BottomBorderMargin);
       } else { $("#BottomBorder").css("margin-top", "0px"); }
