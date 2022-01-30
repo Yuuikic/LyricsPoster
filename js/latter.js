@@ -58,7 +58,7 @@ function getinfo() {
                         }
                   }).then(function () { //显示结果
                         $div = `<div class="songs container-fluid row">` +
-                              "<img src=" + songinfo[i].album.picUrl + `?param=500y500 alt="" class="img-circle" title="获取歌词" onclick="getansLyrics(${songid[i]})" name="${songinfo[i].name}" artist="${songinfo[i].artists[0].name}">` +
+                              "<img src=" + songinfo[i].album.picUrl + `?param=500y500 alt="" class="img-circle col-xs-4" title="获取歌词" onclick="getansLyrics(${songid[i]})" name="${songinfo[i].name}" artist="${songinfo[i].artists[0].name}">` +
                               `<p class="col-xs-8 text-center" tiltle="获取歌词" style="" onclick="getLyrics(${songinfo[i].id})">${songinfo[i].name}<br>${songinfo[i].artists[0].name}</p>
                                 </div>`
                         $(".result").append($div)

@@ -37,16 +37,16 @@ function query() {
 //         $("#BottomBorder").css("margin-top", BottomBorderMargin);
 //     };
 // }
+// 更换字体
 function changeFontFamily() {
     if ($("#fontFamily").val() == "serif") {
-        let fontFamily = `SimSun, Georgia, 'Times New Roman', Times, ${$("#fontFamily").val()}`;
-        $(".g-lyrics li,.g-lyrics2 li").css("font-family", fontFamily)
+        $(".g-lyrics li,.g-lyrics2 li").css("font-family", "NotoSerif")
     } else if ($("#fontFamily").val() == "MS-Mincho") {
         $(".g-lyrics li,.g-lyrics2 li").css("font-family", "jp")
     } else if ($("#fontFamily").val() == "sans-serif") {
-        $(".g-lyrics li,.g-lyrics2 li").css("font-family", "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif")
-    } else if ($("#fontFamily").val() == "Clerical") {
-        $(".g-lyrics li,.g-lyrics2 li").css("font-family", "Clerical")
+        $(".g-lyrics li,.g-lyrics2 li").css("font-family", "sans-serif")
+    } else if ($("#fontFamily").val() == "Amaru") {
+        $(".g-lyrics li,.g-lyrics2 li").css("font-family", "Amaru")
     }
 }
 // function changGraphical(no) {
