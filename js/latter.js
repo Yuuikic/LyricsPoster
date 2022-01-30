@@ -179,7 +179,6 @@ $(".chevron-r,.chevron-d").click(function () {
       $("#BottomBorder").css("display", "block");
       var gLyricsHeight = parseFloat($(".g-lyrics").css("height"));
       var BottomBorderHeight = parseFloat($("#BottomBorder").css("height"));
-      console.log(gLyricsHeight + BottomBorderHeight)
       if (gLyricsHeight + BottomBorderHeight <= 440 && screen.width > 970) {
             let BottomBorderMargin = 340 - gLyricsHeight;
             $("#BottomBorder").css("margin-top", BottomBorderMargin);
@@ -298,7 +297,6 @@ function changestyle() {
       $("#BottomBorder").css("display", "block");
       var gLyricsHeight = parseFloat($(".g-lyrics").css("height"));
       var BottomBorderHeight = parseFloat($("#BottomBorder").css("height"));
-      console.log(gLyricsHeight + BottomBorderHeight)
       if (gLyricsHeight + BottomBorderHeight <= 440 && screen.width > 970) {
             let BottomBorderMargin = 340 - gLyricsHeight;
             $("#BottomBorder").css("margin-top", BottomBorderMargin);

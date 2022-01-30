@@ -9,34 +9,49 @@ function query() {
         $("#imgButton").attr("src", "https://oss.yuuiki.cn/2022/01/22/2f552f50f8f7de99af0842fe67110d73.png")
     }, 1000);
 }
-// function fontSizeUp() {
-//     let lyricsSize = $(".g-lyrics-li").css("font-size");
-//     let unit = lyricsSize.slice(-2);
-//     let size = parseFloat(lyricsSize) + 5;
-//     if (size > 45) {
-//         return;
-//     }
-//     $(".g-lyrics-li").css("font-size", size + unit)
-//     var gLyricsHeight = $(".g-lyrics").height();
-//     var BottomBorderMargin = 340 - gLyricsHeight;
-//     if ($(".g-lyrics-hidden").css("height") == "500px") {
-//         $("#BottomBorder").css("margin-top", BottomBorderMargin);
-//     };
-// }
-// function fontSizeLow() {
-//     let lyricsSize = $(".g-lyrics-li").css("font-size");
-//     let unit = lyricsSize.slice(-2);
-//     let size = parseFloat(lyricsSize) - 5;
-//     if (size < 30) {
-//         return;
-//     }
-//     $(".g-lyrics-li").css("font-size", size + unit)
-//     var gLyricsHeight = $(".g-lyrics").height();
-//     var BottomBorderMargin = 340 - gLyricsHeight;
-//     if ($(".g-lyrics-hidden").css("height") == "500px") {
-//         $("#BottomBorder").css("margin-top", BottomBorderMargin);
-//     };
-// }
+// 字体大小
+function fontSizeUp() {
+    let lyricsSize = $(".g-lyrics-li").css("font-size");
+    let unit = lyricsSize.slice(-2);
+    let size = parseFloat(lyricsSize) + 2;
+    $(".g-lyrics-li").css("font-size", size + unit)
+    //显示歌曲信息框&高度自适应
+    var gLyricsHeight = parseFloat($(".g-lyrics").css("height"));
+    var BottomBorderHeight = parseFloat($("#BottomBorder").css("height"));
+    if (gLyricsHeight + BottomBorderHeight <= 440 && screen.width > 970) {
+        let BottomBorderMargin = 340 - gLyricsHeight;
+        $("#BottomBorder").css("margin-top", BottomBorderMargin);
+    } else if (gLyricsHeight + BottomBorderHeight <= 290 && screen.width < 970) {
+        let BottomBorderMargin = 190 - gLyricsHeight;
+        $("#BottomBorder").css("margin-top", BottomBorderMargin);
+    } else { $("#BottomBorder").css("margin-top", "0px"); }
+    // 海报高度自适应
+    $(".bg-margin").css("height", gLyricsHeight + BottomBorderHeight + 60);
+    $(".g-lyrics-hidden").css("height", gLyricsHeight + BottomBorderHeight + 60);
+    $(".g-bgimg-hidden").css("height", "100%");
+    $(".g-bgimg").css("height", "100%");
+}
+function fontSizeLow() {
+    let lyricsSize = $(".g-lyrics-li").css("font-size");
+    let unit = lyricsSize.slice(-2);
+    let size = parseFloat(lyricsSize) - 2;
+    $(".g-lyrics-li").css("font-size", size + unit)
+    //显示歌曲信息框&高度自适应
+    var gLyricsHeight = parseFloat($(".g-lyrics").css("height"));
+    var BottomBorderHeight = parseFloat($("#BottomBorder").css("height"));
+    if (gLyricsHeight + BottomBorderHeight <= 440 && screen.width > 970) {
+        let BottomBorderMargin = 340 - gLyricsHeight;
+        $("#BottomBorder").css("margin-top", BottomBorderMargin);
+    } else if (gLyricsHeight + BottomBorderHeight <= 290 && screen.width < 970) {
+        let BottomBorderMargin = 190 - gLyricsHeight;
+        $("#BottomBorder").css("margin-top", BottomBorderMargin);
+    } else { $("#BottomBorder").css("margin-top", "0px"); }
+    // 海报高度自适应
+    $(".bg-margin").css("height", gLyricsHeight + BottomBorderHeight + 60);
+    $(".g-lyrics-hidden").css("height", gLyricsHeight + BottomBorderHeight + 60);
+    $(".g-bgimg-hidden").css("height", "100%");
+    $(".g-bgimg").css("height", "100%");
+}
 // 更换字体
 function changeFontFamily() {
     if ($("#fontFamily").val() == "serif") {
@@ -49,15 +64,3 @@ function changeFontFamily() {
         $(".g-lyrics li,.g-lyrics2 li").css("font-family", "Amaru")
     }
 }
-// function changGraphical(no) {
-//     console.log(1);
-//     if (no == 1) {
-//         $(".g-bgimg-hidden").css("border", "0px none rgb(51, 51, 51)")
-//     }
-//     if (no == 2) {
-//         console.log($(".g-bgimg-hidden").css("border-right"));
-//         $(".g-bgimg-hidden").css("border-right")
-//     }
-//     $(".g-bgimg-hidden").css("border-right", "70px solid transparent;");
-
-// }

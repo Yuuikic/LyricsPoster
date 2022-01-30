@@ -125,9 +125,14 @@
     font-family: NotoSerif;
     font-size: 20px;
     color: silver;
-    overflow: hidden;
+    overflow: auto;
     margin-top: 10px;
-    transition: 300ms;
+    scrollbar-width: none;
+  }
+
+  .songs p::-webkit-scrollbar {
+    display: none;
+    /* Chrome Safari 隐藏滚动条*/
   }
 
   .songs p:hover {
@@ -547,17 +552,13 @@
     font-size: 2rem;
   }
 
-  #characters {
-    padding-top: 10px;
-  }
-
   #fontFamily {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 5%;
-    height: 45px;
+    border-color: rgba(241, 143, 156, 0.5);
     background: rgba(196, 165, 171, 0.25);
     border-radius: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 45px;
   }
 
   #fontFamily:focus {
@@ -569,9 +570,7 @@
   }
 
   #fontSize {
-    height: 45px;
-    margin: 20px auto;
-    padding: 0;
+
   }
 
   #picshot button {
@@ -630,10 +629,14 @@
     transition: 500ms;
   }
 
-  #panes>div {
+  /* #panes{
+    display: flex;
+    width: 100%;
+  } */
+
+  .tab-pane {
     background-color: rgb(255, 197, 197);
     border-radius: 0 0 15px 15px;
-    transition: 500ms;
     padding-top: 10px;
     padding-bottom: 10px;
   }
@@ -698,25 +701,26 @@
     height: 0px;
   }
 
-  .colorPickerbtn {
-    margin-left: 5%;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    height: 45px;
+  #characters button{
     background: rgba(196, 165, 171, 0.25);
-    border-radius: 50px;
+    height: 45px;
+    padding: 0px;
+    border-radius: 20px;
     border-color: rgba(241, 143, 156, 0.5);
     transition: 400ms;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
-  .colorPickerbtn:hover {
+  #characters button:hover {
     background: rgba(196, 165, 171, 0.8);
     color: rgb(114, 162, 250);
     box-shadow: rgb(143, 136, 136) 0 0 2px;
   }
 
-  .colorPickerbtn:focus {
+  #characters button:focus {
     outline: none;
+    color: rgb(114, 162, 250);
   }
 
   #BottomBorder {
