@@ -58,6 +58,15 @@
     list-style-type: none;
   }
 
+  .github-corner {
+    opacity: 0.5;
+    transition: 500ms;
+  }
+
+  .github-corner:hover {
+    opacity: 1;
+  }
+
   /* 搜索框与表单样式 */
   .search {
     /* margin-top: 20vh; */
@@ -407,11 +416,15 @@
   }
 
   .g-lyrics2 {
+    position: absolute;
+    top: 9px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: NotoSerif;
     color: #fffefd;
+    margin-left: 15%;
+    margin-right: 15%;
     border-style: solid;
     border-top-width: 5px;
     border-left-width: 5px;
@@ -439,7 +452,9 @@
     color: rgb(175, 175, 175);
     position: relative;
     padding-left: 10px;
-    bottom: 35px;
+    bottom: 47px;
+    margin-left: 15%;
+    z-index: 4;
   }
 
   /* 歌曲名与作者样式 */
@@ -569,9 +584,7 @@
     background: rgba(196, 165, 171, 0.25);
   }
 
-  #fontSize {
-
-  }
+  #fontSize {}
 
   #picshot button {
     background: rgba(196, 165, 171, 0.25);
@@ -595,15 +608,7 @@
     color: rgb(114, 162, 250);
   }
 
-  .color1 {
-    background: rgba(73, 73, 73, 0.2);
-  }
-
-  .color2 {
-    background: rgba(73, 73, 73, 0.2);
-  }
-
-  .color3 {
+  .defaultColor {
     background: rgba(73, 73, 73, 0.2);
   }
 
@@ -701,7 +706,7 @@
     height: 0px;
   }
 
-  #characters button{
+  #characters button {
     background: rgba(196, 165, 171, 0.25);
     height: 45px;
     padding: 0px;

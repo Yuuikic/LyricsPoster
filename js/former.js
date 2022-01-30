@@ -63,4 +63,19 @@ function changeFontFamily() {
     } else if ($("#fontFamily").val() == "Amaru") {
         $(".g-lyrics li,.g-lyrics2 li").css("font-family", "Amaru")
     }
+    //显示歌曲信息框&高度自适应
+    var gLyricsHeight = parseFloat($(".g-lyrics").css("height"));
+    var BottomBorderHeight = parseFloat($("#BottomBorder").css("height"));
+    if (gLyricsHeight + BottomBorderHeight <= 440 && screen.width > 970) {
+        let BottomBorderMargin = 340 - gLyricsHeight;
+        $("#BottomBorder").css("margin-top", BottomBorderMargin);
+    } else if (gLyricsHeight + BottomBorderHeight <= 290 && screen.width < 970) {
+        let BottomBorderMargin = 190 - gLyricsHeight;
+        $("#BottomBorder").css("margin-top", BottomBorderMargin);
+    } else { $("#BottomBorder").css("margin-top", "0px"); }
+    // 海报高度自适应
+    $(".bg-margin").css("height", gLyricsHeight + BottomBorderHeight + 60);
+    $(".g-lyrics-hidden").css("height", gLyricsHeight + BottomBorderHeight + 60);
+    $(".g-bgimg-hidden").css("height", "100%");
+    $(".g-bgimg").css("height", "100%");
 }

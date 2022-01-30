@@ -11,8 +11,22 @@ var lyricLi;
 
 // 调整宝丽来相纸样式的海报高度
 $(document).ready(function () {
+      $(".lyrics-hidden").css("width", $(".lyrics-select").css("width"));
       $(".g-bgimg2").css("height", $(".g-bgimg2").css("width"));
-      $(".g-lyrics2").css("height", 0.9 * parseFloat($(".g-bgimg2").css("width")));
+      $(".g-lyrics2").css("height", 0.95 * parseFloat($(".g-bgimg2").css("width")));
+      $(".g-lyrics2").css("width", 0.7 * parseFloat($(".g-bgimg2").css("width")));
+      $('.chevron-r').animate({ left: '50px' }, '100ms');
+      $('.chevron-r').animate({ left: '0px' }, '50ms');
+      $('.chevron-r').animate({ left: '50px' }, '100ms');
+      $('.chevron-r').animate({ left: '0px' }, '50ms');
+      $('.chevron-r').animate({ left: '50px' }, '100ms');
+      $('.chevron-r').animate({ left: '0px' }, '50ms');
+      $('.chevron-d').animate({ top: '50px' }, '100ms');
+      $('.chevron-d').animate({ top: '0px' }, '50ms');
+      $('.chevron-d').animate({ top: '50px' }, '100ms');
+      $('.chevron-d').animate({ top: '0px' }, '50ms');
+      $('.chevron-d').animate({ top: '50px' }, '100ms');
+      $('.chevron-d').animate({ top: '0px' }, '50ms');
 });
 function getinfo() {
       $(".bg-margin").css("background-color", "rgba(73, 73, 73, 0.2)")
@@ -168,6 +182,7 @@ $(".chevron-r,.chevron-d").click(function () {
       $(".color1").css("background", "rgb(" + color[0] + ")");
       $(".color2").css("background", "rgb(" + color[1] + ")");
       $(".color3").css("background", "rgb(" + color[2] + ")");
+      $(".color4").css("background", "rgb(" + color[3] + ")");
       // 再次添加选中歌词函数，让用户可以重新选择歌词
       $(".lyrics li").click(function () {
             if ($(this).hasClass("selected-lyrics"))
@@ -203,13 +218,11 @@ function changeBackroundColor(id) {
 }
 // 更改背景图片模糊
 function changeblur() {
-      if ($('#default').css('display') == 'none') {
-            alert('该样式不支持调整模糊')
-      } else {
+
             blurvalue = $("#blur").val();
             $(".g-bgimg").css("filter", "blur(" + blurvalue + "px)")
             $(".g-lyrics2").css("backdrop-filter", "blur(" + blurvalue + "px)")
-      }
+
 }
 // 更改背景图片透明度
 function changeopacity() {
@@ -217,7 +230,7 @@ function changeopacity() {
             alert('该样式不支持调整透明度')
       } else {
             opacityvalue = $("#opacity").val();
-            $(".g-bgimg,.g-bgimg2").css("opacity", opacityvalue)
+            $(".g-bgimg").css("opacity", opacityvalue)
       }
 }
 //自定义背景图片
