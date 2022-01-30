@@ -108,10 +108,12 @@
     border-radius: 10px;
     padding: 5px;
     margin: 7px 0px;
-    display: none;
+    display: flex;
+    align-items: center;
   }
 
   .songs img {
+    height: 50%;
     transition: 600ms;
   }
 
@@ -120,9 +122,9 @@
   }
 
   .songs p {
-    height: 8vh;
-    font-size: 2rem;
+    max-height: 8vh;
     font-family: NotoSerif;
+    font-size: 20px;
     color: silver;
     overflow: hidden;
     margin-top: 10px;
