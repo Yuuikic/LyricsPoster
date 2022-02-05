@@ -313,6 +313,7 @@
     .chevron-r:hover {
       font-size: 6rem;
       color: cornflowerblue;
+      cursor: pointer;
     }
 
     .chevron-d {
