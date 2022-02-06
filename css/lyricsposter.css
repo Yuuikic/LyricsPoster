@@ -150,6 +150,12 @@
     color: rgb(63, 64, 65);
   }
 
+  #count{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   /* 编辑区域背景 */
   .edit {
     background-color: rgba(196, 165, 171, 0.85);
