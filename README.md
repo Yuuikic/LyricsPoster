@@ -80,3 +80,7 @@ Demo：[https://taions.nonon.moe/](https://taions.nonon.moe/)
 1. 新增字体筑紫A丸，修改默认衬线字体为Noto_Serif
 2. 新增调节字体大小功能
 3. 大概适配了iOS设备
+
+**2022/2/2/6**
+
+1. 添加了计数器，来自[Moe-counter](https://github.com/journey-ad/Moe-counter)。
