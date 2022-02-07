@@ -455,6 +455,18 @@
     display: none;
   }
 
+  .songTitle{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .singer{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
   .copyright {
     color: rgb(175, 175, 175);
     position: relative;

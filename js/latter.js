@@ -106,6 +106,11 @@ function getansLyrics(id) {
                   $("#s-bgimg").fadeIn("slow");
                   $(".g-bgimg").fadeIn("slow");
                   $("#imgBottom").attr("src", albumimg);
+                  // 歌曲名及艺术家
+                  title = $("[onclick*='" + id + "']").attr("name")
+                  artist = $("[onclick*='" + id + "']").attr("artist")
+                  $(".songTitle").html(title);
+                  $(".singer").html(artist);
                   // 歌词选中效果
                   $(".lyrics li").click(function () {
                         if ($(this).hasClass("selected-lyrics"))
@@ -219,9 +224,9 @@ function changeBackroundColor(id) {
 // 更改背景图片模糊
 function changeblur() {
 
-            blurvalue = $("#blur").val();
-            $(".g-bgimg").css("filter", "blur(" + blurvalue + "px)")
-            $(".g-lyrics2").css("backdrop-filter", "blur(" + blurvalue + "px)")
+      blurvalue = $("#blur").val();
+      $(".g-bgimg").css("filter", "blur(" + blurvalue + "px)")
+      $(".g-lyrics2").css("backdrop-filter", "blur(" + blurvalue + "px)")
 
 }
 // 更改背景图片透明度
