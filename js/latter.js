@@ -8,8 +8,9 @@ var songinfo = new Array(6);
 var songid = new Array(6);
 var songList;
 var lyricLi;
+var finalLyrics;
 
-// 调整宝丽来相纸样式的海报高度
+// 调整宝丽来相纸样式的海报高度&动画提醒
 $(document).ready(function () {
       $(".lyrics-hidden").css("width", $(".lyrics-select").css("width"));
       $(".g-bgimg2").css("height", $(".g-bgimg2").css("width"));
@@ -93,11 +94,26 @@ function getansLyrics(id) {
             success: function (data) {
                   let regExp = new RegExp(".*</li>", "g");
                   let tlyric = "<li>" + data.tlyric.lyric.replace(/\[.*\]/g, "");
-                  lyricLi = tlyric.replaceAll("\n", "</li><li>").match(regExp);
-                  $("#geci").html(lyricLi)
+                  let lyric = "<li>" + data.lrc.lyric.replace(/\[.*\]/g, "");
+                  tlyricsLi = tlyric.replaceAll("\n", "</li>.<li>").match(regExp);
+                  lyricsLi = lyric.replaceAll("\n", "</li>.<li>").match(regExp);
+                  tlyricsLi = tlyricsLi.toString()
+                  lyricsLi = lyricsLi.toString()
+                  sarray = lyricsLi.split(".");
+                  tarray = tlyricsLi.split(".");
+                  var final = new Array();
+                  for (let i = 0; i < tarray.length; i++) {
+                        final[i] = tarray[i];
+                  }
+                  for (let i = 0; i < sarray.length; i++) {
+                        final[tarray.length + i] = sarray[i];
+                  }
+                  finalLyrics = final.join('')
+                  $("#geci").html(finalLyrics)
+                  $("#geci").attr("type", "translate")
                   $(".lyrics ul").fadeIn("slow")
                   // 获取音乐
-                  $("body").append(`<meting-js class="meting" server="netease" type="song" fixed="true" id="` + id + `""></meting-js>`)
+                  $("#music").append(`<meting-js class="meting" server="netease" type="song" id="` + id + `""></meting-js>`)
                   // 获取背景图片
                   albumimg = $("[onclick*='" + id + "']").attr("src")
                   $("#s-bgimg").attr("src", albumimg);
@@ -134,9 +150,10 @@ function getLyrics(id) {
                   let lyric = "<li>" + data.lrc.lyric.replace(/\[.*\]/g, "");
                   lyricLi = lyric.replaceAll("\n", "</li><li>").match(regExp);
                   $("#geci").html(lyricLi)
+                  $("#geci").attr("type", "origin")
                   $(".lyrics ul").fadeIn("slow")
                   // 获取音乐
-                  $("body").append(`<meting-js class="meting" server="netease" type="song" fixed="true" id="` + id + `""></meting-js>`)
+                  $("#music").append(`<meting-js class="meting" server="netease" type="song" id="` + id + `""></meting-js>`)
                   // 获取背景图片
                   albumimg = $("[onclick*='" + id + "']").attr("src")
                   $("#s-bgimg").attr("src", albumimg);
@@ -177,7 +194,10 @@ $(".chevron-r,.chevron-d").click(function () {
             $("#glyrics ul").fadeIn("slow")
       });
       // 重新导入歌词文本(避免了被移动到右边后，左边消失)
-      $("#geci").html(lyricLi);
+      if ($('#geci').attr('type') == 'origin')
+            $("#geci").html(lyricLi);
+      else
+            $("#geci").html(finalLyrics);
       // 获取专辑封面主色颜色
       sourceImage = document.getElementById("s-bgimg");
       colorThief = new ColorThief();

@@ -89,25 +89,20 @@
         <div class="row">
             <!-- 搜索框 -->
             <div class="col-md-3 search" style="padding: 0 3vh;">
-                <div>
-                    <div class="row">
-                        <form action="#" method="post" role="form" class="text-center">
-                            <input id="imgButton" type="image" onclick="query(); getinfo(); return false;"
-                                src="https://oss.yuuiki.cn/2022/01/22/2f552f50f8f7de99af0842fe67110d73.png">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="search-form" placeholder="Search Songs…">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="row">
-                        <div class="result"></div>
-                        <div id="count">
-                            <img src="https://count.nonon.moe/get/@TAiONS?theme=rule34" alt="">
+                <div class="row">
+                    <form action="#" method="post" role="form" class="text-center">
+                        <input id="imgButton" type="image" onclick="query(); getinfo(); return false;"
+                            src="https://oss.yuuiki.cn/2022/01/22/2f552f50f8f7de99af0842fe67110d73.png">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="search-form" placeholder="Search Songs…">
                         </div>
-                    </div>
+                    </form>
                 </div>
+                <div class="row">
+                    <div class="result"></div>
+                </div>
+                <div id="music"></div>
             </div>
-
             <!--歌词栏-->
             <div class="col-md-9 container edit" style="margin-top: calc(6.5% - 10px);">
                 <div class="row">
@@ -121,6 +116,9 @@
                                 <ul class="text-left" id="geci">
                                 </ul>
                             </div>
+                        </div>
+                        <div id="count">
+                            <img src="https://count.nonon.moe/get/@TAiONS?theme=rule34" alt="">
                         </div>
                     </div>
                     <div class="col-xs-1 chevron-r" onclick="generate()">

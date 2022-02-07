@@ -101,7 +101,7 @@
     background-color: rgba(26, 23, 23, 0.25);
     border-radius: 15px;
     padding: 10px;
-    margin-bottom: 5vh;
+    margin-bottom: 10px;
     overflow: scroll;
     display: none;
     scrollbar-width: none;
@@ -148,12 +148,6 @@
     background-color: rgba(214, 196, 214, 0.5);
     border-radius: 50px;
     color: rgb(63, 64, 65);
-  }
-
-  #count{
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   /* 编辑区域背景 */
@@ -221,7 +215,7 @@
   .lyrics-hidden {
     position: absolute;
     margin-top: 4vw;
-    bottom: 0;
+    top: 0;
     height: 50rem;
     overflow: hidden;
   }
@@ -274,6 +268,7 @@
     display: none;
   }
 
+  /* 大屏幕设备 */
   @media screen and (min-width: 970px) {
 
     /* 小屏幕时取消hover效果 */
@@ -303,7 +298,6 @@
 
     .lyrics-select-outer {
       padding: 0;
-      margin-bottom: 200px;
     }
 
     /* 箭头样式 */
@@ -324,6 +318,14 @@
 
     .chevron-d {
       display: none;
+    }
+
+    #count {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+      margin-bottom: 120px;
     }
   }
 
@@ -363,6 +365,14 @@
 
     .chevron-r {
       display: none;
+    }
+
+    #count{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+      margin-bottom: 0px;
     }
   }
 
@@ -455,13 +465,13 @@
     display: none;
   }
 
-  .songTitle{
+  .songTitle {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
   }
 
-  .singer{
+  .singer {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
