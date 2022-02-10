@@ -123,6 +123,7 @@
 
   .songs img {
     transition: 600ms;
+    cursor: pointer;
   }
 
   .songs img:hover {
@@ -137,6 +138,7 @@
     overflow: auto;
     margin-top: 10px;
     scrollbar-width: none;
+    cursor: pointer;
   }
 
   .songs p::-webkit-scrollbar {
