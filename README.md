@@ -22,8 +22,7 @@ Demo：[https://taions.nonon.moe/](https://taions.nonon.moe/)
 - [x] 选择歌词 
 - [x] 生成海报
 - [x] 简单的样式编辑
-
-竟然都做出来了（逃
+- [ ] 添加新的API，来自 [Musicmatch](https://developer.musixmatch.com/) 
 
 ## 使用步骤
 
