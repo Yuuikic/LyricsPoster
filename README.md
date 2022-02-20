@@ -49,6 +49,16 @@ Demo：[https://taions.nonon.moe/](https://taions.nonon.moe/)
 
 5. GPL V3.0
 
+## 已知问题
+
+1. Firxfox浏览器不支持backdrop-filter这一样式，故宝丽来相纸的背景模糊在Firefox上无法实现（短期内不打算另写一套支持Firefox的样式）
+
+2. 部分屏幕尺寸下显示效果差（比如iPad），只推荐在16：9屏幕的屏幕以及手机设备上使用，其他设备不保证使用效果。
+
+3. 如上文所述，由于项目依赖html2canvas的原因，使用“截图—截图”**无法**截取带背景模糊的样式的海报。并且使用这种方法截图时，图片周围可能会随机地出现1px宽度的白边。
+
+4. You tell me.
+
 ## 鸣谢
 
 - 使用[网易云音乐API](https://github.com/Binaryify/NeteaseCloudMusicApi)获取歌曲信息
