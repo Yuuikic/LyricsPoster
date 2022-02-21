@@ -92,26 +92,40 @@ function getansLyrics(id) {
             dataType: 'json',
             xhrFields: { withCredentials: true },
             success: function (data) {
-                  let regExp = new RegExp(".*</li>", "g");
-                  let tlyric = "<li>" + data.tlyric.lyric.replace(/\[.*\]/g, "");
-                  let lyric = "<li>" + data.lrc.lyric.replace(/\[.*\]/g, "");
-                  tlyricsLi = tlyric.replaceAll("\n", "</li>.<li>").match(regExp);
-                  lyricsLi = lyric.replaceAll("\n", "</li>.<li>").match(regExp);
-                  tlyricsLi = tlyricsLi.toString()
-                  lyricsLi = lyricsLi.toString()
-                  sarray = lyricsLi.split(".");
-                  tarray = tlyricsLi.split(".");
-                  var final = new Array();
-                  for (let i = 0; i < tarray.length; i++) {
-                        final[i] = tarray[i];
+                  //  判断是否有歌词
+                  if (data.lrc.lyric == "") {
+                        alert("暂无歌词∠( ᐛ 」∠)＿")
                   }
-                  for (let i = 0; i < sarray.length; i++) {
-                        final[tarray.length + i] = sarray[i];
+                  // 判断是否有翻译歌词
+                  else if (data.qfy == false) {
+                        let regExp = new RegExp(".*</li>", "g");
+                        let tlyric = "<li>" + data.tlyric.lyric.replace(/\[.*\]/g, "");
+                        let lyric = "<li>" + data.lrc.lyric.replace(/\[.*\]/g, "");
+                        tlyricsLi = tlyric.replaceAll("\n", "</li>.<li>").match(regExp);
+                        lyricsLi = lyric.replaceAll("\n", "</li>.<li>").match(regExp);
+                        tlyricsLi = tlyricsLi.toString()
+                        lyricsLi = lyricsLi.toString()
+                        sarray = lyricsLi.split(".");
+                        tarray = tlyricsLi.split(".");
+                        var final = new Array();
+                        for (let i = 0; i < tarray.length; i++) {
+                              final[i] = tarray[i];
+                        }
+                        for (let i = 0; i < sarray.length; i++) {
+                              final[tarray.length + i] = sarray[i];
+                        }
+                        finalLyrics = final.join('')
+                        $("#geci").html(finalLyrics)
+                        $("#geci").attr("type", "translate")
+                        $(".lyrics ul").fadeIn("slow")
+                  } else {
+                        let regExp = new RegExp(".*</li>", "g");
+                        let lyric = "<li>" + data.lrc.lyric.replace(/\[.*\]/g, "");
+                        lyricLi = lyric.replaceAll("\n", "</li><li>").match(regExp);
+                        $("#geci").html(lyricLi)
+                        $("#geci").attr("type", "origin")
+                        $(".lyrics ul").fadeIn("slow")
                   }
-                  finalLyrics = final.join('')
-                  $("#geci").html(finalLyrics)
-                  $("#geci").attr("type", "translate")
-                  $(".lyrics ul").fadeIn("slow")
                   // 获取音乐
                   $("#music").append(`<meting-js class="meting" server="netease" type="song" id="` + id + `""></meting-js>`)
                   // 获取背景图片
@@ -146,12 +160,16 @@ function getLyrics(id) {
             dataType: 'json',
             xhrFields: { withCredentials: true },
             success: function (data) {
-                  let regExp = new RegExp(".*</li>", "g");
-                  let lyric = "<li>" + data.lrc.lyric.replace(/\[.*\]/g, "");
-                  lyricLi = lyric.replaceAll("\n", "</li><li>").match(regExp);
-                  $("#geci").html(lyricLi)
-                  $("#geci").attr("type", "origin")
-                  $(".lyrics ul").fadeIn("slow")
+                  if (data.lrc.lyric == "") {
+                        alert("暂无歌词∠( ᐛ 」∠)＿")
+                  } else {
+                        let regExp = new RegExp(".*</li>", "g");
+                        let lyric = "<li>" + data.lrc.lyric.replace(/\[.*\]/g, "");
+                        lyricLi = lyric.replaceAll("\n", "</li><li>").match(regExp);
+                        $("#geci").html(lyricLi)
+                        $("#geci").attr("type", "origin")
+                        $(".lyrics ul").fadeIn("slow")
+                  }
                   // 获取音乐
                   $("#music").append(`<meting-js class="meting" server="netease" type="song" id="` + id + `""></meting-js>`)
                   // 获取背景图片
