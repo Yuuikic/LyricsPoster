@@ -96,8 +96,8 @@ function getansLyrics(id) {
                   if (data.lrc.lyric == "") {
                         alert("暂无歌词∠( ᐛ 」∠)＿")
                   }
-                  // 判断是否有翻译歌词
-                  else if (data.qfy == false) {
+                  // 判断是否有翻译歌词,如果不缺翻译且有翻译歌词
+                  else if (data.qfy == false && data.tlyric.lyric != "") {
                         let regExp = new RegExp(".*</li>", "g");
                         let tlyric = "<li>" + data.tlyric.lyric.replace(/\[.*\]/g, "");
                         let lyric = "<li>" + data.lrc.lyric.replace(/\[.*\]/g, "");
