@@ -236,6 +236,7 @@ $(".chevron-r,.chevron-d").click(function () {
       //显示歌曲信息框&高度自适应
       $("#BottomBorder").css("display", "block");
       var gLyricsHeight = parseFloat($(".g-lyrics").css("height"));
+      var gLyricsWidth=parseFloat($(".g-lyrics2").css("width"))
       var BottomBorderHeight = parseFloat($("#BottomBorder").css("height"));
       if (gLyricsHeight + BottomBorderHeight <= 440 && screen.width > 970) {
             let BottomBorderMargin = 340 - gLyricsHeight;
@@ -249,6 +250,7 @@ $(".chevron-r,.chevron-d").click(function () {
       $(".g-lyrics-hidden").css("height", gLyricsHeight + BottomBorderHeight + 60);
       $(".g-bgimg-hidden").css("height", "100%");
       $(".g-bgimg").css("height", "100%");
+      $(".g-lyrics2 ul").css("width",gLyricsWidth)
 })
 // 切换颜色
 function changeBackroundColor(id) {
