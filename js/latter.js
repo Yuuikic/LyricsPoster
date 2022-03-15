@@ -197,7 +197,7 @@ function getLyrics(id) {
 }
 $(".chevron-r,.chevron-d").click(function () {
       //隐藏APlayer歌词
-      $('.aplayer-lrc').addClass('aplayer-lrc-hide')
+      // $('.aplayer-lrc').addClass('aplayer-lrc-hide')
       // 清空海报中歌词
       $(".g-lyrics-li").remove();
       // 由于歌词选中效果this的影响，歌词选中效果的click函数不会失效。
@@ -263,11 +263,9 @@ function changeBackroundColor(id) {
 }
 // 更改背景图片模糊
 function changeblur() {
-
       blurvalue = $("#blur").val();
       $(".g-bgimg").css("filter", "blur(" + blurvalue + "px)")
       $(".g-lyrics2").css("backdrop-filter", "blur(" + blurvalue + "px)")
-
 }
 // 更改背景图片透明度
 function changeopacity() {
