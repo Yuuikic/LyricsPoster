@@ -6,7 +6,7 @@ defineProps(['title', 'artist', 'albumCover', 'id']);
 const isClicked = ref(false);
 
 
-const handleClick = (id,title,artist) => {
+const handleClick = (id, title, artist) => {
     lyrics.getLyrics(id, isClicked);
     lyrics.title = title;
     lyrics.artist = artist;
@@ -15,9 +15,10 @@ const handleClick = (id,title,artist) => {
 </script>
 
 <template>
-    <div class="songResult" @click="lyrics.albumCover = albumCover, handleClick(id,title, artist)" :class="{ clicked: isClicked }">
-        <div class="albumCover" :style="{ backgroundImage: `url('${albumCover}')` }"></div>
-        <div class="songTitle">
+    <div class="songResult" @click="lyrics.albumCover = albumCover, handleClick(id, title, artist)"
+        :class="{ clicked: isClicked }">
+        <div class="albumCover" :style="{ backgroundImage: `url('${albumCover}?param=200y200')` }"></div>
+        <div class="songTitle w-3/4">
             <p>{{ title }}</p>
             <p>{{ artist }}</p>
         </div>
@@ -52,9 +53,11 @@ const handleClick = (id,title,artist) => {
 }
 
 .songTitle p:first-child {
-    font-size: 1.2rem;
+    /* font-size: 1.2rem; */
     max-height: 2rem;
-    overflow: scroll;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     scrollbar-width: none;
 }
 
@@ -63,6 +66,7 @@ const handleClick = (id,title,artist) => {
 }
 
 .songTitle p:last-child {
+    font-size: 0.8rem;
     color: rgb(105, 101, 101);
     overflow: scroll;
     scrollbar-width: none;

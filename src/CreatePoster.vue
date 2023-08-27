@@ -1,9 +1,6 @@
 <script setup>
 import { ref, toRef, toRefs, reactive, watch } from 'vue';
 import { lyrics } from './lyrics.js';
-import * as htmlToImage from 'html-to-image';
-import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
-import { saveAs } from 'file-saver';
 import draggable from 'vuedraggable';
 
 const lyricsAsRefs = toRefs(lyrics);
@@ -39,6 +36,9 @@ const platteIndex = ref(0);
 const showPolaroidSongInfo = ref(false);
 const isBigTemplate = ref(false);
 const chooseLyricsSecrtionShadow = ref(true);
+const mediaQueryList = [
+    window.matchMedia('(max-width: 768px)'),
+    window.matchMedia('(max-width: 1280px)'),]
 
 const generateBtn = reactive({
     bottom: ref(82),
@@ -246,8 +246,14 @@ const templateTwo = () => {
     templateStyle.innerHeight = '100%'
     templateStyle.innerWidth = '100%'
     templateStyle.innerBorderWidth = '0';
-    templateStyle.borderWidth = 1.5;
-    templateStyle.width = '40%'
+    
+    if (mediaQueryList[0].matches) {
+        templateStyle.width = '80%';
+        templateStyle.borderWidth = 1;
+    } else {
+        templateStyle.width = '40%';
+        templateStyle.borderWidth = 1.5;
+    }
 
     polaroidDockOpacity.value = 0;
     taionsDockOpacity.value = 1;
@@ -408,7 +414,7 @@ const drag = ref(false);
             </div>
         </section>
 
-        <div class="generateBtn absolute w-12 flex items-center cursor-pointer"
+        <div class="generateBtn absolute w-12 z-50 flex items-center cursor-pointer"
             :style="{ opacity: generateBtn.opacity, pointerEvents: generateBtn.pointer, bottom: generateBtn.bottom + '%', flexDirection: generateBtn.flexDirection, animationPlayState: generateBtn.animationPlayState, animationName: generateBtn.animationName }"
             @click="generate()">
             <div class="generateHandle w-full border-t-8 rounded-md relative"
@@ -423,19 +429,20 @@ const drag = ref(false);
         </div>
 
 
-        <section class="posterAreaSection flex justify-center items-center w-4/5 md:w-2/4 lg:w-3/4 absolute rounded-2xl"
+        <section
+            class="posterAreaSection flex flex-col md:flex-row justify-center items-center w-full md:w-2/4 lg:w-3/4 absolute rounded-2xl"
             :style="{ top: posterAreaStyle.top + '%', height: posterAreaStyle.height + '%' }">
-            <div class="style-selector relative left-0 flex flex-col h-5/6 justify-center w-2/12 m-4 rounded-xl"
+            <div class="style-selector relative w-4/5 left-0 flex md:flex-col md:h-5/6 justify-center md:w-2/12 m-1 md:m-4 rounded-xl"
                 :style="{ animationName: styleSelectorAnimationName, animationIterationCount: styleSelectorAnimationInterationCount }">
-                <button class="selector-btn" :class="{ clicked: templateSelector[0] }"
+                <button class="selector-btn py-1 px-1 md:py-2 md:px-4" :class="{ clicked: templateSelector[0] }"
                     @click="changeTemplate(0)">宝丽来相纸</button>
-                <button class="selector-btn" :class="{ clicked: templateSelector[1] }"
+                <button class="selector-btn py-1 px-1 md:py-2 md:px-4" :class="{ clicked: templateSelector[1] }"
                     @click="changeTemplate(1)">TAiONS</button>
             </div>
 
-            <div class="divider h-4/5 border-r-4 m-2 border-blue-200"></div>
+            <div class="divider h-4/5 hidden md:block border-r-4 m-2 border-blue-200"></div>
 
-            <div class="poster h-full w-4/5 m-1 flex flex-col justify-center items-center space-y-5">
+            <div class="poster h-full w-full md:w-4/5 m-1 flex flex-col justify-center items-center space-y-5">
                 <div id="template"
                     class="flex justify-center items-center rounded-lg bg-center bg-cover select-none bg-indigo-200 overflow-hidden"
                     :class="{ bigTemplate: isBigTemplate }"
@@ -487,14 +494,15 @@ const drag = ref(false);
                                 </div>
                             </div>
                         </div>
-                        <p class="transition-opacity absolute" :style="{ opacity: templateStyle.placeHolderDisplay }">
+                        <p class="transition-opacity absolute text-center"
+                            :style="{ opacity: templateStyle.placeHolderDisplay }">
                             \CHOOSE ONE TEMPLATE \</p>
                     </div>
                 </div>
                 <Transition name="card">
-                    <div class="options z-10 h-18 w-5/6 p-2 flex bg-violet-300 rounded-lg shadow-xl" v-show="openOption"
-                        :class="{ 'opacity-0': isBigTemplate, 'hover:opacity-100': isBigTemplate }">
-                        <div id="cardOne" class="w-1/3 m-1 relative">
+                    <div class="options relative md:static z-10 h-18 w-full md:w-5/6 p-1 md:p-2 flex flex-col md:flex-row  bg-violet-300 rounded-lg shadow-xl"
+                        v-show="openOption" :class="{ 'opacity-0': isBigTemplate, 'hover:opacity-100': isBigTemplate }">
+                        <div id="cardOne" class="w-full md:w-1/3 md:m-1 mb-1 relative">
                             <button
                                 class="p-1 w-full rounded-lg bg-violet-50 hover:bg-violet-100 active:bg-violet-200 transition-all text-violet-900"
                                 @click="optionCardOne = !optionCardOne">文字</button>
@@ -535,7 +543,7 @@ const drag = ref(false);
 
                         </div>
 
-                        <div id="cardTwo" class="w-1/3 m-1 relative">
+                        <div id="cardTwo" class="w-full md:w-1/3 md:m-1 mb-1 relative">
                             <button
                                 class="p-1 w-full rounded-lg bg-violet-50 hover:bg-violet-100 active:bg-violet-200 transition-all text-violet-900"
                                 @click="optionCardTwo = !optionCardTwo">背景</button>
@@ -577,7 +585,7 @@ const drag = ref(false);
                             </Transition>
                         </div>
 
-                        <div class="w-1/3 m-1">
+                        <div id="love" class="w-full md:w-1/3 md:m-1">
                             <button
                                 class="p-1 w-full rounded-lg bg-violet-50 hover:bg-violet-100 active:bg-violet-200 transition-all"
                                 @click="isBigTemplate = !isBigTemplate">❤️</button>
@@ -713,7 +721,7 @@ const drag = ref(false);
 
 .selector-btn {
     margin: 10px;
-    padding: 10px 15px;
+    /* padding: 10px 15px; */
     border: none;
     font-size: 17px;
     color: #fff;

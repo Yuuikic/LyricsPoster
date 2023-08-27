@@ -25,13 +25,12 @@ let songsID = ref([]);
 
 function searchSongs(keywords) {
     logoBounceLoop(2000, 2);
-    let keywordSearch = `${searchAPIUrl}/search?keywords=${keywords}&limit=10`;
+    let keywordSearch = `${searchAPIUrl}/search?keywords=${keywords}&limit=15`;
     showResults.value = true
     searchResultsLoading.value = true
     songsListNew.value = []
     fetch(keywordSearch, {
         method: "GET",
-        // mode: "no-cors",
         credentials: 'include'
     })
         .then((response) => {
@@ -118,20 +117,6 @@ onMounted(() => {
     })
 })
 
-
-
-function logoBouncePlay() {
-    const logoBounce = anime({
-        targets: '.line-drawing path',
-        translateY: 20,
-        duration: 2000,
-        delay: function (el, i) { return i * 200; },
-        direction: 'alternate',
-        autoplay: false,
-    })
-    logoBounce.play()
-}
-
 function logoBounceLoop(duration, loopTime) {
     const logoBounce = anime({
         targets: '.line-drawing path',
@@ -148,9 +133,9 @@ function logoBounceLoop(duration, loopTime) {
 </script>
 
 <template>
-    <header class="flex flex-col items-center h-full">
-        <div class="logo line-drawing m-2 relative -top-16"
-            @click="isMove = !isMove, isTransparent = -isTransparent, isLogoClicked = !isLogoClicked, logoBounceLoop(1000, 2)"
+    <header class="flex flex-col items-center w-full">
+        <div class="logo line-drawing m-2"
+            @click="isMove = !isMove, isTransparent = -isTransparent, isLogoClicked = !isLogoClicked, logoBounceLoop(500, 2)"
             :class="{ 'w-1/2': isLogoClicked, 'w-full': !isLogoClicked, 'clicked-logo': isLogoClicked }">
             <svg id="logo-svg" data-name="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 596 192">
                 <g>
@@ -171,20 +156,21 @@ function logoBounceLoop(duration, loopTime) {
             </svg>
         </div>
         <input type="text" name="searchbar"
-            class="searchbox relative -top-16 text-center self-center p-3 border-solid border-2 rounded-full m-2 text-xl focus:border-blue-300"
+            class="searchbox h-8 md:h-14 text-center self-center border-solid border-2 rounded-full text-xl focus:border-blue-300"
             placeholder="Search Songs..." v-model="searchInput" @keydown.enter="searchSongs(searchInput)"
             :class="{ searchboxShow: isMove }" :style="{ opacity: isTransparent - 0.3 }">
     </header>
-    <main class="searchResults relative -top-16 sm:w-10/12 md:w-3/5" :class="{ showResults: showResults, searchResultsLoading: searchResultsLoading }">
+    <main class="searchResults self-center w-10/12 md:w-3/5" :class="{ showResults: showResults, searchResultsLoading: searchResultsLoading }">
         <TransitionGroup name="searchResults" @after-enter="addLogoTopMargin()">
             <SongResult v-for="song in songsListNew" :title="song.name" :artist="song.artists[0].name"
                 :album-cover="song.albumCover" :key="song.id" :id="song.id" />
         </TransitionGroup>
     </main>
-    <main class="posterCreator" :class="{ toPosterCreator: hasGotLyrics }"
+    <main class="posterCreator z-10" :class="{ toPosterCreator: hasGotLyrics }"
         :style="{ backgroundColor: lyricsAsRefs.albumMainColor.value }">
         <CreatePoster />
     </main>
+    <footer class="absolute bottom-0 w-full text-center p-1 text-zinc-600 text-sm" :style="{opacity: isTransparent-0.5}">Copyright © 2022-2023 TAiONS 丨 <a href="https://github.com/Yuuikic/LyricsPoster" target="_blank" class=" hover:text-indigo-500 transition-all">GitHub</a> </footer>
 </template>
 
 <style scoped>
@@ -265,7 +251,6 @@ function logoBounceLoop(duration, loopTime) {
     border-radius: 10px;
     opacity: 0;
     min-height: 0;
-    margin: auto;
     margin-top: 20px;
     margin-bottom: 20px;
     overflow: scroll;
@@ -285,7 +270,7 @@ function logoBounceLoop(duration, loopTime) {
 
 .showResults {
     opacity: 1;
-    min-height: 80%;
+    min-height: 40%;
 }
 
 .searchResultsLoading {

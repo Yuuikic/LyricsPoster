@@ -22,13 +22,12 @@ export const lyrics = reactive({
     changeLyricsStatus(hasGotLyrics) {
         hasGotLyrics.value = !hasGotLyrics.value;
     },
-    getLyrics(id, isClicked) {
+    async getLyrics(id, isClicked) {
         let lyricsURL = `${this.searchAPIUrl}/lyric?id=${id}`;
         isClicked.value = !isClicked.value; // 更新传入的 ref
 
         fetch(lyricsURL, {
             method: "GET",
-            // mode: "no-cors",
             credentials: 'include'
         }).then(
             (response) => {
