@@ -6,7 +6,7 @@
 
 一个在线歌词海报生成器。搜索歌曲、挑选歌词，一键生成歌词海报。
 
-在线使用：<https://taions.nonon.moe>
+在线使用：<https://taions.yuuikic.com>
 
 ## 技术栈
 

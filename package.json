@@ -8,7 +8,7 @@
     "type": "git",
     "url": "git+https://github.com/Yuuikic/LyricsPoster.git"
   },
-  "homepage": "https://taions.nonon.moe",
+  "homepage": "https://taions.yuuikic.com",
   "type": "module",
   "engines": {
     "node": ">=18"
